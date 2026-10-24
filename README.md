@@ -53,6 +53,10 @@ The plan lives in [`devpost/`](devpost): scope, product requirements, technical 
 
 **Prepared before the project folder was created (no code):** legal research notes on the LAU (checked against the BOE), and three fictional sample contracts with their expected results. These were prepared with AI help.
 
+## License
+
+[MIT](LICENSE). The skill pack used for planning is MIT-licensed by its authors.
+
 ## Not legal advice
 
 Fair Lease is an information tool. It checks a contract against a small set of rules and shows the exact article. For a decision that matters, talk to a tenants' union, your city's consumer office or a lawyer.
