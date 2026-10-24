@@ -191,3 +191,18 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Phone bottom sheet ──────────────────────────────────────────── */
+.finding-sheet::backdrop {
+  background: rgba(20, 19, 18, 0.18);
+}
+.finding-sheet[open] {
+  animation: sheet-up 380ms var(--ease);
+}
+@keyframes sheet-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .finding-sheet[open] { animation: none; }
+}

@@ -27,7 +27,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
   Learner check: Open http://localhost:3000, tap "A contract full of traps (2025)" and look at the sheet. Do the coloured clauses and the counts read clearly, and does it feel like an annotated paper contract rather than a dashboard?
   Commit: `Annotate the traps sample with real rule verdicts`
 
-- [ ] **2. Open any finding and get the article, the euros and what to ask for instead**
+- [x] **2. Open any finding and get the article, the euros and what to ask for instead**
   Becomes usable: Clicking a highlight or its margin note opens the finding: verdict chip, plain title, explanation, computed number, the Spanish law quote with English translation and BOE link, and "Ask for this instead" with Copy and an ES/EN switch. Clauses with several findings show stacked badges and a count mark. The money line appears. On a phone the finding opens in a bottom sheet over the text. J/K and Enter work.
   Why now: This turns verdicts into something a tenant can act on, and it settles the hardest layout question (margin vs. bottom sheet, overlapping findings) while feedback can still shape slices 3-5.
   PRD ref: `prd.md > Findings and Verdicts`, `prd.md > Money Line`, `prd.md > Screens and Layout`
@@ -122,7 +122,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
 
 The learner delegated hands-on checks to the agent, run in a headless browser (Playwright) at 1440 px and 390 px. Each check records what was looked at and what changed.
 
-- [ ] Early usable behavior explored — after slice 2 (annotated traps sample with findings, desktop and phone)
+- [x] Early usable behavior explored — after slice 2 (annotated traps sample with findings, desktop and phone). Done by the agent in headless Chromium at 1440 px and 390 px, as delegated, with screenshots under `e2e/screenshots/`. What was looked at: the money line, the clause QUINTA stack, the law disclosure, the BOE link, Copy, the ES/EN switch and the J/K keys. Change made: in an open margin note, only one finding shows its details at a time (the most severe first), because opening all three in clause QUINTA made the margin far taller than the sheet.
 - [ ] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
