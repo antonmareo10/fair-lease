@@ -133,15 +133,19 @@ The learner delegated hands-on checks to the agent, run in a headless browser (P
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — prior practice connected, as an evidence-based recap. The learner delegated the session, so it was not hands-on for him.
+- [x] Optional edit and transfer reflection addressed. Edit: not applicable (delegated session). Transfer question: offered to the learner through the person relaying the session, answer optional.
+- [x] `devpost/app-map.html` generated from finished code (commit 7073779), checked, and shown, including a project-grounded practice to reuse. Every path checked against the source; rendered at 390 px in headless Chromium with no horizontal scroll. Shown through the relay.
 
 Activity and evidence:
-Route and stops:
-Edit outcome:
-Reflection:
-Activity mode:
+- The learning intention ("make what an AI says checkable: it only extracts and quotes, the code checks the quote, fixed rules decide") was practised during the build itself.
+- The spec's useful unknown, how strict the quote check can be, was settled with evidence: 0 hidden quotes across three Opus recordings and three real Sonnet/Haiku live checks.
+- Model output was tested against the expected verdicts: `tests/recorded.test.ts`, the robustness test in `tests/gold.test.ts`, the FL-07 change.
+
+Route and stops: reference route only (`devpost/app-map.html`): `components/FairLease.tsx` `checkLive` → `lib/analyze.ts` `analyze` → `lib/rules/fl02-extra-guarantees.ts` `fl02.evaluate` → `components/result/FindingNote.tsx`. Not toured live.
+Edit outcome: not applicable (delegated session).
+Reflection: offered through the relay, optional.
+Activity mode: recap of prior practice. Not a hands-on activity by the learner.
 
 ## Revisions
 - All 18 FL rules were written in slice 1, not split across slices 1 and 3. They share helpers and texts, so writing them together was simpler. Verification of the regime-C and fair-contract behaviour stays in slice 3, as planned.
