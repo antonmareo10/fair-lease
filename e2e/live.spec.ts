@@ -72,3 +72,19 @@ test("no signing date: today's law, and picking a date re-runs the rules", async
   await expect(page.locator("mark.hl", { hasText: "renuncia expresamente a los derechos de tanteo" })).toHaveClass(/v-OK/);
   await page.screenshot({ path: shot("picked-date", info.project.name) });
 });
+
+test("a finished live check lands with the first highlight on the first screen", async ({ page }) => {
+  await mockRoute(page, { ok: true, extraction: traps.extraction, model: "claude-sonnet-5-5" }, 200, 100);
+  await page.goto("/");
+  await page.getByLabel("Your contract text").fill(traps.text);
+  await page.getByRole("button", { name: "Check my contract" }).click();
+  await expect(page.getByText("Live check · read by Claude Sonnet 5.5")).toBeVisible();
+  await expect(page.getByRole("list", { name: "Summary" })).toContainText("not enforceable");
+  const first = await page.evaluate(() => {
+    const line = document.querySelector("mark.hl")?.getClientRects()[0];
+    return { scrollY: window.scrollY, top: line?.top ?? -1, bottom: line?.bottom ?? -1, height: window.innerHeight };
+  });
+  expect(first.scrollY).toBe(0);
+  expect(first.top).toBeGreaterThanOrEqual(0);
+  expect(first.bottom).toBeLessThanOrEqual(first.height - 60);
+});

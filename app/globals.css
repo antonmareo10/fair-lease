@@ -163,6 +163,53 @@ body {
   white-space: nowrap;
 }
 
+/* The unmarked opening of the contract, folded so the first highlight starts high on the page. */
+.fold {
+  margin: 1.2em 0;
+  white-space: normal;
+}
+.fold > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.25rem;
+  border-block: 1px dashed var(--hairline);
+  color: var(--ink-2);
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.fold > summary::-webkit-details-marker {
+  display: none;
+}
+.fold > summary:hover {
+  color: var(--ink);
+}
+@media (max-width: 639px) {
+  .fold-note {
+    display: none;
+  }
+}
+.fold-chevron {
+  flex: none;
+  transition: transform 200ms var(--ease);
+}
+.fold[open] .fold-chevron {
+  transform: rotate(90deg);
+}
+.fold[open] .fold-show,
+.fold:not([open]) .fold-hide {
+  display: none;
+}
+.fold-body {
+  margin-top: 1.2em;
+  white-space: pre-wrap;
+}
+
 /* ── Chips ───────────────────────────────────────────────────────── */
 .chip {
   display: inline-flex;
@@ -186,6 +233,9 @@ body {
   }
   .hl.pulse {
     animation: none;
+  }
+  .fold-chevron {
+    transition: none;
   }
   * {
     scroll-behavior: auto !important;

@@ -166,35 +166,40 @@ export function ResultView({ text, result, label, onBack, onDate, removed }: Pro
   }, []);
 
   const contractGroups = groups.filter((g) => !g.clauseRef);
+  // On a phone the numbers and the first highlight share the first screen, so the timeline's track goes below the sheet.
+  // With an assumed date the date picker matters for the result, so that timeline stays up top, whole.
+  const trackBelow = !desktop && !result.law.assumedToday;
 
   return (
     <main className="mx-auto w-full max-w-[1240px] px-4 pb-24 pt-6 sm:px-8 sm:pt-10">
-      <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 sm:mb-6">
         <button type="button" onClick={onBack} className="rounded-md text-[0.9rem] font-medium text-ink-2 hover:text-ink">
           ← Check another contract
         </button>
         <span className="rounded-full border border-[var(--hairline)] px-3 py-1 text-[0.78rem] text-ink-2">{label}</span>
-      </div>
-
-      <section aria-label="Result summary" className="mb-8 grid gap-4">
-        <Summary counts={result.counts} onJump={jumpTo} />
-        {result.counts.ILLEGAL === 0 && result.counts.CHECK === 0 && result.law.regime !== "pre2019" ? <CleanState ruleCount={result.ruleCount} /> : null}
-        {money ? <MoneyLine money={money} /> : null}
-        <LetterPanel findings={result.findings} clauses={result.clauses} lang={lang} onLang={setLang} onCopy={copy} />
-        <Timeline law={result.law} onDate={onDate} />
-        <Notices result={result} />
-        {removed ? <p className="text-[0.85rem] text-ink-2">Removed before analysis: {removed}.</p> : null}
-        <Disclaimer />
-        <p className="hidden text-[0.8rem] text-ink-2 lg:block">
+        <p className="ml-auto hidden text-[0.8rem] text-ink-2 lg:block">
           Click a number, a highlight or a note to open it · <kbd className="font-sans">J</kbd>/<kbd className="font-sans">K</kbd> to move between findings
         </p>
-        <p className="text-[0.85rem] text-ink-2 lg:hidden">Tap a number or a highlighted sentence to see the law and what to ask for instead.</p>
+      </div>
+
+      {/* Same two columns as the sheet below: the numbers and the euros on the left, the law timeline in the margin. */}
+      <section aria-label="Result summary" className="mb-6 grid items-end gap-x-10 gap-y-4 sm:mb-8 lg:grid-cols-[minmax(0,1fr)_380px]">
+        <div className="grid min-w-0 gap-4">
+          <Summary counts={result.counts} onJump={jumpTo} />
+          {result.counts.ILLEGAL === 0 && result.counts.CHECK === 0 && result.law.regime !== "pre2019" ? <CleanState ruleCount={result.ruleCount} /> : null}
+          {money ? <MoneyLine money={money} /> : null}
+          <LetterPanel findings={result.findings} clauses={result.clauses} lang={lang} onLang={setLang} onCopy={copy} />
+        </div>
+        <Timeline law={result.law} onDate={onDate} part={trackBelow ? "sentence" : "all"} />
+        <div className="empty:hidden lg:col-span-2">
+          <Notices result={result} />
+        </div>
       </section>
 
       {!desktop && contractGroups.length > 0 ? (
         <div className="mb-4 grid gap-3">
           {contractGroups.map((g) => (
-            <NoteCard key={g.key} group={g} clauses={result.clauses} active lang={lang} onLang={setLang} onCopy={copy} onOpen={() => undefined} style={{ position: "relative" }} />
+            <NoteCard key={g.key} group={g} clauses={result.clauses} active={false} lang={lang} onLang={setLang} onCopy={copy} onOpen={() => open(g.key, false)} style={{ position: "relative" }} />
           ))}
         </div>
       ) : null}
@@ -226,6 +231,13 @@ export function ResultView({ text, result, label, onBack, onDate, removed }: Pro
             onOpen={(key) => (key === activeKey ? setActiveKey(null) : open(key, true))}
           />
         ) : null}
+      </div>
+
+      <div className="mt-10 grid gap-5">
+        {trackBelow ? <Timeline law={result.law} part="graphic" /> : null}
+        {removed ? <p className="text-[0.85rem] text-ink-2">Removed before analysis: {removed}.</p> : null}
+        <p className="text-[0.85rem] text-ink-2 lg:hidden">Tap a number or a highlighted sentence to open it.</p>
+        <Disclaimer />
       </div>
 
       {!desktop ? (

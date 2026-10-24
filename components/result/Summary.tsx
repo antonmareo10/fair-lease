@@ -32,7 +32,7 @@ function Counter({ verdict, label, value, onJump }: { verdict: Verdict; label: s
   const n = useCountUp(value);
   const inner = (
     <>
-      <span className="font-serif text-[2.4rem] leading-none tabular sm:text-[2.8rem]" aria-hidden="true">
+      <span className="font-serif text-[2.1rem] leading-none tabular sm:text-[2.8rem]" aria-hidden="true">
         {n}
       </span>
       <span className={`chip ${onJump ? "underline decoration-current/30 underline-offset-4 group-hover:decoration-current" : ""}`}>
@@ -61,7 +61,7 @@ function Counter({ verdict, label, value, onJump }: { verdict: Verdict; label: s
 
 export function Summary({ counts, onJump }: { counts: Record<Verdict, number>; onJump?: (verdict: Verdict) => void }) {
   return (
-    <ul className="flex flex-wrap gap-x-8 gap-y-3" aria-label="Summary">
+    <ul className="flex flex-wrap gap-x-7 gap-y-2 sm:gap-x-8 sm:gap-y-3" aria-label="Summary">
       {ORDER.filter((o) => o.verdict !== "INFO" || counts.INFO > 0).map((o) => (
         <Counter key={o.verdict} verdict={o.verdict} label={o.label} value={counts[o.verdict]} onJump={counts[o.verdict] > 0 ? onJump : undefined} />
       ))}
