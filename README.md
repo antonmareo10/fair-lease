@@ -4,6 +4,10 @@
 
 Made for people renting a home in Madrid, especially young people and students from abroad who don't read Spanish legal language.
 
+**Try it now: [fair-lease.vercel.app](https://fair-lease.vercel.app)**. No account. Tap one of the three sample contracts and its problem clauses light up; click a highlight to see the article and what to ask for instead.
+
+![A fictional contract with each unenforceable clause highlighted and a margin note with the article and the euros involved](docs/result-screen.png)
+
 ## How it works
 
 1. **Your browser removes personal data** (ID numbers, IBANs, phone numbers, emails) before anything is sent.
@@ -49,7 +53,7 @@ Next.js 16.4 (App Router, TypeScript) with Tailwind CSS 4, the Anthropic TypeScr
 
 ## Built with the Devpost Learn Skill Pack
 
-The plan lives in [`devpost/`](devpost): scope, product requirements, technical spec and the build checklist, made with the [Build With AI: Basics](https://github.com/challengepost/learn-ai-basics) skill pack. `skills-lock.json` records the pack's source.
+The plan lives in [`devpost/`](devpost): [scope](devpost/scope.md), [product requirements](devpost/prd.md), [technical spec](devpost/spec.md) and the [build checklist](devpost/checklist.md), made with the [Build With AI: Basics](https://github.com/challengepost/learn-ai-basics) skill pack. `skills-lock.json` records the pack's source.
 
 **Prepared before the project folder was created (no code):** legal research notes on the LAU (checked against the BOE), and three fictional sample contracts with their expected results. These were prepared with AI help.
 
