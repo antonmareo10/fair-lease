@@ -47,6 +47,23 @@ The public site allows 25 live checks a day (best effort, in memory). The hard c
 
 In both live checks, Claude Sonnet 5.5 gave the same not-enforceable and worth-checking verdicts as the hand-made expected results, with every quote found in the text.
 
+## Model alone vs Fair Lease
+
+Is this just asking the AI? I measured it on 24 Oct 2026: the same model (Sonnet 5.5) on the three sample contracts, 41 hand-labelled clauses, three runs each. "Alone" is the plain question ("revisa este contrato de alquiler español firmado el ... y dime qué cláusulas no son exigibles según la LAU, con el artículo") with no rules and no quote check.
+
+| | Fair Lease | Sonnet 5.5 alone |
+|---|---|---|
+| Verdict matches the expected one (of 41 clauses) | 40 | 29.3 (29-30) |
+| Not-enforceable clauses found (of 15) | 15 | 9.7 (9-10) |
+| Fine clauses called illegal or sent to review (of 24) | 1 | 4.3 |
+| Oct 2026 contract, clauses right (of 8) | 8 | 3.3 (3-4) |
+| Right version of the law (of 3 contracts) | 3 | 1.3 (1-2) |
+| Euro figures right (of 4) | 4 | 1.3 (1-2) |
+| Invented articles / quotes not in the contract | 0 / 0 | 0 / 0 |
+| Cost per contract | $0.040 | $0.044 |
+
+The model alone is a decent first reader: it flags 14 of the 17 problem clauses and never made up a quote or an article. What it lacks is the date of the law (it applied the May 2023 text to the October 2026 contract in every run), steady verdicts, and the arithmetic (it gave the €7,141.50 total in none of three runs). Fair Lease's one miss is a false alarm on the clean contract, the same in all three runs, and the expected results and the rules share an author, so read the 40 as "the pipeline reproduces our hand-checked reading". Method, limits and every raw answer: [eval/README.md](eval/README.md). To recompute the table without any API call: `npm run eval:score`.
+
 ## Stack
 
 Next.js 16.4 (App Router, TypeScript) with Tailwind CSS 4, the Anthropic TypeScript SDK and zod. Tested with Vitest and Playwright. Fonts: Newsreader and Inter.

@@ -1,0 +1,736 @@
+{
+ "reform-FL-19": {
+  "gold": "ILLEGAL",
+  "rule": "FL-19",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "CHECK",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "CHECK"
+   ]
+  }
+ },
+ "reform-CUARTA-FL-02": {
+  "gold": "OK",
+  "rule": "FL-02",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "CHECK"
+   ]
+  }
+ },
+ "reform-QUINTA-FL-17": {
+  "gold": "ILLEGAL",
+  "rule": "FL-17",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ],
+   "alone-opus": [
+    "CHECK"
+   ]
+  }
+ },
+ "reform-SEXTA-FL-09": {
+  "gold": "OK",
+  "rule": "FL-09",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "reform-SEXTA-FL-10": {
+  "gold": "ILLEGAL",
+  "rule": "FL-10",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "reform-SEPTIMA-FL-07": {
+  "gold": "ILLEGAL",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "reform-OCTAVA-FL-18": {
+  "gold": "ILLEGAL",
+  "rule": "FL-18",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "CHECK",
+    "OK"
+   ],
+   "alone-opus": [
+    "CHECK"
+   ]
+  }
+ },
+ "reform-NOVENA-OK-PETS": {
+  "gold": "OK",
+  "rule": "OK-PETS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "CHECK",
+    "OK",
+    "CHECK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "traps-SEGUNDA-FL-05": {
+  "gold": "ILLEGAL",
+  "rule": "FL-05",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-TERCERA-FL-15": {
+  "gold": "OK",
+  "rule": "FL-15",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "not mentioned",
+    "not mentioned",
+    "not mentioned"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "traps-TERCERA-FL-04": {
+  "gold": "ILLEGAL",
+  "rule": "FL-04",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "CHECK",
+    "ILLEGAL",
+    "CHECK"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-CUARTA-FL-08": {
+  "gold": "ILLEGAL",
+  "rule": "FL-08",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-QUINTA-FL-01": {
+  "gold": "CHECK",
+  "rule": "FL-01",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "OK",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-QUINTA-FL-02": {
+  "gold": "ILLEGAL",
+  "rule": "FL-02",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-QUINTA-FL-16": {
+  "gold": "CHECK",
+  "rule": "FL-16",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-SEXTA-FL-03": {
+  "gold": "ILLEGAL",
+  "rule": "FL-03",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-SEPTIMA-FL-09": {
+  "gold": "ILLEGAL",
+  "rule": "FL-09",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "CHECK",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "CHECK"
+   ]
+  }
+ },
+ "traps-SEPTIMA-OK-UTILITIES": {
+  "gold": "OK",
+  "rule": "OK-UTILITIES",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "traps-OCTAVA-FL-11": {
+  "gold": "ILLEGAL",
+  "rule": "FL-11",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-NOVENA-FL-07-OK": {
+  "gold": "OK",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "traps-NOVENA-FL-07": {
+  "gold": "ILLEGAL",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-DECIMA-FL-13": {
+  "gold": "ILLEGAL",
+  "rule": "FL-13",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-UNDECIMA-FL-14": {
+  "gold": "ILLEGAL",
+  "rule": "FL-14",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "CHECK"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-DUODECIMA-OK-PETS": {
+  "gold": "OK",
+  "rule": "OK-PETS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "traps-DECIMOTERCERA-OK-SUBLET": {
+  "gold": "OK",
+  "rule": "OK-SUBLET",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "OK"
+   ]
+  }
+ },
+ "traps-DECIMOCUARTA-FL-18": {
+  "gold": "OK",
+  "rule": "FL-18",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-opus": [
+    "ILLEGAL"
+   ]
+  }
+ },
+ "fair-SEGUNDA-FL-05": {
+  "gold": "OK",
+  "rule": "FL-05",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-TERCERA-FL-06": {
+  "gold": "OK",
+  "rule": "FL-06",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ],
+   "alone-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "fair-CUARTA-FL-04": {
+  "gold": "OK",
+  "rule": "FL-04",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "not mentioned",
+    "not mentioned",
+    "not mentioned"
+   ],
+   "alone-sonnet": [
+    "not mentioned",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-QUINTA-FL-08": {
+  "gold": "OK",
+  "rule": "FL-08",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "CHECK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEXTA-FL-01": {
+  "gold": "OK",
+  "rule": "FL-01",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEXTA-FL-02": {
+  "gold": "OK",
+  "rule": "FL-02",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEPTIMA-FL-09": {
+  "gold": "OK",
+  "rule": "FL-09",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEPTIMA-FL-03": {
+  "gold": "OK",
+  "rule": "FL-03",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-OCTAVA-FL-11": {
+  "gold": "OK",
+  "rule": "FL-11",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-NOVENA-FL-07": {
+  "gold": "OK",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DECIMA-FL-13": {
+  "gold": "OK",
+  "rule": "FL-13",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-UNDECIMA-OK-PETS": {
+  "gold": "OK",
+  "rule": "OK-PETS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ]
+  }
+ },
+ "fair-DUODECIMA-OK-SUBLET": {
+  "gold": "OK",
+  "rule": "OK-SUBLET",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DECIMOTERCERA-OK-WORKS": {
+  "gold": "OK",
+  "rule": "OK-WORKS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DECIMOCUARTA-FL-16": {
+  "gold": "OK",
+  "rule": "FL-16",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ],
+   "alone-sonnet": [
+    "OK",
+    "CHECK",
+    "OK"
+   ]
+  }
+ }
+}

@@ -1,0 +1,76 @@
+{
+  "source": "demo_contracts/GOLD.md (hand-made on 21 Oct 2026, before the engine existed). Each unit is one GOLD row; `fixture` points to the clause(s) of scripts/fixtures/<id>.extraction.json that hold its literal text. Articles are the ones a lawyer would accept for that row (art. 6 LAU, nullity of terms against the tenant, is accepted for every not-enforceable row). Euros come straight from GOLD.md.",
+  "contracts": {
+    "traps-2025": {
+      "title": "01 Trampas 2025",
+      "sample": "traps-2025",
+      "signedLong": "1 de septiembre de 2025",
+      "regime": "B",
+      "lawVersionFrom": "2023-05-26",
+      "totalOverEur": 7141.5,
+      "units": [
+        { "id": "traps-SEGUNDA-FL-05", "ref": "SEGUNDA", "rule": "FL-05", "fixture": [0], "verdict": "ILLEGAL", "articles": ["LAU 9", "LAU 10", "LAU 6"] },
+        { "id": "traps-TERCERA-FL-15", "ref": "TERCERA", "rule": "FL-15", "fixture": [1], "verdict": "OK", "articles": [] },
+        { "id": "traps-TERCERA-FL-04", "ref": "TERCERA", "rule": "FL-04", "fixture": [2], "verdict": "ILLEGAL", "articles": ["LAU 17", "LAU 6"], "overEur": 2300 },
+        { "id": "traps-CUARTA-FL-08", "ref": "CUARTA", "rule": "FL-08", "fixture": [3], "verdict": "ILLEGAL", "articles": ["LAU 18", "LAU 6"] },
+        { "id": "traps-QUINTA-FL-01", "ref": "QUINTA", "rule": "FL-01", "fixture": [4], "verdict": "CHECK", "articles": ["LAU 36"] },
+        { "id": "traps-QUINTA-FL-02", "ref": "QUINTA", "rule": "FL-02", "fixture": [5], "verdict": "ILLEGAL", "articles": ["LAU 36", "LAU 6"], "overEur": 3450 },
+        { "id": "traps-QUINTA-FL-16", "ref": "QUINTA", "rule": "FL-16", "fixture": [6], "verdict": "CHECK", "articles": ["LAU 36"] },
+        { "id": "traps-SEXTA-FL-03", "ref": "SEXTA", "rule": "FL-03", "fixture": [7], "verdict": "ILLEGAL", "articles": ["LAU 20", "LAU 6"], "overEur": 1391.5 },
+        { "id": "traps-SEPTIMA-FL-09", "ref": "SÉPTIMA", "rule": "FL-09", "fixture": [8], "verdict": "ILLEGAL", "articles": ["LAU 20", "LAU 6"] },
+        { "id": "traps-SEPTIMA-OK-UTILITIES", "ref": "SÉPTIMA", "rule": "OK-UTILITIES", "fixture": [9], "verdict": "OK", "articles": [] },
+        { "id": "traps-OCTAVA-FL-11", "ref": "OCTAVA", "rule": "FL-11", "fixture": [10], "verdict": "ILLEGAL", "articles": ["LAU 21", "LAU 6"] },
+        { "id": "traps-NOVENA-FL-07-OK", "ref": "NOVENA", "rule": "FL-07", "fixture": [11], "verdict": "OK", "articles": [] },
+        { "id": "traps-NOVENA-FL-07", "ref": "NOVENA", "rule": "FL-07", "fixture": [12], "verdict": "ILLEGAL", "articles": ["LAU 11", "LAU 6"] },
+        { "id": "traps-DECIMA-FL-13", "ref": "DÉCIMA", "rule": "FL-13", "fixture": [13], "verdict": "ILLEGAL", "articles": ["CE 18", "CP 202", "CC 1554", "LAU 6"] },
+        { "id": "traps-UNDECIMA-FL-14", "ref": "UNDÉCIMA", "rule": "FL-14", "fixture": [14], "verdict": "ILLEGAL", "articles": ["LBRL 15", "LAU 6"] },
+        { "id": "traps-DUODECIMA-OK-PETS", "ref": "DUODÉCIMA", "rule": "OK-PETS", "fixture": [15], "verdict": "OK", "articles": [] },
+        { "id": "traps-DECIMOTERCERA-OK-SUBLET", "ref": "DECIMOTERCERA", "rule": "OK-SUBLET", "fixture": [16], "verdict": "OK", "articles": [] },
+        { "id": "traps-DECIMOCUARTA-FL-18", "ref": "DECIMOCUARTA", "rule": "FL-18", "fixture": [17], "verdict": "OK", "articles": [] }
+      ]
+    },
+    "fair-2024": {
+      "title": "02 Limpio 2024",
+      "sample": "fair-2024",
+      "signedLong": "15 de febrero de 2024",
+      "regime": "B",
+      "lawVersionFrom": "2023-05-26",
+      "totalOverEur": 0,
+      "units": [
+        { "id": "fair-SEGUNDA-FL-05", "ref": "SEGUNDA", "rule": "FL-05", "fixture": [0], "verdict": "OK", "articles": [] },
+        { "id": "fair-TERCERA-FL-06", "ref": "TERCERA", "rule": "FL-06", "fixture": [1], "verdict": "OK", "articles": [] },
+        { "id": "fair-CUARTA-FL-04", "ref": "CUARTA", "rule": "FL-04", "fixture": [2], "verdict": "OK", "articles": [] },
+        { "id": "fair-QUINTA-FL-08", "ref": "QUINTA", "rule": "FL-08", "fixture": [3], "verdict": "OK", "articles": [] },
+        { "id": "fair-SEXTA-FL-01", "ref": "SEXTA", "rule": "FL-01", "fixture": [4], "verdict": "OK", "articles": [] },
+        { "id": "fair-SEXTA-FL-02", "ref": "SEXTA", "rule": "FL-02", "fixture": [5], "verdict": "OK", "articles": [] },
+        { "id": "fair-SEPTIMA-FL-09", "ref": "SÉPTIMA", "rule": "FL-09", "fixture": [6], "verdict": "OK", "articles": [] },
+        { "id": "fair-SEPTIMA-FL-03", "ref": "SÉPTIMA", "rule": "FL-03", "fixture": [7], "verdict": "OK", "articles": [] },
+        { "id": "fair-OCTAVA-FL-11", "ref": "OCTAVA", "rule": "FL-11", "fixture": [8], "verdict": "OK", "articles": [] },
+        { "id": "fair-NOVENA-FL-07", "ref": "NOVENA", "rule": "FL-07", "fixture": [9], "verdict": "OK", "articles": [] },
+        { "id": "fair-DECIMA-FL-13", "ref": "DÉCIMA", "rule": "FL-13", "fixture": [10], "verdict": "OK", "articles": [] },
+        { "id": "fair-UNDECIMA-OK-PETS", "ref": "UNDÉCIMA", "rule": "OK-PETS", "fixture": [11], "verdict": "OK", "articles": [] },
+        { "id": "fair-DUODECIMA-OK-SUBLET", "ref": "DUODÉCIMA", "rule": "OK-SUBLET", "fixture": [12], "verdict": "OK", "articles": [] },
+        { "id": "fair-DECIMOTERCERA-OK-WORKS", "ref": "DECIMOTERCERA", "rule": "OK-WORKS", "fixture": [13], "verdict": "OK", "articles": [] },
+        { "id": "fair-DECIMOCUARTA-FL-16", "ref": "DECIMOCUARTA", "rule": "FL-16", "fixture": [14], "verdict": "OK", "articles": [] }
+      ]
+    },
+    "reform-oct-2026": {
+      "title": "03 Nueva ley oct 2026",
+      "sample": "reform-oct-2026",
+      "signedLong": "12 de octubre de 2026",
+      "regime": "C",
+      "lawVersionFrom": "2026-10-08",
+      "totalOverEur": 0,
+      "units": [
+        { "id": "reform-FL-19", "ref": "TÍTULO+PRIMERA+SEGUNDA+DÉCIMA", "rule": "FL-19", "fixture": [0, 1, 2, 11], "verdict": "ILLEGAL", "articles": ["LAU 3", "LAU 7", "LAU 9", "LAU 9 bis", "LAU 6", "CC 6"] },
+        { "id": "reform-CUARTA-FL-02", "ref": "CUARTA", "rule": "FL-02", "fixture": [3, 4], "verdict": "OK", "articles": [] },
+        { "id": "reform-QUINTA-FL-17", "ref": "QUINTA", "rule": "FL-17", "fixture": [5], "verdict": "ILLEGAL", "articles": ["LAU 36", "LAU 6"] },
+        { "id": "reform-SEXTA-FL-09", "ref": "SEXTA", "rule": "FL-09", "fixture": [6], "verdict": "OK", "articles": [] },
+        { "id": "reform-SEXTA-FL-10", "ref": "SEXTA", "rule": "FL-10", "fixture": [7], "verdict": "ILLEGAL", "articles": ["LAU 20", "LAU 6"] },
+        { "id": "reform-SEPTIMA-FL-07", "ref": "SÉPTIMA", "rule": "FL-07", "fixture": [8], "verdict": "ILLEGAL", "articles": ["LAU 11", "LAU 6"] },
+        { "id": "reform-OCTAVA-FL-18", "ref": "OCTAVA", "rule": "FL-18", "fixture": [9], "verdict": "ILLEGAL", "articles": ["LAU 25", "LAU 6"] },
+        { "id": "reform-NOVENA-OK-PETS", "ref": "NOVENA", "rule": "OK-PETS", "fixture": [10], "verdict": "OK", "articles": [] }
+      ]
+    }
+  }
+}
