@@ -43,6 +43,13 @@ test("footer, privacy page, own icon, title and share image", async ({ page, req
   await noSideScroll(page);
 });
 
+test("the logo on the privacy page leads back to the start", async ({ page }) => {
+  await page.goto("/privacy");
+  await page.getByRole("link", { name: "Fair Lease, back to start" }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Is your rental contract legal?");
+});
+
 test("keyboard focus is always visible", async ({ page }, info) => {
   test.skip(info.project.name === "phone", "keyboard check on desktop");
   await page.goto("/");
