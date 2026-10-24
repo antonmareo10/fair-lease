@@ -81,7 +81,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
   Learner check: Paste a few lines of text, then a full contract, then an English paragraph. Do the messages say clearly what happened and what to do next?
   Commit: `Check pasted contracts live with anonymisation and clear failure states`
 
-- [ ] **5. Write to my landlord, trust details and polish**
+- [x] **5. Write to my landlord, trust details and polish**
   Becomes usable:
   - "Write to my landlord" builds the ES/EN message from the not-enforceable findings, with Copy.
   - Footer, Privacy & Terms page, disclaimer and SAVMadrid line.

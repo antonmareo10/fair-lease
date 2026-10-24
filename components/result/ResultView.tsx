@@ -13,6 +13,7 @@ import { FindingSheet } from "./FindingSheet";
 import { NoteCard } from "./NoteCard";
 import type { Lang } from "./FindingNote";
 import { Timeline } from "./Timeline";
+import { LetterPanel } from "./LetterPanel";
 import { CleanState, Disclaimer, Notices } from "./Notices";
 
 type Props = {
@@ -165,6 +166,7 @@ export function ResultView({ text, result, label, onBack, onDate, removed }: Pro
         <Summary counts={result.counts} />
         {result.counts.ILLEGAL === 0 && result.counts.CHECK === 0 && result.law.regime !== "pre2019" ? <CleanState ruleCount={result.ruleCount} /> : null}
         {money ? <MoneyLine money={money} /> : null}
+        <LetterPanel findings={result.findings} clauses={result.clauses} lang={lang} onLang={setLang} onCopy={copy} />
         <Timeline law={result.law} onDate={onDate} />
         <Notices result={result} />
         {removed ? <p className="text-[0.85rem] text-ink-2">Removed before analysis: {removed}.</p> : null}

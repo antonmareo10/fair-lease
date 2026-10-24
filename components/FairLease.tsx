@@ -9,6 +9,7 @@ import { provenanceLabel } from "@/lib/samples";
 import { RULE_COUNT } from "@/lib/rules";
 import type { ExtractResponse } from "@/lib/extract";
 import { Header } from "./Brand";
+import { Footer } from "./Footer";
 import { StartScreen } from "./StartScreen";
 import { CheckingSteps, type Step } from "./CheckingSteps";
 import { ResultView } from "./result/ResultView";
@@ -130,6 +131,7 @@ export function FairLease() {
       ) : (
         <StartScreen draft={draft} onDraft={setDraft} error={error} onCheck={checkLive} onSample={openSample} />
       )}
+      <Footer />
     </>
   );
 }

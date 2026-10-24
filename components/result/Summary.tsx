@@ -14,14 +14,11 @@ const ORDER: { verdict: Verdict; label: string }[] = [
 function useCountUp(target: number, ms = 900) {
   const [n, setN] = useState(0);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setN(target);
-      return;
-    }
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
     const t0 = performance.now();
     const tick = (t: number) => {
-      const p = Math.min(1, (t - t0) / ms);
+      const p = reduce ? 1 : Math.min(1, (t - t0) / ms);
       setN(Math.round(target * (1 - Math.pow(1 - p, 3))));
       if (p < 1) raf = requestAnimationFrame(tick);
     };

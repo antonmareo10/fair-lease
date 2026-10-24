@@ -17,6 +17,8 @@ export type Segment = {
 // Clause headings in Spanish contracts: "QUINTA. FIANZA Y GARANTÍAS." at the start of a line.
 const HEADING = /^(?:[A-ZÁÉÍÓÚÜÑ]+(?: [A-ZÁÉÍÓÚÜÑ]+)*\.)(?: [A-ZÁÉÍÓÚÜÑ ,Y]+\.)?/gmu;
 const TITLE = /^[A-ZÁÉÍÓÚÜÑ ]{12,}$/mu;
+// Section words on their own line: "REUNIDOS", "EXPONEN", "CLÁUSULAS".
+const SECTION = /^[A-ZÁÉÍÓÚÜÑ]{5,}$/gmu;
 
 /** Cut the contract into styled pieces: highlights from verified quotes, plus headings. */
 export function buildSegments(text: string, spans: (Span | null)[], findings: Finding[]): Segment[] {
@@ -29,6 +31,7 @@ export function buildSegments(text: string, spans: (Span | null)[], findings: Fi
 
   const headings: Span[] = [];
   for (const m of text.matchAll(HEADING)) headings.push({ start: m.index!, end: m.index! + m[0].length });
+  for (const m of text.matchAll(SECTION)) headings.push({ start: m.index!, end: m.index! + m[0].length });
   const titleMatch = TITLE.exec(text);
   const title = titleMatch ? { start: titleMatch.index, end: titleMatch.index + titleMatch[0].length } : null;
 
