@@ -14,7 +14,7 @@ type Props = {
 };
 
 const TRUST = [
-  { title: "Rules hand-checked against the BOE", body: "Every verdict cites the exact article of Spanish law." },
+  { title: "Rules hand-checked against the BOE", body: "The BOE is Spain's official gazette. Every verdict cites the exact article of the law." },
   { title: "Claude reads, the rules decide", body: "The AI only quotes your contract. Fixed public rules give the verdict." },
   { title: "Your contract is not stored", body: "ID numbers, bank accounts, phones and emails are removed before it's sent." },
 ];
@@ -102,7 +102,7 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample }: Props)
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-[0.8rem] leading-relaxed text-ink-2">Samples are fictional contracts. They open instantly and don&apos;t use the AI.</p>
+          <p className="mt-3 text-[0.8rem] leading-relaxed text-ink-2">Samples are fictional contracts with a saved Claude reading, so they open instantly. The rules still run for real.</p>
         </section>
       </div>
 

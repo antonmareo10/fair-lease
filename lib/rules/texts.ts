@@ -192,7 +192,7 @@ export const LAW = {
 } satisfies Record<string, LawText>;
 
 export const DISCLAIMER =
-  "Fair Lease is an information tool, not legal advice. It checks your contract against a small set of rules from Spanish law (LAU, as of 7 Oct 2026 in the BOE) and shows you the exact article. For a decision that matters, talk to a tenants' union, your city's consumer office or a lawyer.";
+  "Fair Lease is an information tool, not legal advice. It checks your contract against a small set of rules from Spanish law (the tenancy act, LAU, as consolidated in the BOE on 7 Oct 2026) and shows you the exact article. For a decision that matters, talk to a tenants' union, your city's consumer office or a lawyer.";
 
 /** Latest IRAV (INE): 2.54 % for September 2026, published 14 Oct 2026 (LEGAL_RULES.md §6). */
 export const IRAV_PERCENT = 2.54;
