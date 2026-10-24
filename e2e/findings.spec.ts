@@ -45,6 +45,18 @@ test("clause QUINTA opens three stacked findings, not enforceable first", async 
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
+test("a counter jumps to the first finding of its kind", async ({ page }, info) => {
+  const counter = page.getByRole("list", { name: "Summary" }).getByRole("button", { name: /not enforceable/ });
+  await counter.click();
+  if (info.project.name === "phone") {
+    await expect(page.getByRole("dialog")).toContainText("Says you can't stay past the first term");
+  } else {
+    const first = page.locator('[data-group="SEGUNDA"]');
+    await expect(first).toHaveAttribute("data-active", "true");
+    await expect(first).toBeInViewport();
+  }
+});
+
 test("count mark shows where two findings share the same words", async ({ page }) => {
   const cuarta = page.locator("mark.hl", { hasText: "cada seis (6) meses" });
   await expect(cuarta.locator(".hl-count")).toHaveText("2");

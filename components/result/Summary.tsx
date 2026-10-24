@@ -28,29 +28,42 @@ function useCountUp(target: number, ms = 900) {
   return n;
 }
 
-function Counter({ verdict, label, value }: { verdict: Verdict; label: string; value: number }) {
+function Counter({ verdict, label, value, onJump }: { verdict: Verdict; label: string; value: number; onJump?: (verdict: Verdict) => void }) {
   const n = useCountUp(value);
-  return (
-    <li className={`v-${verdict} flex items-baseline gap-2`}>
+  const inner = (
+    <>
       <span className="font-serif text-[2.4rem] leading-none tabular sm:text-[2.8rem]" aria-hidden="true">
         {n}
       </span>
-      <span className="chip">
+      <span className={`chip ${onJump ? "underline decoration-current/30 underline-offset-4 group-hover:decoration-current" : ""}`}>
         <VerdictIcon verdict={verdict} />
         {label}
       </span>
       <span className="sr-only">
         {value} {label}
+        {onJump ? ", show the first one" : ""}
       </span>
+    </>
+  );
+  // A counter with findings behind it jumps to the first of them: the highlights start far down the sheet.
+  return (
+    <li className={`v-${verdict}`}>
+      {onJump ? (
+        <button type="button" onClick={() => onJump(verdict)} title="Show the first one" className="group flex cursor-pointer items-baseline gap-2 rounded-md">
+          {inner}
+        </button>
+      ) : (
+        <span className="flex items-baseline gap-2">{inner}</span>
+      )}
     </li>
   );
 }
 
-export function Summary({ counts }: { counts: Record<Verdict, number> }) {
+export function Summary({ counts, onJump }: { counts: Record<Verdict, number>; onJump?: (verdict: Verdict) => void }) {
   return (
     <ul className="flex flex-wrap gap-x-8 gap-y-3" aria-label="Summary">
       {ORDER.filter((o) => o.verdict !== "INFO" || counts.INFO > 0).map((o) => (
-        <Counter key={o.verdict} verdict={o.verdict} label={o.label} value={counts[o.verdict]} />
+        <Counter key={o.verdict} verdict={o.verdict} label={o.label} value={counts[o.verdict]} onJump={counts[o.verdict] > 0 ? onJump : undefined} />
       ))}
     </ul>
   );

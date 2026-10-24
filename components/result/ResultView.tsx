@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { AnalysisResult } from "@/lib/analyze";
+import type { Verdict } from "@/lib/rules/types";
 import { buildSegments } from "@/lib/segments";
 import { buildGroups, groupForClause } from "@/lib/groups";
 import { computeMoney } from "@/lib/money";
@@ -122,6 +123,19 @@ export function ResultView({ text, result, label, onBack, onDate, removed }: Pro
     [groups, desktop, activeKey, sheetKey, open, scrollToGroup],
   );
 
+  const jumpTo = useCallback(
+    (verdict: Verdict) => {
+      const g = groups.find((x) => x.clauseRef && x.findings.some((f) => f.verdict === verdict));
+      if (!g) return;
+      if (desktop) open(g.key, true);
+      else {
+        setSheetKey(g.key);
+        scrollToGroup(g.key);
+      }
+    },
+    [groups, desktop, open, scrollToGroup],
+  );
+
   // J/K move between findings; Escape closes (prd.md > Findings and Verdicts).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -163,7 +177,7 @@ export function ResultView({ text, result, label, onBack, onDate, removed }: Pro
       </div>
 
       <section aria-label="Result summary" className="mb-8 grid gap-4">
-        <Summary counts={result.counts} />
+        <Summary counts={result.counts} onJump={jumpTo} />
         {result.counts.ILLEGAL === 0 && result.counts.CHECK === 0 && result.law.regime !== "pre2019" ? <CleanState ruleCount={result.ruleCount} /> : null}
         {money ? <MoneyLine money={money} /> : null}
         <LetterPanel findings={result.findings} clauses={result.clauses} lang={lang} onLang={setLang} onCopy={copy} />
@@ -172,8 +186,9 @@ export function ResultView({ text, result, label, onBack, onDate, removed }: Pro
         {removed ? <p className="text-[0.85rem] text-ink-2">Removed before analysis: {removed}.</p> : null}
         <Disclaimer />
         <p className="hidden text-[0.8rem] text-ink-2 lg:block">
-          Click a highlight or a note to open it · <kbd className="font-sans">J</kbd>/<kbd className="font-sans">K</kbd> to move between findings
+          Click a number, a highlight or a note to open it · <kbd className="font-sans">J</kbd>/<kbd className="font-sans">K</kbd> to move between findings
         </p>
+        <p className="text-[0.85rem] text-ink-2 lg:hidden">Tap a number or a highlighted sentence to see the law and what to ask for instead.</p>
       </section>
 
       {!desktop && contractGroups.length > 0 ? (
