@@ -1,6 +1,6 @@
 # Fair Lease vs the model alone
 
-Is Fair Lease just "ask the AI"? This folder measures it. The same model reads the same three sample contracts twice: once through the real Fair Lease pipeline, once with the question a person would type into any assistant. Both are scored against the hand-made expected results (GOLD) clause by clause. Measured on 24 Oct 2026, three runs per configuration, $0.95 in total.
+Is Fair Lease just "ask the AI"? This folder measures it. The same model reads the same three sample contracts twice: once through the real Fair Lease pipeline, once with the question a person would type into any assistant. Both are scored against the hand-made expected results (GOLD) clause by clause. Measured on 24 Oct 2026, three runs per configuration, $0.95 in total. The first round found one miss in Fair Lease (rule FL-06); it was fixed afterwards and the Fair Lease column below is the result with the fix (see "The one miss, and the fix").
 
 ## Result
 
@@ -8,12 +8,12 @@ Three runs of each configuration on the three contracts (41 GOLD rows). Cells ar
 
 | | Fair Lease (Sonnet 5.5 + rules + quote check) | Sonnet 5.5 alone |
 | --- | --- | --- |
-| Verdict matches GOLD (of 41 rows) | 40 | 29.3 (29-30) |
+| Verdict matches GOLD (of 41 rows) | 41 | 29.3 (29-30) |
 | Not-enforceable clauses found (of 15) | 15 | 9.7 (9-10) |
 | "Worth checking" clauses found (of 2) | 2 | 0 |
 | Problem clauses flagged at all, any severity (of 17) | 17 | 14.3 (14-15) |
-| Fine clauses left alone (of 24) | 23 | 19.7 (19-20) |
-| Fine clauses wrongly called not enforceable | 1 | 1 |
+| Fine clauses left alone (of 24) | 24 | 19.7 (19-20) |
+| Fine clauses wrongly called not enforceable | 0 | 1 |
 | Fine clauses sent to review | 0 | 3.3 (3-4) |
 | Flags on passages GOLD does not label | 0 | 1.0 (0-2) |
 | Right flags that cite an accepted article | 17 of 17 | 14.3 (14-15) of 14.3 (14-15) |
@@ -27,7 +27,7 @@ Three runs of each configuration on the three contracts (41 GOLD rows). Cells ar
 | Rows matching GOLD | Fair Lease (Sonnet 5.5 + rules + quote check) | Sonnet 5.5 alone |
 | --- | --- | --- |
 | 01 Trampas 2025 (of 18) | 18 | 13.7 (13-15) |
-| 02 Limpio 2024 (of 15) | 14 | 12.3 (11-13) |
+| 02 Limpio 2024 (of 15) | 15 | 12.3 (11-13) |
 | 03 Nueva ley oct 2026 (of 8) | 8 | 3.3 (3-4) |
 
 Opus 5.5 alone costs about twice as much (about $0.10 a contract), so it did not fit the budget in full: one run on two contracts, compared with the others on exactly those contracts and that run.
@@ -56,11 +56,11 @@ The full tables are in [`results/table.md`](results/table.md), the answer of eac
 - **Quote verification caught nothing here.** The checker dropped 0 of the 47 quotes Sonnet proposed in each run, and the model alone copied 0 wrong quotes. On three short contracts it is insurance, not a measured gain. Its value is that a bad quote could never reach the screen.
 - **A bigger model does not change the picture much.** Opus 5.5 alone matched 16 of the 26 rows on the two contracts where Sonnet alone matched 17, and was right on the euro total and on the law version for the 2025 contract.
 
-**Where Fair Lease is wrong.** It misses one row of 41, the same one in all three runs: on the fair 2024 contract the landlord's "need" clause (art. 9.3) is called not enforceable. Sonnet adds the signal `landlord_can_terminate` next to the three correct "need" signals, and rule FL-06 treats that signal as decisive. The model alone makes the same mistake on that clause in all three runs. This is a real false alarm on a clean contract when a contract is read live (the shipped samples use a recorded extraction). It is not fixed in this commit.
+**The one miss, and the fix.** In the first round Fair Lease missed one row of 41, the same one in all three runs: on the clean 2024 contract the landlord's "need" clause (art. 9.3) was called not enforceable. Sonnet ticked a stray signal, `landlord_can_terminate`, next to the three correct "need" signals, and rule FL-06 let that signal decide on its own. The model alone made the same mistake on that clause in all three runs. I then changed FL-06 so that no signal decides alone: when that signal appears together with the 9.3 signals, the rule reads the quoted words for what article 9.3 asks (a need to live there for the landlord or a close relative, only after the first year, two months' notice). If the quote shows them and no other way out for the landlord (a sale, "at any time", "without a reason"), the clause is fine; if it shows another way out, it is not enforceable; if it does not show the conditions, it becomes "worth checking". The real extraction that caused the false alarm is saved as a test fixture ([`scripts/fixtures/fair-2024.sonnet-live.extraction.json`](../scripts/fixtures/fair-2024.sonnet-live.extraction.json), [`tests/fl06-signals.test.ts`](../tests/fl06-signals.test.ts)). The rules are plain code, so `npm run eval:score` re-ran them on the three stored Sonnet extractions of the clean contract and gives 41 of 41 in every run, and one fresh live pass on the clean contract through the real pipeline ($0.04, `npm run try-live -- fair-2024`) came back with no clause not enforceable and none worth checking. The fix was made after seeing the failure, on the same data, so the 41 is not a blind result.
 
 ## Read this before quoting the table
 
-- **GOLD and the rules share an author.** GOLD was written on 21 Oct 2026, before the code, and the rules were then built to meet it (the test suite asserts GOLD on a hand-made extraction). So Fair Lease scoring 40 of 41 mostly shows that the live model's reading survives the pipeline and reproduces the reading we hand-checked against the BOE. It does not prove that this reading is the only defensible one. Rows where the law is debatable, such as the two-month deposit marked "worth checking" or how FL-02 counts the extra deposit month toward the €3,450, are strict on the model alone.
+- **GOLD and the rules share an author.** GOLD was written on 21 Oct 2026, before the code, and the rules were then built to meet it (the test suite asserts GOLD on a hand-made extraction). So Fair Lease scoring 41 of 41 (after the FL-06 fix described above, made on these same extractions) mostly shows that the live model's reading survives the pipeline and reproduces the reading we hand-checked against the BOE. It does not prove that this reading is the only defensible one. Rows where the law is debatable, such as the two-month deposit marked "worth checking" or how FL-02 counts the extra deposit month toward the €3,450, are strict on the model alone.
 - **The model-alone prompt has structure.** To score it automatically, the prompt asks for one entry per point, with the clause heading, a literal quote, a three-way verdict, the articles, the euros over the limit and the version of the law. The question itself is the plain one ("revisa este contrato de alquiler español firmado el ... y dime qué cláusulas no son exigibles según la LAU, con el artículo"). The prompt is in [`scripts/eval/model-alone.ts`](../scripts/eval/model-alone.ts). It was written once and not tuned on the results.
 - **Same settings as the product.** Both configurations use Sonnet 5.5 with output effort `low`, structured output and the refusal fallbacks of `lib/claude.ts`. The model alone at higher effort was not tested.
 - **A small sample.** Three fictional contracts, 41 rows. Differences of one row between runs are noise; the gaps in the table are not.
@@ -89,6 +89,6 @@ npm run eval -- --fresh --cap 0.9 # ignores stored runs and calls again, stoppin
 npm run eval -- --configs alone-opus --runs 1 --contracts traps-2025,reform-oct-2026
 ```
 
-With the stored results `npm run eval` makes no calls. A fresh run of everything at three runs each would cost about $1.6, mostly the Opus rows. The script stops making calls at a hard cap ($0.95 by default) and fills the Fair Lease and Sonnet rows first, so by default the Opus rows end up partial, as they did here. `--configs fair-lease-sonnet,alone-sonnet` is the $0.76 run. `npm test` covers the scoring itself and checks that the engine, given the hand-made extraction, scores 100% against `gold.json`.
+With the stored results `npm run eval` makes no calls. A fresh run of everything at three runs each would cost about $1.6, mostly the Opus rows. The script stops making calls at a hard cap ($0.95 by default) and fills the Fair Lease and Sonnet rows first, so by default the Opus rows end up partial, as they did here. `--configs fair-lease-sonnet,alone-sonnet` is the $0.76 run. The Fair Lease column is recomputed with the rules in the repo from the Sonnet extractions stored in `runs.json`, so it reflects the rules at this commit; the extractions themselves are what the model returned. `npm test` covers the scoring itself and checks that the engine, given the hand-made extraction, scores 100% against `gold.json`.
 
-Files: [`gold.json`](gold.json) (expected results), [`../scripts/eval.mts`](../scripts/eval.mts) (runner), [`../scripts/eval/`](../scripts/eval) (prompt, matching, scoring, report), [`results/`](results) (raw runs, summary, per-row matrix, table).
+Files: [`gold.json`](gold.json) (expected results), [`../tests/fl06-signals.test.ts`](../tests/fl06-signals.test.ts) (the FL-06 case), [`../scripts/eval.mts`](../scripts/eval.mts) (runner), [`../scripts/eval/`](../scripts/eval) (prompt, matching, scoring, report), [`results/`](results) (raw runs, summary, per-row matrix, table).

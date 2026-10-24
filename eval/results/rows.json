@@ -514,9 +514,9 @@
   "rule": "FL-06",
   "byConfig": {
    "fair-lease-sonnet": [
-    "ILLEGAL",
-    "ILLEGAL",
-    "ILLEGAL"
+    "OK",
+    "OK",
+    "OK"
    ],
    "alone-sonnet": [
     "ILLEGAL",

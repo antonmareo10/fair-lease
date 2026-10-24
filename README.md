@@ -53,16 +53,16 @@ Is this just asking the AI? I measured it on 24 Oct 2026: the same model (Sonnet
 
 | | Fair Lease | Sonnet 5.5 alone |
 |---|---|---|
-| Verdict matches the expected one (of 41 clauses) | 40 | 29.3 (29-30) |
+| Verdict matches the expected one (of 41 clauses) | 41 | 29.3 (29-30) |
 | Not-enforceable clauses found (of 15) | 15 | 9.7 (9-10) |
-| Fine clauses called illegal or sent to review (of 24) | 1 | 4.3 |
+| Fine clauses called illegal or sent to review (of 24) | 0 | 4.3 |
 | Oct 2026 contract, clauses right (of 8) | 8 | 3.3 (3-4) |
 | Right version of the law (of 3 contracts) | 3 | 1.3 (1-2) |
 | Euro figures right (of 4) | 4 | 1.3 (1-2) |
 | Invented articles / quotes not in the contract | 0 / 0 | 0 / 0 |
 | Cost per contract | $0.040 | $0.044 |
 
-The model alone is a decent first reader: it flags 14 of the 17 problem clauses and never made up a quote or an article. What it lacks is the date of the law (it applied the May 2023 text to the October 2026 contract in every run), steady verdicts, and the arithmetic (it gave the €7,141.50 total in none of three runs). Fair Lease's one miss is a false alarm on the clean contract, the same in all three runs, and the expected results and the rules share an author, so read the 40 as "the pipeline reproduces our hand-checked reading". Method, limits and every raw answer: [eval/README.md](eval/README.md). To recompute the table without any API call: `npm run eval:score`.
+The model alone is a decent first reader: it flags 14 of the 17 problem clauses and never made up a quote or an article. What it lacks is the date of the law (it applied the May 2023 text to the October 2026 contract in every run), steady verdicts, and the arithmetic (it gave the €7,141.50 total in none of three runs). The first round found one miss in Fair Lease, a false alarm on the clean contract: the model ticked a stray signal on the landlord's need clause and rule FL-06 let it decide. I changed FL-06 to read the quote against article 9.3 and re-ran the rules on the same stored extractions, which gives 41 of 41, and one fresh live pass on the clean contract came back clean. That fix was made after seeing the failure, and the expected results and the rules share an author, so read the 41 as "the pipeline reproduces our hand-checked reading", not as a blind score. Method, limits and every raw answer: [eval/README.md](eval/README.md). To recompute the table without any API call: `npm run eval:score`.
 
 ## Stack
 

@@ -15,15 +15,15 @@
    "costPerContractUsd": 0.03987466666666666,
    "perRun": [
     {
-     "verdictCorrect": 40,
+     "verdictCorrect": 41,
      "verdictTotal": 41,
      "illegalFound": 15,
      "illegalTotal": 15,
      "checkFound": 2,
      "checkTotal": 2,
-     "okKept": 23,
+     "okKept": 24,
      "okTotal": 24,
-     "falseAlarms": 1,
+     "falseAlarms": 0,
      "softAlarms": 0,
      "extraFlags": 0,
      "flaggedRightWithArticle": 17,
@@ -40,15 +40,15 @@
      "euroSpurious": 0
     },
     {
-     "verdictCorrect": 40,
+     "verdictCorrect": 41,
      "verdictTotal": 41,
      "illegalFound": 15,
      "illegalTotal": 15,
      "checkFound": 2,
      "checkTotal": 2,
-     "okKept": 23,
+     "okKept": 24,
      "okTotal": 24,
-     "falseAlarms": 1,
+     "falseAlarms": 0,
      "softAlarms": 0,
      "extraFlags": 0,
      "flaggedRightWithArticle": 17,
@@ -65,15 +65,15 @@
      "euroSpurious": 0
     },
     {
-     "verdictCorrect": 40,
+     "verdictCorrect": 41,
      "verdictTotal": 41,
      "illegalFound": 15,
      "illegalTotal": 15,
      "checkFound": 2,
      "checkTotal": 2,
-     "okKept": 23,
+     "okKept": 24,
      "okTotal": 24,
-     "falseAlarms": 1,
+     "falseAlarms": 0,
      "softAlarms": 0,
      "extraFlags": 0,
      "flaggedRightWithArticle": 17,
@@ -92,13 +92,13 @@
    ],
    "metrics": {
     "verdictCorrect": {
-     "mean": 40,
-     "min": 40,
-     "max": 40,
+     "mean": 41,
+     "min": 41,
+     "max": 41,
      "values": [
-      40,
-      40,
-      40
+      41,
+      41,
+      41
      ]
     },
     "illegalFound": {
@@ -122,23 +122,23 @@
      ]
     },
     "okKept": {
-     "mean": 23,
-     "min": 23,
-     "max": 23,
+     "mean": 24,
+     "min": 24,
+     "max": 24,
      "values": [
-      23,
-      23,
-      23
+      24,
+      24,
+      24
      ]
     },
     "falseAlarms": {
-     "mean": 1,
-     "min": 1,
-     "max": 1,
+     "mean": 0,
+     "min": 0,
+     "max": 0,
      "values": [
-      1,
-      1,
-      1
+      0,
+      0,
+      0
      ]
     },
     "softAlarms": {
@@ -274,13 +274,13 @@
      ]
     },
     "fair-2024": {
-     "mean": 14,
-     "min": 14,
-     "max": 14,
+     "mean": 15,
+     "min": 15,
+     "max": 15,
      "values": [
-      14,
-      14,
-      14
+      15,
+      15,
+      15
      ]
     },
     "reform-oct-2026": {
