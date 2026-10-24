@@ -22,7 +22,7 @@
         "quote": "El contrato tendrá una duración de un (1) año a contar desde el día de hoy, con carácter improrrogable. LA ARRENDATARIA renuncia expresamente a las prórrogas previstas en el artículo 9 de la Ley de Arrendamientos Urbanos, de modo que el contrato finalizará en todo caso el 31 de agosto de 2026 sin necesidad de requerimiento alguno.",
         "topic": "duration_renewal",
         "numbers": {
-          "months": 12,
+          "months": null,
           "amount_eur": null,
           "percent": null,
           "days": null,
@@ -41,7 +41,7 @@
         "topic": "payment_method",
         "numbers": {
           "months": null,
-          "amount_eur": 1150,
+          "amount_eur": null,
           "percent": null,
           "days": 5,
           "every_months": null,
@@ -54,7 +54,7 @@
       },
       {
         "clause_ref": "TERCERA",
-        "quote": "A la firma del presente contrato, LA ARRENDATARIA abona tres (3) mensualidades por adelantado, por importe de 3.450 €, sirviendo el presente documento como recibo.",
+        "quote": "A la firma del presente contrato, LA ARRENDATARIA abona tres (3) mensualidades por adelantado, por importe de 3.450 €",
         "topic": "prepayment",
         "numbers": {
           "months": 3,
@@ -199,7 +199,7 @@
       },
       {
         "clause_ref": "NOVENA",
-        "quote": "LA ARRENDATARIA no podrá desistir del contrato durante los seis primeros meses de vigencia.",
+        "quote": "LA ARRENDATARIA no podrá desistir del contrato durante los seis primeros meses de vigencia. Si LA ARRENDATARIA abandonase la vivienda antes de la fecha de finalización del contrato, deberá abonar a EL ARRENDADOR la totalidad de las rentas pendientes hasta dicha fecha y perderá la fianza entregada.",
         "topic": "early_exit",
         "numbers": {
           "months": 6,
@@ -211,23 +211,7 @@
         },
         "payer": "tenant",
         "signals": [
-          "no_exit_first_6_months"
-        ]
-      },
-      {
-        "clause_ref": "NOVENA",
-        "quote": "Si LA ARRENDATARIA abandonase la vivienda antes de la fecha de finalización del contrato, deberá abonar a EL ARRENDADOR la totalidad de las rentas pendientes hasta dicha fecha y perderá la fianza entregada.",
-        "topic": "early_exit",
-        "numbers": {
-          "months": null,
-          "amount_eur": null,
-          "percent": null,
-          "days": null,
-          "every_months": null,
-          "annual_amount_eur": null
-        },
-        "payer": "tenant",
-        "signals": [
+          "no_exit_first_6_months",
           "pay_remaining_rent_on_exit",
           "lose_deposit_on_exit"
         ]
@@ -320,6 +304,8 @@
     ]
   },
   "provenance": {
-    "kind": "hand-made"
+    "kind": "recorded",
+    "model": "claude-opus-5-5",
+    "recordedAt": "2026-10-24T14:41:04.739Z"
   }
 }

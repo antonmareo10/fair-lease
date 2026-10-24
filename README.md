@@ -31,6 +31,18 @@ npm run build
 npm run check:ui       # Playwright checks at 1440 px and 390 px (runs `next start` on port 3100)
 ```
 
+## Cost and speed (measured 24 Oct 2026)
+
+| What | Model | Tokens in / out | Time | Cost |
+|---|---|---|---|---|
+| Live check, traps contract | Claude Sonnet 5.5 | 7,351 / 3,118 | 14 s | ≈ $0.05 |
+| Live check, Oct 2026 contract | Claude Sonnet 5.5 | 6,349 / 1,875 | 10 s | ≈ $0.03 |
+| Recording the three samples (once) | Claude Opus 5.5 | 20,872 / 7,950 | 15–22 s each | ≈ $0.24 total |
+
+The public site allows 25 live checks a day (best effort, in memory). The hard cap is a spend limit on the API key.
+
+In both live checks, Claude Sonnet 5.5 gave the same not-enforceable and worth-checking verdicts as the hand-made expected results, with every quote found in the text.
+
 ## Stack
 
 Next.js 16.4 (App Router, TypeScript) with Tailwind CSS 4, the Anthropic TypeScript SDK and zod. Tested with Vitest and Playwright. Fonts: Newsreader and Inter.

@@ -4,8 +4,7 @@ import { checkInput } from "@/lib/validate";
 import { createLimiter } from "@/lib/limit";
 import { runExtraction, type ModelCall } from "@/lib/extract";
 import type { SampleFile } from "@/lib/extraction";
-import traps from "@/samples/traps-2025.json";
-import reform from "@/samples/reform-oct-2026.json";
+import { traps, reform } from "./fixtures";
 
 describe("Anonymizer", () => {
   it("removes the demo DNIs and NIE, plus IBANs, phones and emails", () => {

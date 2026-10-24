@@ -1,4 +1,5 @@
 import type { SampleFile } from "@/lib/extraction";
+import { modelName } from "@/lib/models";
 import traps from "@/samples/traps-2025.json";
 import fair from "@/samples/fair-2024.json";
 import reform from "@/samples/reform-oct-2026.json";
@@ -14,7 +15,7 @@ export function provenanceLabel(sample: SampleFile): string {
   const p = sample.provenance;
   if (p.kind === "recorded") {
     const when = p.recordedAt ? new Date(p.recordedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
-    return `Sample · recorded extraction${p.model ? ` (${p.model}${when ? `, ${when}` : ""})` : ""}`;
+    return `Sample · recorded extraction${p.model ? ` (${modelName(p.model)}${when ? `, ${when}` : ""})` : ""}`;
   }
   return "Sample · hand-made extraction";
 }

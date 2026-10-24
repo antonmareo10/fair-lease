@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { analyze } from "@/lib/analyze";
 import type { SampleFile } from "@/lib/extraction";
-import traps from "@/samples/traps-2025.json";
+import { traps } from "./fixtures";
 
 /**
  * Expected results from demo_contracts/GOLD.md (hand-made before the build).
@@ -71,5 +71,22 @@ describe("GOLD · 01 traps 2025 (regime B)", () => {
   it("adds the DF 6ª 2% note for the 1 Sep 2027 update", () => {
     const info = r.findings.filter((f) => f.verdict === "INFO");
     expect(info.map((f) => f.title)).toContain("2% cap on your next rent update");
+  });
+});
+
+describe("Robustness: a clause split into several quotes counts once", () => {
+  it("merges two FL-05 quotes from SEGUNDA into one finding with both highlighted", () => {
+    const sample = traps as SampleFile;
+    const clauses = sample.extraction.clauses.flatMap((c) =>
+      c.clause_ref === "SEGUNDA"
+        ? [
+            { ...c, quote: "El contrato tendrá una duración de un (1) año a contar desde el día de hoy, con carácter improrrogable." },
+            { ...c, quote: "LA ARRENDATARIA renuncia expresamente a las prórrogas previstas en el artículo 9 de la Ley de Arrendamientos Urbanos" },
+          ]
+        : [c],
+    );
+    const r = analyze(sample.text, { ...sample.extraction, clauses }, { today: TODAY });
+    expect(r.counts).toMatchObject({ ILLEGAL: 10, CHECK: 2, OK: 6 });
+    expect(r.findings.find((f) => f.ruleId === "FL-05")!.clauseIndices).toEqual([0, 1]);
   });
 });

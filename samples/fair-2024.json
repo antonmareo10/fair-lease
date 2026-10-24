@@ -19,10 +19,10 @@
     "clauses": [
       {
         "clause_ref": "SEGUNDA",
-        "quote": "Llegado su vencimiento, se prorrogará obligatoriamente por plazos anuales hasta alcanzar una duración mínima de cinco años, salvo que EL ARRENDATARIO manifieste con treinta días de antelación su voluntad de no renovarlo, conforme al artículo 9.1 de la Ley de Arrendamientos Urbanos.",
+        "quote": "Llegado su vencimiento, se prorrogará obligatoriamente por plazos anuales hasta alcanzar una duración mínima de cinco años",
         "topic": "duration_renewal",
         "numbers": {
-          "months": 12,
+          "months": null,
           "amount_eur": null,
           "percent": null,
           "days": null,
@@ -36,7 +36,7 @@
       },
       {
         "clause_ref": "TERCERA",
-        "quote": "Conforme al artículo 9.3 de la Ley de Arrendamientos Urbanos, se hace constar expresamente que LA ARRENDADORA, persona física, podrá necesitar ocupar la vivienda antes del transcurso de cinco años para destinarla a vivienda permanente de su hija, siempre que haya transcurrido el primer año de contrato y lo comunique con al menos dos meses de antelación.",
+        "quote": "podrá necesitar ocupar la vivienda antes del transcurso de cinco años para destinarla a vivienda permanente de su hija, siempre que haya transcurrido el primer año de contrato y lo comunique con al menos dos meses de antelación",
         "topic": "landlord_termination",
         "numbers": {
           "months": 2,
@@ -46,7 +46,7 @@
           "every_months": null,
           "annual_amount_eur": null
         },
-        "payer": "landlord",
+        "payer": "unclear",
         "signals": [
           "need_for_landlord_or_family",
           "need_after_first_year",
@@ -55,22 +55,24 @@
       },
       {
         "clause_ref": "CUARTA",
-        "quote": "A la firma, EL ARRENDATARIO abona la primera mensualidad.",
-        "topic": "prepayment",
+        "quote": "que se abonará dentro de los siete primeros días de cada mes mediante transferencia bancaria",
+        "topic": "payment_method",
         "numbers": {
-          "months": 1,
+          "months": null,
           "amount_eur": null,
           "percent": null,
-          "days": null,
+          "days": 7,
           "every_months": null,
           "annual_amount_eur": null
         },
         "payer": "tenant",
-        "signals": []
+        "signals": [
+          "bank_transfer"
+        ]
       },
       {
         "clause_ref": "QUINTA",
-        "quote": "La renta se actualizará una vez al año, en la fecha en que se cumpla cada año de vigencia del contrato, aplicando la variación anual del índice de referencia que corresponda conforme al artículo 18 de la Ley de Arrendamientos Urbanos y con los límites que este establece.",
+        "quote": "aplicando la variación anual del índice de referencia que corresponda conforme al artículo 18 de la Ley de Arrendamientos Urbanos y con los límites que este establece",
         "topic": "rent_update",
         "numbers": {
           "months": null,
@@ -87,7 +89,7 @@
       },
       {
         "clause_ref": "SEXTA",
-        "quote": "EL ARRENDATARIO entrega en este acto la cantidad de 980 € en concepto de fianza legal, equivalente a una mensualidad, que LA ARRENDADORA depositará en el organismo competente de la Comunidad de Madrid.",
+        "quote": "EL ARRENDATARIO entrega en este acto la cantidad de 980 € en concepto de fianza legal, equivalente a una mensualidad",
         "topic": "deposit",
         "numbers": {
           "months": 1,
@@ -134,6 +136,23 @@
       },
       {
         "clause_ref": "SÉPTIMA",
+        "quote": "Los suministros con contador individual serán de cuenta de EL ARRENDATARIO.",
+        "topic": "utilities",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "tenant",
+        "signals": [
+          "utilities_by_meter"
+        ]
+      },
+      {
+        "clause_ref": "SÉPTIMA",
         "quote": "Los gastos de gestión inmobiliaria y de formalización del contrato son a cargo de LA ARRENDADORA.",
         "topic": "agency_fee",
         "numbers": {
@@ -161,20 +180,20 @@
           "every_months": null,
           "annual_amount_eur": null
         },
-        "payer": "unclear",
+        "payer": "landlord",
         "signals": [
           "repairs_per_law"
         ]
       },
       {
         "clause_ref": "NOVENA",
-        "quote": "EL ARRENDATARIO podrá desistir del contrato una vez transcurridos seis meses, con un preaviso mínimo de treinta días. En tal caso indemnizará a LA ARRENDADORA con una cantidad equivalente a una mensualidad de la renta en vigor por cada año del contrato que reste por cumplir, prorrateándose los periodos inferiores al año.",
+        "quote": "En tal caso indemnizará a LA ARRENDADORA con una cantidad equivalente a una mensualidad de la renta en vigor por cada año del contrato que reste por cumplir, prorrateándose los periodos inferiores al año.",
         "topic": "early_exit",
         "numbers": {
-          "months": null,
+          "months": 1,
           "amount_eur": null,
           "percent": null,
-          "days": 30,
+          "days": null,
           "every_months": null,
           "annual_amount_eur": null
         },
@@ -271,6 +290,8 @@
     ]
   },
   "provenance": {
-    "kind": "hand-made"
+    "kind": "recorded",
+    "model": "claude-opus-5-5",
+    "recordedAt": "2026-10-24T14:41:23.802Z"
   }
 }

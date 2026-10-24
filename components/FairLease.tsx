@@ -8,6 +8,7 @@ import { checkInput } from "@/lib/validate";
 import { provenanceLabel } from "@/lib/samples";
 import { RULE_COUNT } from "@/lib/rules";
 import type { ExtractResponse } from "@/lib/extract";
+import { modelName } from "@/lib/models";
 import { Header } from "./Brand";
 import { Footer } from "./Footer";
 import { StartScreen } from "./StartScreen";
@@ -24,11 +25,6 @@ const ERRORS: Record<string, string> = {
   bad_input: "That text can't be checked. Paste the whole contract, or try a sample.",
 };
 
-const MODEL_NAMES: Record<string, string> = {
-  "claude-sonnet-5-5": "Claude Sonnet 5.5",
-  "claude-opus-5-5": "Claude Opus 5.5",
-  "claude-haiku-5-5": "Claude Haiku 5.5",
-};
 
 const STEP_LABELS = [
   "Removing personal data",
@@ -101,7 +97,7 @@ export function FairLease() {
       return;
     }
     const extraction = data.extraction;
-    const model = MODEL_NAMES[data.model] ?? data.model;
+    const model = modelName(data.model);
     const quotes = extraction.clauses.length;
     // The remaining phases run in the browser; tick each one as it completes.
     setView({ kind: "checking", steps: steps(2, { 1: `${quotes} clauses quoted by ${model}` }) });

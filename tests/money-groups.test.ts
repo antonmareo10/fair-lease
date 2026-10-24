@@ -3,7 +3,7 @@ import { analyze } from "@/lib/analyze";
 import { computeMoney } from "@/lib/money";
 import { buildGroups } from "@/lib/groups";
 import type { SampleFile } from "@/lib/extraction";
-import traps from "@/samples/traps-2025.json";
+import { traps } from "./fixtures";
 
 const sample = traps as SampleFile;
 const result = analyze(sample.text, sample.extraction, { today: "2026-10-24" });

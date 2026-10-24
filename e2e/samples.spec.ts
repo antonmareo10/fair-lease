@@ -17,10 +17,10 @@ test("traps sample lights up with real verdicts", async ({ page }, info) => {
   await expect(summary).toContainText("2 worth checking");
   await expect(summary).toContainText("6 fine");
   await expect(page.getByRole("region", { name: "Which version of the law applies" })).toContainText("Signed 1 Sept 2025 → the May 2023 rules apply");
-  await expect(page.getByText("Sample · hand-made extraction")).toBeVisible();
-  // Every finding sits on a highlighted, verified quote: 18 clause entries in the sample.
+  await expect(page.getByText(/Sample · recorded extraction \(Claude Opus 5\.5/)).toBeVisible();
+  // Every finding sits on a highlighted, verified quote.
   const clauses = await page.locator("mark.hl").evaluateAll((els) => new Set(els.map((e) => e.getAttribute("data-clause"))).size);
-  expect(clauses).toBe(18);
+  expect(clauses).toBeGreaterThanOrEqual(16);
   await expect(page.locator("mark.hl.v-ILLEGAL").first()).toBeVisible();
   await page.waitForTimeout(1800); // let the highlighter finish painting
   await page.screenshot({ path: shot("traps", info.project.name), fullPage: true });

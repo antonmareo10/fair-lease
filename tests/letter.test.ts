@@ -2,9 +2,7 @@ import { describe, expect, it } from "vitest";
 import { analyze } from "@/lib/analyze";
 import { buildLetter } from "@/lib/letter";
 import type { SampleFile } from "@/lib/extraction";
-import traps from "@/samples/traps-2025.json";
-import fair from "@/samples/fair-2024.json";
-import reform from "@/samples/reform-oct-2026.json";
+import { traps, fair, reform } from "./fixtures";
 
 const run = (s: unknown) => {
   const sample = s as SampleFile;

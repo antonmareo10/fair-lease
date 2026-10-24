@@ -99,7 +99,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
   Learner check: Run the whole journey on a phone-width window and in dark mode, write the landlord message for the traps sample, and open the privacy page. Does anything feel unfinished or generic?
   Commit: `Add landlord message, trust pages and finishing polish`
 
-- [ ] **6. Real Claude: record the samples and check a live paste**
+- [x] **6. Real Claude: record the samples and check a live paste**
   Becomes usable:
   - The three samples carry real recorded extractions from Claude Opus 5.5, labelled with model and date.
   - A pasted contract is analysed live by Claude Sonnet 5.5, with the cost per check measured.
@@ -149,3 +149,7 @@ Activity mode:
 - The samples are anonymised when they open, like pasted text, instead of being stored already anonymised. Their [DNI] tags then show the privacy step in the demo, and the 'Removed before analysis' line is real for samples too.
 - After the reply arrives, the last three checking steps tick off at a readable pace (about 0.16 s each). The work itself takes milliseconds in the browser, and each step ticks only once its work is done.
 - A date picked for an undated contract is labelled 'You picked…' rather than 'Signed…', so the result never claims the contract says something it doesn't.
+- The engine tests now run on the hand-made fixtures (exact `GOLD.md` rows). A separate test checks the shipped samples, which carry Claude Opus 5.5's recorded extraction: 0 hidden quotes, and the same not-enforceable and worth-checking verdicts as `GOLD.md`. Claude quotes more 'fine' clauses than the hand-made fixtures (payment by transfer, utilities), which is correct but made exact row-for-row tests the wrong measure.
+- FL-07 now marks 'no leaving in the first six months' as fine even when the same passage adds a penalty. Opus quoted clause NOVENA as one passage, which had hidden that fine note and broken the 10 / 2 / 6 headline.
+- Findings with the same rule, verdict and clause are merged into one, with every quote highlighted. Haiku split clause SEGUNDA into two sentences, and both triggered FL-05 (11 not enforceable instead of 10).
+- Live model check (`npm run try-live`): Claude Sonnet 5.5 matched the expected verdicts on the traps (14 s, about $0.05) and Oct 2026 (10 s, about $0.03) contracts. Structured output and `fallbacks: "default"` work together on `claude-sonnet-5-5`.

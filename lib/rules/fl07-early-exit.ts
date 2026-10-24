@@ -20,15 +20,20 @@ export const fl07: Rule = {
     };
 
     return ofTopic(ctx, "early_exit").flatMap(({ clause, index }) => {
-      if (has(clause, "no_exit_first_6_months") && !has(clause, "pay_remaining_rent_on_exit", "lose_deposit_on_exit", "compensation_month_per_year")) {
-        return [
-          finding("FL-07", "OK", [index], {
-            title: "No leaving in the first six months",
-            body: "This is what the law says: you can leave after six months with 30 days' notice.",
-            law: isC(ctx) ? LAW.LAU_11_3_C : LAW.LAU_11_AB,
-          }),
-        ];
-      }
+      // "No leaving in the first six months" is the law, even when the same passage adds a penalty.
+      const sixMonths = has(clause, "no_exit_first_6_months")
+        ? [
+            finding("FL-07", "OK", [index], {
+              title: "No leaving in the first six months",
+              body: "This is what the law says: you can leave after six months with 30 days' notice.",
+              law: isC(ctx) ? LAW.LAU_11_3_C : LAW.LAU_11_AB,
+            }),
+          ]
+        : [];
+      return [...sixMonths, ...penalty(clause, index)];
+    });
+
+    function penalty(clause: Parameters<typeof has>[0], index: number) {
 
       if (isC(ctx) && has(clause, "pay_remaining_rent_on_exit", "lose_deposit_on_exit", "compensation_month_per_year")) {
         return [
@@ -84,6 +89,6 @@ export const fl07: Rule = {
         ];
       }
       return [];
-    });
+    }
   },
 };

@@ -25,9 +25,29 @@ export const FL_RULES: Rule[] = [fl01, fl02, fl03, fl04, fl05, fl06, fl07, fl08,
 
 export const RULE_COUNT = FL_RULES.length;
 
+/**
+ * One finding per rule, verdict and contract clause: if the extraction split a clause
+ * into several quotes (e.g. two sentences of SEGUNDA), they count once, with both highlighted.
+ */
+function mergeSameClause(findings: Finding[], ctx: RuleContext): Finding[] {
+  const refOf = new Map(ctx.clauses.map(({ clause, index }) => [index, clause.clause_ref]));
+  const merged = new Map<string, Finding>();
+  for (const f of findings) {
+    const refs = [...new Set(f.clauseIndices.map((i) => refOf.get(i)))].sort().join("+") || `contract:${f.id}`;
+    const key = `${f.ruleId}|${f.verdict}|${refs}`;
+    const prev = merged.get(key);
+    if (!prev) merged.set(key, f);
+    else prev.clauseIndices = [...new Set([...prev.clauseIndices, ...f.clauseIndices])];
+  }
+  return [...merged.values()];
+}
+
 export function runRules(ctx: RuleContext): Finding[] {
   if (ctx.law.regime === "pre2019") return [];
-  const findings = [...FL_RULES, knownLegal].flatMap((rule) => rule.evaluate(ctx));
+  const findings = mergeSameClause(
+    [...FL_RULES, knownLegal].flatMap((rule) => rule.evaluate(ctx)),
+    ctx,
+  );
   const firstClause = (f: Finding) => (f.clauseIndices.length ? Math.min(...f.clauseIndices) : Number.MAX_SAFE_INTEGER);
   // Reading order, then severity within the same clause.
   return findings.sort((a, b) => firstClause(a) - firstClause(b) || SEVERITY[b.verdict] - SEVERITY[a.verdict]);
