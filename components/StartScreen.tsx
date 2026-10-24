@@ -28,7 +28,7 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample }: Props)
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
         <section aria-labelledby="hero">
           <p className="mb-5 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">Made for people renting a home in Madrid</p>
-          <h1 id="hero" className="font-serif text-[2.6rem] leading-[1.04] tracking-[-0.02em] sm:text-[4.1rem]">
+          <h1 id="hero" className="text-balance font-serif text-[2.6rem] leading-[1.04] tracking-[-0.02em] sm:text-[4.1rem]">
             Is your rental contract legal?
           </h1>
           <p className="mt-6 max-w-[34rem] text-[1.08rem] leading-relaxed text-ink-2">
@@ -61,7 +61,7 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample }: Props)
               spellCheck={false}
               lang="es"
               placeholder="Paste the full text of your contract here, in Spanish…"
-              className="sheet w-full resize-y px-5 py-4 text-[0.98rem] leading-relaxed outline-none transition-[height] placeholder:text-ink-2/70 focus-visible:outline-2 focus-visible:outline-[var(--focus)]"
+              className="sheet w-full resize-y px-5 py-4 text-[0.98rem] leading-relaxed outline-none transition-[height] placeholder:text-ink-2 focus-visible:outline-2 focus-visible:outline-[var(--focus)]"
             />
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-[0.82rem] text-ink-2">We remove ID numbers, bank accounts, phone numbers and emails before analysis.</p>
