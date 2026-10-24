@@ -123,11 +123,13 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
 The learner delegated hands-on checks to the agent, run in a headless browser (Playwright) at 1440 px and 390 px. Each check records what was looked at and what changed.
 
 - [x] Early usable behavior explored — after slice 2 (annotated traps sample with findings, desktop and phone). Done by the agent in headless Chromium at 1440 px and 390 px, as delegated, with screenshots under `e2e/screenshots/`. What was looked at: the money line, the clause QUINTA stack, the law disclosure, the BOE link, Copy, the ES/EN switch and the J/K keys. Change made: in an open margin note, only one finding shows its details at a time (the most severe first), because opening all three in clause QUINTA made the margin far taller than the sheet.
-- [ ] Final kick-the-tires exploration and feedback completed
+- [x] Final kick-the-tires exploration and feedback completed. Run by the agent under the learner's delegation, in headless Chromium at 1440 px and 390 px, light and dark. Covered: the whole journey on all three samples, two real live checks through `/api/extract` with Claude Sonnet 5.5 (`e2e/real-live.spec.ts`), and awkward inputs (empty, too short, over 60,000 characters, an English notice that isn't a contract).
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] On a phone the samples were below the paste box, out of sight on the first screen. Added an "Or try a sample ↓" jump next to the button. Verified in `e2e/inputs.spec.ts`, which checks it's in the viewport and that tapping it brings the samples into view.
+- Real live check of an edited contract (rent changed to €1,200, an email added): 10 not enforceable · 2 worth checking · 6 fine. The figures were recalculated from the new rent (€11,891.50 committed against a €4,800 legal maximum), and the email showed as [EMAIL]. Non-contract text got the clear "doesn't look like a Spanish rental contract" message. No other changes were needed.
+- [x] Final review complete — feedback resolved and learner confirms ready to ship. Readiness was confirmed under the learner's delegation: he asked the agent to run the reviews and move on to 6-ship.
 
 ## Code Tour and App Map
 

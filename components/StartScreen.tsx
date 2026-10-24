@@ -65,6 +65,9 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample }: Props)
             />
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-[0.82rem] text-ink-2">We remove ID numbers, bank accounts, phone numbers and emails before analysis.</p>
+              <a href="#samples" className="text-[0.92rem] font-semibold underline decoration-[var(--hairline)] underline-offset-4 lg:hidden">
+                Or try a sample ↓
+              </a>
               <button
                 type="submit"
                 disabled={empty}
@@ -76,8 +79,8 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample }: Props)
           </form>
         </section>
 
-        <section aria-labelledby="samples" className="lg:pt-3">
-          <h2 id="samples" className="mb-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">
+        <section aria-labelledby="samples" className="scroll-mt-6 lg:pt-3">
+          <h2 id="samples" tabIndex={-1} className="mb-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">
             No contract to hand? Try a sample
           </h2>
           <ul className="grid gap-3">
