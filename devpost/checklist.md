@@ -9,7 +9,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
 
 ## Slices
 
-- [ ] **1. Tap the traps sample and watch the contract light up with real verdicts**
+- [x] **1. Tap the traps sample and watch the contract light up with real verdicts**
   Becomes usable: A running app. The start screen has the three sample buttons (only the traps one wired). Tapping it shows the 2025 contract as a paper sheet with verdict-coloured highlights and the summary "10 not enforceable · 2 worth checking · 6 fine", all decided by the real rules engine.
   Why now: This is the unique kernel. The AI's output (here a hand-made extraction labelled as such) is quote-checked against the text, and fixed rules decide using the law version picked from the signing date. Building it first means everything later decorates a working core. Bootstrapping lives here.
   PRD ref: `prd.md > The Core Journey` (steps 1-4), `prd.md > Samples`, `prd.md > Quote Check`, `prd.md > Findings and Verdicts`
@@ -142,4 +142,6 @@ Reflection:
 Activity mode:
 
 ## Revisions
-
+- All 18 FL rules were written in slice 1, not split across slices 1 and 3. They share helpers and texts, so writing them together was simpler. Verification of the regime-C and fair-contract behaviour stays in slice 3, as planned.
+- `Finding.clauseIndices` (a list) replaces the spec's single `clauseIndex`. FL-19 is one finding that rests on several clauses (the 'seasonal' title, the exclusion of home rules, the successive renewals), which is how `GOLD.md` counts it (5 rules, not 6 findings).
+- Next.js scaffolded at 16.4.3 with Cache Components on. Route handlers must not export `runtime`, so the spec's 'Node runtime' note means the default runtime, with no segment config.

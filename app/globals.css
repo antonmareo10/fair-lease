@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* ── Tokens (spec.md > Look and Feel) ─────────────────────────────── */
+:root {
+  --bg: #f3efe6;
+  --paper: #fbf8f1;
+  --ink: #1d1b18;
+  --ink-2: #6b665e;
+  --rule: #e2dccf;
+  --hairline: rgba(29, 27, 24, 0.12);
+  --focus: #24509a;
+
+  --hl-illegal: rgba(232, 72, 40, 0.26);
+  --chip-illegal: #b3341a;
+  --hl-check: rgba(240, 170, 40, 0.3);
+  --chip-check: #8a5a00;
+  --hl-ok: rgba(70, 160, 100, 0.22);
+  --chip-ok: #23673f;
+  --hl-info: rgba(70, 120, 220, 0.2);
+  --chip-info: #24509a;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-sheet: 0 1px 0 rgba(29, 27, 24, 0.04), 0 12px 40px -18px rgba(29, 27, 24, 0.35);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141312;
+    --paper: #1e1d1b;
+    --ink: #ece7dd;
+    --ink-2: #a49d91;
+    --rule: #34312c;
+    --hairline: rgba(236, 231, 221, 0.12);
+    --focus: #8fb0ef;
+    --hl-illegal: rgba(240, 98, 70, 0.3);
+    --chip-illegal: #ff8a70;
+    --hl-check: rgba(245, 185, 70, 0.28);
+    --chip-check: #f2bd5c;
+    --hl-ok: rgba(90, 185, 120, 0.24);
+    --chip-ok: #7fd39b;
+    --hl-info: rgba(110, 155, 240, 0.26);
+    --chip-info: #9dbbf5;
+    --shadow-sheet: 0 1px 0 rgba(0, 0, 0, 0.3), 0 16px 48px -20px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141312;
+  --paper: #1e1d1b;
+  --ink: #ece7dd;
+  --ink-2: #a49d91;
+  --rule: #34312c;
+  --hairline: rgba(236, 231, 221, 0.12);
+  --focus: #8fb0ef;
+  --hl-illegal: rgba(240, 98, 70, 0.3);
+  --chip-illegal: #ff8a70;
+  --hl-check: rgba(245, 185, 70, 0.28);
+  --chip-check: #f2bd5c;
+  --hl-ok: rgba(90, 185, 120, 0.24);
+  --chip-ok: #7fd39b;
+  --hl-info: rgba(110, 155, 240, 0.26);
+  --chip-info: #9dbbf5;
+  --shadow-sheet: 0 1px 0 rgba(0, 0, 0, 0.3), 0 16px 48px -20px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-reading);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-paper: var(--paper);
+  --color-bg: var(--bg);
+  --color-rule: var(--rule);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui), system-ui, sans-serif;
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Verdict colours ─────────────────────────────────────────────── */
+.v-ILLEGAL { --hl: var(--hl-illegal); --chip: var(--chip-illegal); }
+.v-CHECK { --hl: var(--hl-check); --chip: var(--chip-check); }
+.v-OK { --hl: var(--hl-ok); --chip: var(--chip-ok); }
+.v-INFO { --hl: var(--hl-info); --chip: var(--chip-info); }
+
+/* ── The sheet ───────────────────────────────────────────────────── */
+.sheet {
+  background: var(--paper);
+  box-shadow: var(--shadow-sheet);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  font-family: var(--font-reading), Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.sheet .heading {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.sheet .title {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* The highlighter: painted left to right, line by line (box-decoration-break: slice). */
+.hl {
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, transparent 10%, var(--hl) 10%, var(--hl) 92%, transparent 92%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-size 720ms var(--ease) var(--delay, 0ms), box-shadow 200ms var(--ease);
+}
+.painted .hl {
+  background-size: 100% 100%;
+}
+.hl:hover,
+.hl[data-active="true"] {
+  box-shadow: 0 2px 0 0 var(--chip);
+}
+.hl.pulse {
+  animation: pulse 900ms var(--ease) 1;
+}
+@keyframes pulse {
+  0% { filter: none; }
+  35% { filter: saturate(2.2) brightness(0.96); }
+  100% { filter: none; }
+}
+.hl-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  margin-left: 3px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--paper);
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: 0.4em;
+  white-space: nowrap;
+}
+
+/* ── Chips ───────────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--chip);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.chip svg {
+  flex: none;
+}
+
+/* ── Motion preferences ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hl {
+    transition: none;
+    background-size: 100% 100%;
+  }
+  .hl.pulse {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}

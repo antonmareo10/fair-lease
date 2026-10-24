@@ -1,0 +1,161 @@
+{
+  "facts": {
+    "signing_date": "2025-09-01",
+    "monthly_rent_eur": 1150,
+    "duration_months": 12,
+    "landlord_type": "natural_person",
+    "contract_kind": "habitual",
+    "temporal_cause": null,
+    "agency_involved": true,
+    "agency_name": "Inmuebles Ejemplo Madrid, S.L.",
+    "city": "Madrid",
+    "is_rental_contract": true,
+    "language": "es"
+  },
+  "clauses": [
+    {
+      "clause_ref": "SEGUNDA",
+      "quote": "El contrato tendrá una duración de un (1) año a contar desde el día de hoy, con carácter improrrogable. LA ARRENDATARIA renuncia expresamente a las prórrogas previstas en el artículo 9 de la Ley de Arrendamientos Urbanos, de modo que el contrato finalizará en todo caso el 31 de agosto de 2026 sin necesidad de requerimiento alguno.",
+      "topic": "duration_renewal",
+      "numbers": { "months": 12, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "unclear",
+      "signals": ["no_renewal", "waives_art9"]
+    },
+    {
+      "clause_ref": "TERCERA",
+      "quote": "pagaderos dentro de los cinco primeros días de cada mes mediante transferencia a la cuenta que designe EL ARRENDADOR",
+      "topic": "payment_method",
+      "numbers": { "months": null, "amount_eur": 1150, "percent": null, "days": 5, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["bank_transfer"]
+    },
+    {
+      "clause_ref": "TERCERA",
+      "quote": "A la firma del presente contrato, LA ARRENDATARIA abona tres (3) mensualidades por adelantado, por importe de 3.450 €, sirviendo el presente documento como recibo.",
+      "topic": "prepayment",
+      "numbers": { "months": 3, "amount_eur": 3450, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "CUARTA",
+      "quote": "La renta se actualizará cada seis (6) meses aplicando la variación del Índice de Precios al Consumo incrementada en tres (3) puntos porcentuales.",
+      "topic": "rent_update",
+      "numbers": { "months": null, "amount_eur": null, "percent": 3, "days": null, "every_months": 6, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["index_plus_points"]
+    },
+    {
+      "clause_ref": "QUINTA",
+      "quote": "LA ARRENDATARIA entrega en este acto, en concepto de fianza, la cantidad de 2.300 €, equivalente a dos mensualidades de renta.",
+      "topic": "deposit",
+      "numbers": { "months": 2, "amount_eur": 2300, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "QUINTA",
+      "quote": "Adicionalmente, LA ARRENDATARIA deberá aportar un aval bancario a primer requerimiento por importe de cuatro (4) mensualidades de renta (4.600 €), vigente durante toda la duración del contrato.",
+      "topic": "extra_guarantee",
+      "numbers": { "months": 4, "amount_eur": 4600, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["bank_guarantee"]
+    },
+    {
+      "clause_ref": "QUINTA",
+      "quote": "La fianza será devuelta en el plazo de tres (3) meses desde la entrega de llaves, una vez comprobado el estado de la vivienda, y no devengará interés alguno.",
+      "topic": "deposit_return",
+      "numbers": { "months": 3, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "landlord",
+      "signals": ["deposit_no_interest"]
+    },
+    {
+      "clause_ref": "SEXTA",
+      "quote": "LA ARRENDATARIA abonará a LA AGENCIA, a la firma del presente contrato, en concepto de honorarios de gestión y formalización del contrato, una cantidad equivalente a una mensualidad de renta más IVA, esto es, 1.391,50 €.",
+      "topic": "agency_fee",
+      "numbers": { "months": 1, "amount_eur": 1391.5, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "SÉPTIMA",
+      "quote": "Serán de cuenta de LA ARRENDATARIA los gastos de comunidad de propietarios correspondientes a la vivienda.",
+      "topic": "community_fees",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "SÉPTIMA",
+      "quote": "Los suministros de agua, electricidad y gas, que cuentan con contador individual, serán igualmente de cuenta de LA ARRENDATARIA.",
+      "topic": "utilities",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["utilities_by_meter"]
+    },
+    {
+      "clause_ref": "OCTAVA",
+      "quote": "Todas las reparaciones que precise la vivienda durante la vigencia del contrato, cualquiera que sea su naturaleza o causa, incluidas las de la caldera, la instalación de fontanería y los electrodomésticos, serán de cuenta exclusiva de LA ARRENDATARIA.",
+      "topic": "repairs",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["all_repairs_tenant"]
+    },
+    {
+      "clause_ref": "NOVENA",
+      "quote": "LA ARRENDATARIA no podrá desistir del contrato durante los seis primeros meses de vigencia.",
+      "topic": "early_exit",
+      "numbers": { "months": 6, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["no_exit_first_6_months"]
+    },
+    {
+      "clause_ref": "NOVENA",
+      "quote": "Si LA ARRENDATARIA abandonase la vivienda antes de la fecha de finalización del contrato, deberá abonar a EL ARRENDADOR la totalidad de las rentas pendientes hasta dicha fecha y perderá la fianza entregada.",
+      "topic": "early_exit",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "tenant",
+      "signals": ["pay_remaining_rent_on_exit", "lose_deposit_on_exit"]
+    },
+    {
+      "clause_ref": "DÉCIMA",
+      "quote": "EL ARRENDADOR conservará un juego de llaves de la vivienda y podrá acceder a la misma cuando lo estime oportuno, sin necesidad de previo aviso, para comprobar su estado de conservación.",
+      "topic": "landlord_entry",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "unclear",
+      "signals": ["entry_without_consent"]
+    },
+    {
+      "clause_ref": "UNDÉCIMA",
+      "quote": "Queda expresamente prohibido el empadronamiento de LA ARRENDATARIA o de cualquier otra persona en la vivienda arrendada.",
+      "topic": "padron",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "unclear",
+      "signals": ["padron_forbidden"]
+    },
+    {
+      "clause_ref": "DUODÉCIMA",
+      "quote": "Queda prohibida la tenencia de animales de compañía en la vivienda.",
+      "topic": "pets",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "unclear",
+      "signals": ["pets_forbidden"]
+    },
+    {
+      "clause_ref": "DECIMOTERCERA",
+      "quote": "LA ARRENDATARIA no podrá ceder el contrato ni subarrendar total o parcialmente la vivienda sin el consentimiento previo y por escrito de EL ARRENDADOR.",
+      "topic": "sublet",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "unclear",
+      "signals": ["sublet_needs_permission"]
+    },
+    {
+      "clause_ref": "DECIMOCUARTA",
+      "quote": "LA ARRENDATARIA renuncia expresamente a los derechos de tanteo y retracto que le reconoce el artículo 25 de la Ley de Arrendamientos Urbanos.",
+      "topic": "purchase_right",
+      "numbers": { "months": null, "amount_eur": null, "percent": null, "days": null, "every_months": null, "annual_amount_eur": null },
+      "payer": "unclear",
+      "signals": ["waives_preferential_purchase"]
+    }
+  ]
+}
