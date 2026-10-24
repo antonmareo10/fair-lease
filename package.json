@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "check:ui": "playwright test"
+    "check:ui": "playwright test",
+    "record-samples": "tsx --conditions=react-server --env-file-if-exists=.env.local scripts/record-samples.mts",
+    "try-live": "tsx --conditions=react-server --env-file-if-exists=.env.local scripts/try-live.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",
@@ -27,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^5.0.5"
   }
