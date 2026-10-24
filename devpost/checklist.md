@@ -64,7 +64,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
   Learner check: Tap each sample in turn and watch the timeline marker move. Does the red/green flip on the purchase-right waiver make the "law depends on the date" point obvious?
   Commit: `Pick the law version from the signing date across all samples`
 
-- [ ] **4. Paste your own contract and get it checked live**
+- [x] **4. Paste your own contract and get it checked live**
   Becomes usable:
   - Pasting text and pressing Check removes personal data (with a count) and sends it to the server route.
   - The real checking steps tick off, and the same annotated result appears.
@@ -146,3 +146,6 @@ Activity mode:
 - `Finding.clauseIndices` (a list) replaces the spec's single `clauseIndex`. FL-19 is one finding that rests on several clauses (the 'seasonal' title, the exclusion of home rules, the successive renewals), which is how `GOLD.md` counts it (5 rules, not 6 findings).
 - Next.js scaffolded at 16.4.3 with Cache Components on. Route handlers must not export `runtime`, so the spec's 'Node runtime' note means the default runtime, with no segment config.
 - Slice 3's date-picker check runs as a unit test (an undated extraction plus a picked date re-runs the rules, with no new extraction). The browser version of that check moves to slice 4: the samples all have dates, so the UI has no undated input until pasting works.
+- The samples are anonymised when they open, like pasted text, instead of being stored already anonymised. Their [DNI] tags then show the privacy step in the demo, and the 'Removed before analysis' line is real for samples too.
+- After the reply arrives, the last three checking steps tick off at a readable pace (about 0.16 s each). The work itself takes milliseconds in the browser, and each step ticks only once its work is done.
+- A date picked for an undated contract is labelled 'You picked…' rather than 'Signed…', so the result never claims the contract says something it doesn't.

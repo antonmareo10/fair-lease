@@ -21,6 +21,7 @@ type Props = {
   label: string;
   onBack: () => void;
   onDate?: (iso: string) => void;
+  removed?: string;
 };
 
 function useIsDesktop() {
@@ -35,7 +36,7 @@ function useIsDesktop() {
   return desktop;
 }
 
-export function ResultView({ text, result, label, onBack, onDate }: Props) {
+export function ResultView({ text, result, label, onBack, onDate, removed }: Props) {
   const segments = useMemo(() => buildSegments(text, result.spans, result.findings), [text, result]);
   const groups = useMemo(() => buildGroups(result.findings, result.clauses, result.spans), [result]);
   const money = useMemo(() => computeMoney(result), [result]);
@@ -166,6 +167,7 @@ export function ResultView({ text, result, label, onBack, onDate }: Props) {
         {money ? <MoneyLine money={money} /> : null}
         <Timeline law={result.law} onDate={onDate} />
         <Notices result={result} />
+        {removed ? <p className="text-[0.85rem] text-ink-2">Removed before analysis: {removed}.</p> : null}
         <Disclaimer />
         <p className="hidden text-[0.8rem] text-ink-2 lg:block">
           Click a highlight or a note to open it · <kbd className="font-sans">J</kbd>/<kbd className="font-sans">K</kbd> to move between findings

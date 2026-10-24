@@ -34,7 +34,11 @@ export function analyze(text: string, extraction: Extraction, opts: AnalyzeOptio
   );
   const today = opts.today ?? isoToday();
   const law = resolveLaw(opts.dateOverride ?? facts.signing_date, today);
-  if (opts.dateOverride && !facts.signing_date) law.assumedToday = true; // still a contract without its own date
+  if (opts.dateOverride && !facts.signing_date) {
+    // Still a contract without its own date: keep the picker, and say whose date this is.
+    law.assumedToday = true;
+    law.picked = true;
+  }
   const verified = clauses.map((clause, index) => ({ clause, index })).filter(({ index }) => spans[index] !== null);
   const findings = runRules({ law, facts, clauses: verified });
   const counts: Record<Verdict, number> = { ILLEGAL: 0, CHECK: 0, INFO: 0, OK: 0 };

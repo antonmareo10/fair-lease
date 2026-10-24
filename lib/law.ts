@@ -9,6 +9,7 @@ export type LawVersion = {
   regime: Regime;
   date: string; // ISO date the check is based on
   assumedToday: boolean; // no signing date found in the contract
+  picked: boolean; // the tenant picked the date because the contract has none
   window1to2Oct2026: boolean; // signed while the repealed RDL 26/2026 was briefly in force
   pendingVote: boolean; // RDL 29/2026 still needs Congress (Diputación Permanente) approval
   sentence: string;
@@ -63,6 +64,7 @@ export function resolveLaw(signingDate: string | null, today: string = isoToday(
     date,
     assumedToday,
     window1to2Oct2026,
+    picked: false,
     pendingVote: regime === "C",
     sentence: `${lead} → ${REGIME_NAME[regime]}`,
   };

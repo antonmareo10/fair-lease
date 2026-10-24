@@ -1,21 +1,30 @@
 "use client";
 
+import { useState } from "react";
 import type { SampleFile } from "@/lib/extraction";
 import { SAMPLES } from "@/lib/samples";
+import { MAX_CHARS } from "@/lib/validate";
 
 type Props = {
+  draft: string;
+  onDraft: (text: string) => void;
+  error: string | null;
+  onCheck: (text: string) => void;
   onSample: (sample: SampleFile) => void;
 };
 
 const TRUST = [
   { title: "Rules hand-checked against the BOE", body: "Every verdict cites the exact article of Spanish law." },
   { title: "Claude reads, the rules decide", body: "The AI only quotes your contract. Fixed public rules give the verdict." },
-  { title: "Your contract is not stored", body: "ID numbers, bank accounts, phones and emails are removed first." },
+  { title: "Your contract is not stored", body: "ID numbers, bank accounts, phones and emails are removed before it's sent." },
 ];
 
-export function StartScreen({ onSample }: Props) {
+export function StartScreen({ draft, onDraft, error, onCheck, onSample }: Props) {
+  const [focused, setFocused] = useState(false);
+  const empty = draft.trim().length === 0;
+
   return (
-    <main className="mx-auto w-full max-w-[1240px] px-4 pb-16 pt-10 sm:px-8 sm:pt-16">
+    <main className="mx-auto w-full max-w-[1240px] px-4 pb-16 pt-10 sm:px-8 sm:pt-14">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
         <section aria-labelledby="hero">
           <p className="mb-5 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">Made for people renting a home in Madrid</p>
@@ -25,6 +34,46 @@ export function StartScreen({ onSample }: Props) {
           <p className="mt-6 max-w-[34rem] text-[1.08rem] leading-relaxed text-ink-2">
             Paste it. Fair Lease marks every clause Spanish law doesn&apos;t allow, with the exact article and what to ask for instead.
           </p>
+
+          <form
+            className="mt-8 grid gap-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!empty) onCheck(draft);
+            }}
+          >
+            {error ? (
+              <p role="alert" className="v-CHECK rounded-[3px] border-l-[3px] border-[var(--chip)] bg-[var(--hl)] px-4 py-3 text-[0.95rem]">
+                {error}
+              </p>
+            ) : null}
+            <label htmlFor="contract" className="sr-only">
+              Your contract text
+            </label>
+            <textarea
+              id="contract"
+              value={draft}
+              onChange={(e) => onDraft(e.target.value)}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              rows={focused || !empty ? 12 : 6}
+              maxLength={MAX_CHARS + 5000}
+              spellCheck={false}
+              lang="es"
+              placeholder="Paste the full text of your contract here, in Spanish…"
+              className="sheet w-full resize-y px-5 py-4 text-[0.98rem] leading-relaxed outline-none transition-[height] placeholder:text-ink-2/70 focus-visible:outline-2 focus-visible:outline-[var(--focus)]"
+            />
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-[0.82rem] text-ink-2">We remove ID numbers, bank accounts, phone numbers and emails before analysis.</p>
+              <button
+                type="submit"
+                disabled={empty}
+                className="rounded-full bg-[var(--ink)] px-6 py-3 text-[0.98rem] font-semibold text-[var(--paper)] transition-[transform,opacity] duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-35"
+              >
+                Check my contract
+              </button>
+            </div>
+          </form>
         </section>
 
         <section aria-labelledby="samples" className="lg:pt-3">
@@ -50,6 +99,7 @@ export function StartScreen({ onSample }: Props) {
               </li>
             ))}
           </ul>
+          <p className="mt-3 text-[0.8rem] leading-relaxed text-ink-2">Samples are fictional contracts. They open instantly and don&apos;t use the AI.</p>
         </section>
       </div>
 

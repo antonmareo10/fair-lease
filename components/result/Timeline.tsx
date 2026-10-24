@@ -26,7 +26,9 @@ export function Timeline({ law, onDate }: Props) {
   return (
     <section aria-label="Which version of the law applies" className="grid gap-3">
       <p className="text-[0.95rem]">
-        <span className="font-semibold">{law.assumedToday ? "No signing date" : `Signed ${formatLongDate(law.date)}`}</span>
+        <span className="font-semibold">
+          {law.picked ? `You picked ${formatLongDate(law.date)}` : law.assumedToday ? "No signing date" : `Signed ${formatLongDate(law.date)}`}
+        </span>
         <span className="text-ink-2"> → </span>
         <span>{law.sentence.split("→ ")[1]}</span>
       </p>
@@ -58,7 +60,7 @@ export function Timeline({ law, onDate }: Props) {
           style={{ left: `${x}%` }}
         >
           <p className="mb-1 whitespace-nowrap rounded-full bg-[var(--ink)] px-2 py-0.5 text-center text-[0.68rem] font-semibold text-[var(--paper)]">
-            {law.assumedToday ? "Today" : formatLongDate(law.date)}
+            {law.assumedToday && !law.picked ? "Today" : formatLongDate(law.date)}
           </p>
           <div className="mx-auto h-[14px] w-[14px] rounded-full border-[3px] border-[var(--paper)] bg-[var(--ink)] shadow" />
         </div>
@@ -70,15 +72,17 @@ export function Timeline({ law, onDate }: Props) {
       {law.assumedToday && onDate ? (
         <div className="grid gap-2 rounded-[3px] border border-[var(--hairline)] bg-paper px-4 py-3 sm:flex sm:items-center sm:justify-between">
           <p className="text-[0.9rem]">
-            No signing date found: checked against the law in force today, {formatLongDate(today)}.
+            {law.picked
+              ? `No signing date in the contract: checked against the law on the date you picked, ${formatLongDate(law.date)}.`
+              : `No signing date found: checked against the law in force today, ${formatLongDate(today)}.`}
           </p>
           <label className="flex items-center gap-2 text-[0.85rem] font-medium">
-            Signed on another date?
+            {law.picked ? "Change the date" : "Signed on another date?"}
             <input
               type="date"
               min="2019-03-06"
               max={today}
-              defaultValue=""
+              defaultValue={law.picked ? law.date : ""}
               onChange={(e) => e.target.value && onDate(e.target.value)}
               className="rounded-md border border-[var(--hairline)] bg-[var(--bg)] px-2 py-1 text-[0.85rem]"
             />
