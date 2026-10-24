@@ -12,12 +12,15 @@ import { MarginNotes } from "./MarginNotes";
 import { FindingSheet } from "./FindingSheet";
 import { NoteCard } from "./NoteCard";
 import type { Lang } from "./FindingNote";
+import { Timeline } from "./Timeline";
+import { CleanState, Disclaimer, Notices } from "./Notices";
 
 type Props = {
   text: string;
   result: AnalysisResult;
   label: string;
   onBack: () => void;
+  onDate?: (iso: string) => void;
 };
 
 function useIsDesktop() {
@@ -32,7 +35,7 @@ function useIsDesktop() {
   return desktop;
 }
 
-export function ResultView({ text, result, label, onBack }: Props) {
+export function ResultView({ text, result, label, onBack, onDate }: Props) {
   const segments = useMemo(() => buildSegments(text, result.spans, result.findings), [text, result]);
   const groups = useMemo(() => buildGroups(result.findings, result.clauses, result.spans), [result]);
   const money = useMemo(() => computeMoney(result), [result]);
@@ -159,8 +162,11 @@ export function ResultView({ text, result, label, onBack }: Props) {
 
       <section aria-label="Result summary" className="mb-8 grid gap-4">
         <Summary counts={result.counts} />
+        {result.counts.ILLEGAL === 0 && result.counts.CHECK === 0 && result.law.regime !== "pre2019" ? <CleanState ruleCount={result.ruleCount} /> : null}
         {money ? <MoneyLine money={money} /> : null}
-        <p className="text-[0.95rem] text-ink-2">{result.law.sentence}</p>
+        <Timeline law={result.law} onDate={onDate} />
+        <Notices result={result} />
+        <Disclaimer />
         <p className="hidden text-[0.8rem] text-ink-2 lg:block">
           Click a highlight or a note to open it · <kbd className="font-sans">J</kbd>/<kbd className="font-sans">K</kbd> to move between findings
         </p>
@@ -169,7 +175,7 @@ export function ResultView({ text, result, label, onBack }: Props) {
       {!desktop && contractGroups.length > 0 ? (
         <div className="mb-4 grid gap-3">
           {contractGroups.map((g) => (
-            <NoteCard key={g.key} group={g} active lang={lang} onLang={setLang} onCopy={copy} onOpen={() => undefined} style={{ position: "relative" }} />
+            <NoteCard key={g.key} group={g} clauses={result.clauses} active lang={lang} onLang={setLang} onCopy={copy} onOpen={() => undefined} style={{ position: "relative" }} />
           ))}
         </div>
       ) : null}
@@ -190,6 +196,7 @@ export function ResultView({ text, result, label, onBack }: Props) {
         {desktop ? (
           <MarginNotes
             groups={groups}
+            clauses={result.clauses}
             anchors={anchors}
             activeKey={activeKey}
             openFindingId={openFindingId}
@@ -203,7 +210,7 @@ export function ResultView({ text, result, label, onBack }: Props) {
       </div>
 
       {!desktop ? (
-        <FindingSheet group={activeGroup} lang={lang} onLang={setLang} onCopy={copy} onClose={() => setSheetKey(null)} onStep={step} />
+        <FindingSheet group={activeGroup} clauses={result.clauses} lang={lang} onLang={setLang} onCopy={copy} onClose={() => setSheetKey(null)} onStep={step} />
       ) : null}
 
       <div aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center">

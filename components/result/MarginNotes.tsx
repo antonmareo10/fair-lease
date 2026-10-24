@@ -2,11 +2,13 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import type { NoteGroup } from "@/lib/groups";
+import type { Clause } from "@/lib/extraction";
 import type { Lang } from "./FindingNote";
 import { NoteCard } from "./NoteCard";
 
 type Props = {
   groups: NoteGroup[];
+  clauses: Clause[];
   /** Vertical offset of each group's first highlight, relative to the sheet's top. */
   anchors: Record<string, number>;
   activeKey: string | null;
@@ -21,7 +23,7 @@ type Props = {
 const GAP = 10;
 
 /** Desktop margin: each note sits next to its clause, pushed down only when it would overlap the one above. */
-export function MarginNotes({ groups, anchors, activeKey, openFindingId, onOpenFinding, lang, onLang, onCopy, onOpen }: Props) {
+export function MarginNotes({ groups, clauses, anchors, activeKey, openFindingId, onOpenFinding, lang, onLang, onCopy, onOpen }: Props) {
   const refs = useRef(new Map<string, HTMLDivElement>());
   const [tops, setTops] = useState<Record<string, number>>({});
   const [height, setHeight] = useState(0);
@@ -57,6 +59,7 @@ export function MarginNotes({ groups, anchors, activeKey, openFindingId, onOpenF
             else refs.current.delete(g.key);
           }}
           group={g}
+          clauses={clauses}
           active={g.key === activeKey}
           openFindingId={openFindingId}
           onOpenFinding={onOpenFinding}

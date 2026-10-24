@@ -37,6 +37,16 @@ export function buildGroups(findings: Finding[], clauses: Clause[], spans: (Span
     .sort((a, b) => a.at - b.at);
 }
 
+/** "Clause quinta", or "Title · clauses primera, segunda, décima" when a finding rests on several. */
+export function groupLabel(g: NoteGroup, clauses: Clause[]): string {
+  if (!g.clauseRef) return "The whole contract";
+  const refs = [...new Set(g.clauseIndices.map((i) => clauses[i]?.clause_ref).filter(Boolean))] as string[];
+  const title = refs.some((r) => /^T[IÍ]TULO$/i.test(r));
+  const rest = refs.filter((r) => !/^T[IÍ]TULO$/i.test(r)).map((r) => r.toLowerCase());
+  const named = rest.length ? `${rest.length > 1 ? "Clauses" : "Clause"} ${rest.join(", ")}` : "";
+  return [title ? "Title" : "", named].filter(Boolean).join(" · ");
+}
+
 export function groupForClause(groups: NoteGroup[], clauseIndex: number): NoteGroup | undefined {
   return groups.find((g) => g.clauseIndices.includes(clauseIndex));
 }

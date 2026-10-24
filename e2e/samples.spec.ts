@@ -16,7 +16,7 @@ test("traps sample lights up with real verdicts", async ({ page }, info) => {
   await expect(summary).toContainText("10 not enforceable");
   await expect(summary).toContainText("2 worth checking");
   await expect(summary).toContainText("6 fine");
-  await expect(page.getByText("Signed 1 Sept 2025 → the May 2023 rules apply")).toBeVisible();
+  await expect(page.getByRole("region", { name: "Which version of the law applies" })).toContainText("Signed 1 Sept 2025 → the May 2023 rules apply");
   await expect(page.getByText("Sample · hand-made extraction")).toBeVisible();
   // Every finding sits on a highlighted, verified quote: 18 clause entries in the sample.
   const clauses = await page.locator("mark.hl").evaluateAll((els) => new Set(els.map((e) => e.getAttribute("data-clause"))).size);

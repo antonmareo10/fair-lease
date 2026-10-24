@@ -1,0 +1,225 @@
+{
+  "id": "reform-oct-2026",
+  "title": "Signed after the Oct 2026 reform",
+  "text": "CONTRATO DE ARRENDAMIENTO POR TEMPORADA\n\nEn Madrid, a 12 de octubre de 2026.\n\nREUNIDOS\n\nDe una parte, Residencial Ejemplo Gestión, S.A., con CIF A00000000, representada por su apoderada Dña. Elena Pastor Gil, en adelante LA ARRENDADORA.\n\nDe otra parte, D. Tomás Keller, mayor de edad, de nacionalidad alemana, con NIE X0000000T, en adelante EL ARRENDATARIO.\n\nEXPONEN\n\nI. Que LA ARRENDADORA es propietaria de la vivienda situada en la calle de la Muestra, n.º 3, 5.º C, 28010 Madrid.\n\nII. Que ambas partes acuerdan formalizar un contrato de arrendamiento por temporada, sometido al artículo 3 de la Ley de Arrendamientos Urbanos, con arreglo a las siguientes\n\nCLÁUSULAS\n\nPRIMERA. OBJETO Y NATURALEZA. LA ARRENDADORA arrienda a EL ARRENDATARIO la vivienda descrita por temporada. Las partes excluyen expresamente la aplicación del régimen de la vivienda habitual.\n\nSEGUNDA. DURACIÓN. El contrato tendrá una duración de once (11) meses, desde el 15 de octubre de 2026 hasta el 14 de septiembre de 2027, y podrá renovarse por periodos sucesivos de once meses por acuerdo de las partes.\n\nTERCERA. RENTA. La renta mensual será de MIL CUATROCIENTOS EUROS (1.400 €), pagaderos por transferencia en los cinco primeros días de cada mes. A la firma, EL ARRENDATARIO abona la primera mensualidad.\n\nCUARTA. FIANZA Y GARANTÍA. EL ARRENDATARIO entrega en este acto 1.400 € en concepto de fianza y 1.400 € en concepto de garantía adicional.\n\nQUINTA. SEGURO DE IMPAGO. Como condición para la firma del presente contrato, EL ARRENDATARIO deberá contratar a su cargo, con la aseguradora que designe LA ARRENDADORA, un seguro de impago de rentas a favor de LA ARRENDADORA, cuya prima anual asciende a 420 €.\n\nSEXTA. GASTOS E IMPUESTOS. Serán de cuenta de EL ARRENDATARIO los gastos de comunidad, cuyo importe anual asciende a 720 €, y el Impuesto sobre Bienes Inmuebles, cuyo importe anual asciende a 560 €.\n\nSÉPTIMA. DESISTIMIENTO. EL ARRENDATARIO podrá desistir del contrato una vez transcurridos seis meses, con un preaviso de treinta días, indemnizando a LA ARRENDADORA con una mensualidad de renta por cada año que reste por cumplir, en la parte proporcional que corresponda.\n\nOCTAVA. DERECHO DE ADQUISICIÓN PREFERENTE. EL ARRENDATARIO renuncia expresamente a los derechos de tanteo y retracto que le reconoce el artículo 25 de la Ley de Arrendamientos Urbanos.\n\nNOVENA. ANIMALES. Queda prohibida la tenencia de animales en la vivienda.\n\nDÉCIMA. LEGISLACIÓN. El presente contrato se rige por lo pactado y, en lo no previsto, por el Título III de la Ley 29/1994, de Arrendamientos Urbanos, y el Código Civil.\n\nY en prueba de conformidad, firman por duplicado en el lugar y fecha indicados.\n\nLA ARRENDADORA                    EL ARRENDATARIO\n",
+  "extraction": {
+    "facts": {
+      "signing_date": "2026-10-12",
+      "monthly_rent_eur": 1400,
+      "duration_months": 11,
+      "landlord_type": "legal_person",
+      "contract_kind": "temporada",
+      "temporal_cause": null,
+      "agency_involved": false,
+      "agency_name": null,
+      "city": "Madrid",
+      "is_rental_contract": true,
+      "language": "es"
+    },
+    "clauses": [
+      {
+        "clause_ref": "TÍTULO",
+        "quote": "CONTRATO DE ARRENDAMIENTO POR TEMPORADA",
+        "topic": "temporal_cause",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "unclear",
+        "signals": [
+          "seasonal_label"
+        ]
+      },
+      {
+        "clause_ref": "PRIMERA",
+        "quote": "Las partes excluyen expresamente la aplicación del régimen de la vivienda habitual.",
+        "topic": "temporal_cause",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "unclear",
+        "signals": [
+          "excludes_habitual_residence"
+        ]
+      },
+      {
+        "clause_ref": "SEGUNDA",
+        "quote": "El contrato tendrá una duración de once (11) meses, desde el 15 de octubre de 2026 hasta el 14 de septiembre de 2027, y podrá renovarse por periodos sucesivos de once meses por acuerdo de las partes.",
+        "topic": "temporal_cause",
+        "numbers": {
+          "months": 11,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "unclear",
+        "signals": [
+          "successive_renewals"
+        ]
+      },
+      {
+        "clause_ref": "CUARTA",
+        "quote": "EL ARRENDATARIO entrega en este acto 1.400 € en concepto de fianza",
+        "topic": "deposit",
+        "numbers": {
+          "months": 1,
+          "amount_eur": 1400,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "tenant",
+        "signals": []
+      },
+      {
+        "clause_ref": "CUARTA",
+        "quote": "1.400 € en concepto de garantía adicional",
+        "topic": "extra_guarantee",
+        "numbers": {
+          "months": 1,
+          "amount_eur": 1400,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "tenant",
+        "signals": []
+      },
+      {
+        "clause_ref": "QUINTA",
+        "quote": "Como condición para la firma del presente contrato, EL ARRENDATARIO deberá contratar a su cargo, con la aseguradora que designe LA ARRENDADORA, un seguro de impago de rentas a favor de LA ARRENDADORA, cuya prima anual asciende a 420 €.",
+        "topic": "default_insurance",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": 420
+        },
+        "payer": "tenant",
+        "signals": [
+          "mandatory_default_insurance"
+        ]
+      },
+      {
+        "clause_ref": "SEXTA",
+        "quote": "Serán de cuenta de EL ARRENDATARIO los gastos de comunidad, cuyo importe anual asciende a 720 €",
+        "topic": "community_fees",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": 720
+        },
+        "payer": "tenant",
+        "signals": [
+          "annual_amount_stated"
+        ]
+      },
+      {
+        "clause_ref": "SEXTA",
+        "quote": "el Impuesto sobre Bienes Inmuebles, cuyo importe anual asciende a 560 €.",
+        "topic": "taxes",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": 560
+        },
+        "payer": "tenant",
+        "signals": [
+          "annual_amount_stated"
+        ]
+      },
+      {
+        "clause_ref": "SÉPTIMA",
+        "quote": "EL ARRENDATARIO podrá desistir del contrato una vez transcurridos seis meses, con un preaviso de treinta días, indemnizando a LA ARRENDADORA con una mensualidad de renta por cada año que reste por cumplir, en la parte proporcional que corresponda.",
+        "topic": "early_exit",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": 30,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "tenant",
+        "signals": [
+          "compensation_month_per_year"
+        ]
+      },
+      {
+        "clause_ref": "OCTAVA",
+        "quote": "EL ARRENDATARIO renuncia expresamente a los derechos de tanteo y retracto que le reconoce el artículo 25 de la Ley de Arrendamientos Urbanos.",
+        "topic": "purchase_right",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "unclear",
+        "signals": [
+          "waives_preferential_purchase"
+        ]
+      },
+      {
+        "clause_ref": "NOVENA",
+        "quote": "Queda prohibida la tenencia de animales en la vivienda.",
+        "topic": "pets",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "unclear",
+        "signals": [
+          "pets_forbidden"
+        ]
+      },
+      {
+        "clause_ref": "DÉCIMA",
+        "quote": "El presente contrato se rige por lo pactado y, en lo no previsto, por el Título III de la Ley 29/1994, de Arrendamientos Urbanos, y el Código Civil.",
+        "topic": "temporal_cause",
+        "numbers": {
+          "months": null,
+          "amount_eur": null,
+          "percent": null,
+          "days": null,
+          "every_months": null,
+          "annual_amount_eur": null
+        },
+        "payer": "unclear",
+        "signals": [
+          "excludes_habitual_residence"
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "kind": "hand-made"
+  }
+}

@@ -39,7 +39,7 @@ Build mode: fast. Chosen by the learner through his delegation: the agent builds
   Learner check: On the traps sample, open the bank-guarantee note and the clause-5 stack, copy "Ask for this instead", then try the same on a phone-width window. Is the finding easy to read and act on in both layouts?
   Commit: `Open findings with law, euros and what to ask instead`
 
-- [ ] **3. The law knows the date: the reform sample, the fair sample and the timeline**
+- [x] **3. The law knows the date: the reform sample, the fair sample and the timeline**
   Becomes usable:
   - All three samples work.
   - The timeline shows Mar 2019 · May 2023 · Oct 2026 with the marker on the signing date and its sentence.
@@ -145,3 +145,4 @@ Activity mode:
 - All 18 FL rules were written in slice 1, not split across slices 1 and 3. They share helpers and texts, so writing them together was simpler. Verification of the regime-C and fair-contract behaviour stays in slice 3, as planned.
 - `Finding.clauseIndices` (a list) replaces the spec's single `clauseIndex`. FL-19 is one finding that rests on several clauses (the 'seasonal' title, the exclusion of home rules, the successive renewals), which is how `GOLD.md` counts it (5 rules, not 6 findings).
 - Next.js scaffolded at 16.4.3 with Cache Components on. Route handlers must not export `runtime`, so the spec's 'Node runtime' note means the default runtime, with no segment config.
+- Slice 3's date-picker check runs as a unit test (an undated extraction plus a picked date re-runs the rules, with no new extraction). The browser version of that check moves to slice 4: the samples all have dates, so the UI has no undated input until pasting works.

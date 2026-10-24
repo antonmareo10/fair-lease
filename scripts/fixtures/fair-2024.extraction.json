@@ -1,0 +1,268 @@
+{
+  "facts": {
+    "signing_date": "2024-02-15",
+    "monthly_rent_eur": 980,
+    "duration_months": 12,
+    "landlord_type": "natural_person",
+    "contract_kind": "habitual",
+    "temporal_cause": null,
+    "agency_involved": false,
+    "agency_name": null,
+    "city": "Madrid",
+    "is_rental_contract": true,
+    "language": "es"
+  },
+  "clauses": [
+    {
+      "clause_ref": "SEGUNDA",
+      "quote": "Llegado su vencimiento, se prorrogará obligatoriamente por plazos anuales hasta alcanzar una duración mínima de cinco años, salvo que EL ARRENDATARIO manifieste con treinta días de antelación su voluntad de no renovarlo, conforme al artículo 9.1 de la Ley de Arrendamientos Urbanos.",
+      "topic": "duration_renewal",
+      "numbers": {
+        "months": 12,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "unclear",
+      "signals": [
+        "renewal_per_law"
+      ]
+    },
+    {
+      "clause_ref": "TERCERA",
+      "quote": "Conforme al artículo 9.3 de la Ley de Arrendamientos Urbanos, se hace constar expresamente que LA ARRENDADORA, persona física, podrá necesitar ocupar la vivienda antes del transcurso de cinco años para destinarla a vivienda permanente de su hija, siempre que haya transcurrido el primer año de contrato y lo comunique con al menos dos meses de antelación.",
+      "topic": "landlord_termination",
+      "numbers": {
+        "months": 2,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "landlord",
+      "signals": [
+        "need_for_landlord_or_family",
+        "need_after_first_year",
+        "need_notice_two_months"
+      ]
+    },
+    {
+      "clause_ref": "CUARTA",
+      "quote": "A la firma, EL ARRENDATARIO abona la primera mensualidad.",
+      "topic": "prepayment",
+      "numbers": {
+        "months": 1,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "QUINTA",
+      "quote": "La renta se actualizará una vez al año, en la fecha en que se cumpla cada año de vigencia del contrato, aplicando la variación anual del índice de referencia que corresponda conforme al artículo 18 de la Ley de Arrendamientos Urbanos y con los límites que este establece.",
+      "topic": "rent_update",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": 12,
+        "annual_amount_eur": null
+      },
+      "payer": "tenant",
+      "signals": [
+        "update_per_art18"
+      ]
+    },
+    {
+      "clause_ref": "SEXTA",
+      "quote": "EL ARRENDATARIO entrega en este acto la cantidad de 980 € en concepto de fianza legal, equivalente a una mensualidad, que LA ARRENDADORA depositará en el organismo competente de la Comunidad de Madrid.",
+      "topic": "deposit",
+      "numbers": {
+        "months": 1,
+        "amount_eur": 980,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "SEXTA",
+      "quote": "Asimismo, entrega 980 €, equivalentes a una mensualidad, en concepto de garantía adicional conforme al artículo 36.5 de la Ley de Arrendamientos Urbanos.",
+      "topic": "extra_guarantee",
+      "numbers": {
+        "months": 1,
+        "amount_eur": 980,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "tenant",
+      "signals": []
+    },
+    {
+      "clause_ref": "SÉPTIMA",
+      "quote": "Los gastos de comunidad de propietarios correspondientes a la vivienda serán de cuenta de EL ARRENDATARIO, cuyo importe anual a la fecha de este contrato asciende a 600 €.",
+      "topic": "community_fees",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": 600
+      },
+      "payer": "tenant",
+      "signals": [
+        "annual_amount_stated"
+      ]
+    },
+    {
+      "clause_ref": "SÉPTIMA",
+      "quote": "Los gastos de gestión inmobiliaria y de formalización del contrato son a cargo de LA ARRENDADORA.",
+      "topic": "agency_fee",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "landlord",
+      "signals": [
+        "landlord_pays_fees"
+      ]
+    },
+    {
+      "clause_ref": "OCTAVA",
+      "quote": "LA ARRENDADORA realizará las reparaciones necesarias para conservar la vivienda en condiciones de habitabilidad. Las pequeñas reparaciones que exija el desgaste por el uso ordinario de la vivienda serán de cargo de EL ARRENDATARIO.",
+      "topic": "repairs",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "unclear",
+      "signals": [
+        "repairs_per_law"
+      ]
+    },
+    {
+      "clause_ref": "NOVENA",
+      "quote": "EL ARRENDATARIO podrá desistir del contrato una vez transcurridos seis meses, con un preaviso mínimo de treinta días. En tal caso indemnizará a LA ARRENDADORA con una cantidad equivalente a una mensualidad de la renta en vigor por cada año del contrato que reste por cumplir, prorrateándose los periodos inferiores al año.",
+      "topic": "early_exit",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": 30,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "tenant",
+      "signals": [
+        "compensation_month_per_year"
+      ]
+    },
+    {
+      "clause_ref": "DÉCIMA",
+      "quote": "LA ARRENDADORA podrá visitar la vivienda para comprobar la necesidad de reparaciones, previa cita acordada con EL ARRENDATARIO.",
+      "topic": "landlord_entry",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "unclear",
+      "signals": [
+        "entry_by_appointment"
+      ]
+    },
+    {
+      "clause_ref": "UNDÉCIMA",
+      "quote": "No se permite la tenencia de animales de compañía sin autorización escrita de LA ARRENDADORA.",
+      "topic": "pets",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "unclear",
+      "signals": [
+        "pets_forbidden"
+      ]
+    },
+    {
+      "clause_ref": "DUODÉCIMA",
+      "quote": "EL ARRENDATARIO no podrá ceder el contrato ni subarrendar la vivienda sin el consentimiento escrito de LA ARRENDADORA.",
+      "topic": "sublet",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "unclear",
+      "signals": [
+        "sublet_needs_permission"
+      ]
+    },
+    {
+      "clause_ref": "DECIMOTERCERA",
+      "quote": "EL ARRENDATARIO no podrá realizar obras que modifiquen la configuración de la vivienda sin el consentimiento escrito de LA ARRENDADORA.",
+      "topic": "works",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "unclear",
+      "signals": [
+        "works_need_permission"
+      ]
+    },
+    {
+      "clause_ref": "DECIMOCUARTA",
+      "quote": "La fianza se devolverá a la finalización del contrato, una vez entregadas las llaves y descontadas, en su caso, las cantidades adeudadas o los daños imputables a EL ARRENDATARIO.",
+      "topic": "deposit_return",
+      "numbers": {
+        "months": null,
+        "amount_eur": null,
+        "percent": null,
+        "days": null,
+        "every_months": null,
+        "annual_amount_eur": null
+      },
+      "payer": "landlord",
+      "signals": [
+        "return_after_deductions"
+      ]
+    }
+  ]
+}

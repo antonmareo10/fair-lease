@@ -1,11 +1,13 @@
 "use client";
 
 import { forwardRef } from "react";
-import type { NoteGroup } from "@/lib/groups";
+import { groupLabel, type NoteGroup } from "@/lib/groups";
+import type { Clause } from "@/lib/extraction";
 import { FindingNote, type Lang } from "./FindingNote";
 
 type Props = {
   group: NoteGroup;
+  clauses: Clause[];
   active: boolean;
   /** Inside an open group, only this finding shows its details (others stay compact). */
   openFindingId?: string | null;
@@ -18,7 +20,7 @@ type Props = {
 };
 
 /** A margin note for one clause: its findings stacked by severity. Click to open the details. */
-export const NoteCard = forwardRef<HTMLDivElement, Props>(function NoteCard({ group, active, openFindingId, onOpenFinding, lang, onLang, onCopy, onOpen, style }, ref) {
+export const NoteCard = forwardRef<HTMLDivElement, Props>(function NoteCard({ group, clauses, active, openFindingId, onOpenFinding, lang, onLang, onCopy, onOpen, style }, ref) {
   const n = group.findings.length;
   return (
     <div
@@ -36,7 +38,7 @@ export const NoteCard = forwardRef<HTMLDivElement, Props>(function NoteCard({ gr
         className="flex w-full items-center justify-between gap-2 px-4 pb-1 pt-3 text-left"
       >
         <span className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink-2">
-          {group.clauseRef ? `Clause ${group.clauseRef.toLowerCase()}` : "The whole contract"}
+          {groupLabel(group, clauses)}
           {n > 1 ? ` · ${n} findings` : ""}
         </span>
         <span className="text-[0.75rem] text-ink-2" aria-hidden="true">

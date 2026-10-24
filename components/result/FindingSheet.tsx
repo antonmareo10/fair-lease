@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { NoteGroup } from "@/lib/groups";
+import { groupLabel, type NoteGroup } from "@/lib/groups";
+import type { Clause } from "@/lib/extraction";
 import { FindingNote, type Lang } from "./FindingNote";
 
 type Props = {
   group: NoteGroup | null;
+  clauses: Clause[];
   lang: Lang;
   onLang: (l: Lang) => void;
   onCopy: (text: string) => void;
@@ -14,7 +16,7 @@ type Props = {
 };
 
 /** Phone layout: a bottom sheet over the annotated text (prd.md > Screens and Layout). */
-export function FindingSheet({ group, lang, onLang, onCopy, onClose, onStep }: Props) {
+export function FindingSheet({ group, clauses, lang, onLang, onCopy, onClose, onStep }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export function FindingSheet({ group, lang, onLang, onCopy, onClose, onStep }: P
   return (
     <dialog
       ref={ref}
-      aria-label={group?.clauseRef ? `Findings for clause ${group.clauseRef.toLowerCase()}` : "Findings"}
+      aria-label={group ? `Findings: ${groupLabel(group, clauses)}` : "Findings"}
       onClose={onClose}
       onClick={(e) => {
         if (e.target === ref.current) onClose();
@@ -39,7 +41,7 @@ export function FindingSheet({ group, lang, onLang, onCopy, onClose, onStep }: P
           <div className="mx-auto h-1 w-10 rounded-full bg-[var(--rule)]" aria-hidden="true" />
           <div className="flex items-center justify-between gap-2">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink-2">
-              {group.clauseRef ? `Clause ${group.clauseRef.toLowerCase()}` : "The whole contract"}
+              {groupLabel(group, clauses)}
             </p>
             <div className="flex items-center gap-1">
               <button type="button" onClick={() => onStep(-1)} className="rounded-full px-2.5 py-1 text-[0.8rem] text-ink-2" aria-label="Previous finding">
