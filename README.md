@@ -6,6 +6,8 @@ Made for people renting a home in Madrid, especially young people and students f
 
 **Try it now: [fair-lease.vercel.app](https://fair-lease.vercel.app)**. No account. Tap one of the three sample contracts and its problem clauses light up; click a highlight to see the article and what to ask for instead. To try the PDF upload, drop [the traps contract as a PDF](public/samples/traps-2025.pdf) on the box (that one is a live check).
 
+**Video demo (2:47): [youtu.be/C13mr5A6jH4](https://youtu.be/C13mr5A6jH4)**
+
 ![A fictional contract with each unenforceable clause highlighted and a margin note with the article and the euros involved](docs/result-screen.png)
 
 ## How it works
