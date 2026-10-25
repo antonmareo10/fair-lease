@@ -138,7 +138,7 @@ export function FairLease() {
     <>
       <Header onHome={home} />
       {view.kind === "checking" ? (
-        <CheckingSteps steps={view.steps} />
+        <CheckingSteps steps={view.steps} from={pdf?.name} />
       ) : view.kind === "result" && result ? (
         <ResultView
           key={`${view.shown.id}:${dateOverride ?? ""}`}

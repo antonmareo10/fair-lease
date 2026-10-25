@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, type DragEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type DragEvent } from "react";
 import type { SampleFile } from "@/lib/extraction";
 import { SAMPLES } from "@/lib/samples";
 import { MAX_CHARS } from "@/lib/validate";
+import { REPO_URL } from "@/lib/site";
 
 /** A PDF whose text is in the box: where it came from, so the screen can say what happened to it. */
 export type PdfSource = { name: string; pages: number; scannedPages: number };
@@ -22,11 +23,18 @@ type Props = {
   onPreparePdf: () => void;
 };
 
-const TRUST = [
+const TRUST: { title: string; body: string; link?: { href: string; label: string } }[] = [
   { title: "Rules hand-checked against the BOE", body: "The BOE is Spain's official gazette. Every verdict cites the exact article of the law." },
   { title: "Claude reads, the rules decide", body: "The AI only quotes your contract. Fixed public rules give the verdict." },
   { title: "Your contract is not stored", body: "A PDF is read on your device. ID numbers, bank accounts, phones and emails are removed before anything is sent." },
+  {
+    title: "Tested on 125 clauses",
+    body: "Nine contracts, every clause given its expected verdict by hand before the app read it, and compared with asking the AI alone.",
+    link: { href: `${REPO_URL}/blob/main/eval/README.md`, label: "How it's tested, misses included" },
+  },
 ];
+
+const delay = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as CSSProperties;
 
 const hasFiles = (e: DragEvent) => Array.from(e.dataTransfer?.types ?? []).includes("Files");
 
@@ -90,16 +98,17 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample, onPdf, r
     <main className="mx-auto w-full max-w-[1240px] px-4 pb-16 pt-10 sm:px-8 sm:pt-14" {...dropHandlers}>
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
         <section aria-labelledby="hero">
-          <p className="mb-5 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">Made for people renting a home in Madrid</p>
-          <h1 id="hero" className="text-balance font-serif text-[2.6rem] leading-[1.04] tracking-[-0.02em] sm:text-[4.1rem]">
+          <p className="rise mb-5 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">Made for people renting a home in Madrid</p>
+          <h1 id="hero" className="rise text-balance font-serif text-[2.6rem] leading-[1.04] tracking-[-0.02em] sm:text-[4.1rem]" style={delay(60)}>
             Is your rental contract legal?
           </h1>
-          <p className="mt-6 max-w-[34rem] text-[1.08rem] leading-relaxed text-ink-2">
+          <p className="rise mt-6 max-w-[34rem] text-[1.08rem] leading-relaxed text-ink-2" style={delay(120)}>
             Paste it or upload the PDF. Fair Lease marks every clause Spanish law doesn&apos;t allow, with the exact article and what to ask for instead.
           </p>
 
           <form
-            className="mt-8 grid gap-3"
+            className="rise mt-8 grid gap-3"
+            style={delay(180)}
             onSubmit={(e) => {
               e.preventDefault();
               if (!empty && !reading) onCheck(draft);
@@ -129,7 +138,7 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample, onPdf, r
                 <button
                   type="button"
                   onClick={onClearPdf}
-                  className="flex-none rounded-full px-2 py-1 text-[0.82rem] font-semibold text-ink-2 underline decoration-[var(--hairline)] underline-offset-4 hover:text-[var(--ink)]"
+                  className="-my-2 min-h-11 flex-none rounded-full px-2 text-[0.82rem] font-semibold text-ink-2 underline decoration-[var(--hairline)] underline-offset-4 hover:text-[var(--ink)]"
                 >
                   Remove
                 </button>
@@ -174,7 +183,7 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample, onPdf, r
                   onPointerEnter={onPreparePdf}
                   onFocus={onPreparePdf}
                   disabled={!!reading}
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--hairline)] bg-paper px-4 py-[0.55rem] text-[0.92rem] font-semibold transition-[transform,box-shadow] duration-200 ease-[var(--ease)] hover:-translate-y-px hover:shadow-[var(--shadow-sheet)] active:scale-[0.98] disabled:opacity-50"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--hairline)] bg-paper px-4 py-2 text-[0.92rem] font-semibold transition-[transform,box-shadow] duration-200 ease-[var(--ease)] hover:-translate-y-px hover:shadow-[var(--shadow-sheet)] active:scale-[0.98] disabled:opacity-50"
                 >
                   <DocIcon />
                   Upload a PDF
@@ -209,7 +218,7 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample, onPdf, r
           </form>
         </section>
 
-        <section aria-labelledby="samples" className="scroll-mt-6 lg:pt-3">
+        <section aria-labelledby="samples" className="rise scroll-mt-6 lg:pt-3" style={delay(240)}>
           <h2 id="samples" tabIndex={-1} className="mb-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-2">
             No contract to hand? Try a sample
           </h2>
@@ -240,16 +249,21 @@ export function StartScreen({ draft, onDraft, error, onCheck, onSample, onPdf, r
             <a href="/samples/traps-2025.pdf" download className="font-semibold text-[var(--ink)] underline decoration-[var(--hairline)] underline-offset-4">
               the traps contract as a PDF
             </a>{" "}
-            and drop it in the box. Checking it is a live check.
+            and drop it in the box or use Upload a PDF. Checking it is a live check.
           </p>
         </section>
       </div>
 
-      <ul className="mt-16 grid gap-6 border-t border-rule pt-8 sm:grid-cols-3">
+      <ul className="rise mt-16 grid gap-6 border-t border-rule pt-8 sm:grid-cols-2 lg:grid-cols-4" style={delay(300)}>
         {TRUST.map((t) => (
           <li key={t.title}>
             <p className="text-[0.95rem] font-semibold">{t.title}</p>
             <p className="mt-1 text-[0.88rem] leading-relaxed text-ink-2">{t.body}</p>
+            {t.link ? (
+              <a href={t.link.href} className="mt-2 inline-block text-[0.88rem] font-semibold underline decoration-[var(--hairline)] underline-offset-4 hover:decoration-[var(--ink)]">
+                {t.link.label}
+              </a>
+            ) : null}
           </li>
         ))}
       </ul>

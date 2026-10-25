@@ -4,7 +4,7 @@ export type StepState = "done" | "active" | "todo";
 export type Step = { label: string; detail?: string; state: StepState };
 
 /** Real steps only, ticked as each phase finishes: no fake progress bar (prd.md > States and Boundaries). */
-export function CheckingSteps({ steps }: { steps: Step[] }) {
+export function CheckingSteps({ steps, from }: { steps: Step[]; from?: string }) {
   return (
     <main className="mx-auto w-full max-w-[1240px] px-4 pb-24 pt-10 sm:px-8 sm:pt-16">
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
@@ -18,7 +18,10 @@ export function CheckingSteps({ steps }: { steps: Step[] }) {
           ))}
         </div>
         <section aria-live="polite" aria-label="Checking your contract" className="grid gap-4 lg:sticky lg:top-8">
-          <h1 className="font-serif text-[1.8rem] leading-tight">Checking your contract</h1>
+          <div>
+            <h1 className="font-serif text-[1.8rem] leading-tight">Checking your contract</h1>
+            {from ? <p className="mt-1 truncate text-[0.88rem] text-ink-2">{from}, read on your device</p> : null}
+          </div>
           <ol className="grid gap-3">
             {steps.map((s) => (
               <li key={s.label} className="flex items-start gap-3">

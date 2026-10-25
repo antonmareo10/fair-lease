@@ -89,7 +89,7 @@ export function FindingNote({ finding: f, expanded, lang, onLang, onCopy }: Prop
 
 export function LangSwitch({ lang, onLang }: { lang: Lang; onLang: (l: Lang) => void }) {
   return (
-    <div role="group" aria-label="Language" className="inline-flex rounded-full border border-[var(--hairline)] p-0.5 text-[0.72rem] font-semibold">
+    <div role="group" aria-label="Language" className="inline-flex rounded-full border border-[var(--hairline)] p-0.5 font-sans text-[0.72rem] font-semibold">
       {(["es", "en"] as const).map((l) => (
         <button
           key={l}
