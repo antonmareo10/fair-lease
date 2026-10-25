@@ -56,7 +56,14 @@ export function restrict(gold: Gold, runs: Run[], contractIds: string[], runNumb
   };
 }
 
-export function summarize(runs: Run[], gold: Gold, contracts: Record<string, Contract>): ConfigSummary[] {
+/**
+ * The held-out set turns on one more row: fine clauses that Fair Lease flagged under another rule id (its by-rule
+ * matching would otherwise count them only as "flags on passages GOLD does not label"). The samples set leaves it
+ * off, so its stored outputs stay byte-for-byte what they were.
+ */
+export type ReportOptions = { otherRuleRow?: boolean };
+
+export function summarize(runs: Run[], gold: Gold, contracts: Record<string, Contract>, opts: ReportOptions = {}): ConfigSummary[] {
   const out: ConfigSummary[] = [];
   for (const config of CONFIGS) {
     const mine = runs.filter((r) => r.config === config.id);
@@ -66,6 +73,7 @@ export function summarize(runs: Run[], gold: Gold, contracts: Record<string, Con
     const perContract: Record<string, number[]> = {};
     const proposed: number[] = [];
     const dropped: number[] = [];
+    const otherRule: number[] = [];
     let failedCalls = 0;
     for (const n of runNumbers) {
       const details = Object.keys(gold.contracts).map((id) => {
@@ -76,6 +84,7 @@ export function summarize(runs: Run[], gold: Gold, contracts: Record<string, Con
       const present = details.filter((d): d is NonNullable<typeof d> => d !== null);
       failedCalls += present.filter((d) => d.detail.failed).length;
       perRun.push(summarizeRun(present.map((d) => d.detail.score)));
+      otherRule.push(present.reduce((a, d) => a + d.detail.score.flagsOnFineOtherRule, 0));
       for (const d of present) (perContract[d.id] ??= []).push(d.detail.score.units.filter((u) => u.correct).length);
       const p = present.map((d) => d.detail.quotesProposed).filter((x): x is number => x !== undefined);
       const q = present.map((d) => d.detail.quotesDropped).filter((x): x is number => x !== undefined);
@@ -93,7 +102,12 @@ export function summarize(runs: Run[], gold: Gold, contracts: Record<string, Con
       costUsd: cost,
       costPerContractUsd: cost / mine.length,
       perRun,
-      metrics: Object.fromEntries(Object.entries(METRICS).map(([k, f]) => [k, stat(perRun.map(f))])),
+      metrics: {
+        ...Object.fromEntries(Object.entries(METRICS).map(([k, f]) => [k, stat(perRun.map(f))])),
+        ...(opts.otherRuleRow
+          ? { flagsOnFineOtherRule: stat(otherRule), extraFlagsElsewhere: stat(perRun.map((s, i) => s.extraFlags - otherRule[i])) }
+          : {}),
+      },
       perContractVerdictCorrect: Object.fromEntries(Object.entries(perContract).map(([k, v]) => [k, stat(v)])),
       quotesProposed: proposed.length ? stat(proposed) : null,
       quotesDropped: dropped.length ? stat(dropped) : null,
@@ -105,7 +119,7 @@ export function summarize(runs: Run[], gold: Gold, contracts: Record<string, Con
 const fmt = (s: Stat, digits = 1) => (s.min === s.max ? String(Number(s.mean.toFixed(digits))) : `${s.mean.toFixed(digits)} (${s.min}-${s.max})`);
 
 /** The markdown table that goes into eval/README.md and the main README. Totals come from the gold, not from a run. */
-export function renderTable(configs: ConfigSummary[], gold: Gold): string {
+export function renderTable(configs: ConfigSummary[], gold: Gold, opts: ReportOptions = {}): string {
   const units = Object.values(gold.contracts).flatMap((c) => c.units);
   const nIllegal = units.filter((u) => u.verdict === "ILLEGAL").length;
   const nCheck = units.filter((u) => u.verdict === "CHECK").length;
@@ -122,7 +136,12 @@ export function renderTable(configs: ConfigSummary[], gold: Gold): string {
     row(`Fine clauses left alone (of ${nOk})`, (c) => fmt(c.metrics.okKept)),
     row("Fine clauses wrongly called not enforceable", (c) => fmt(c.metrics.falseAlarms)),
     row("Fine clauses sent to review", (c) => fmt(c.metrics.softAlarms)),
-    row("Flags on passages GOLD does not label", (c) => fmt(c.metrics.extraFlags)),
+    ...(opts.otherRuleRow
+      ? [
+          row("Fine clauses flagged under another rule", (c) => fmt(c.metrics.flagsOnFineOtherRule)),
+          row("Flags on passages GOLD does not label", (c) => fmt(c.metrics.extraFlagsElsewhere)),
+        ]
+      : [row("Flags on passages GOLD does not label", (c) => fmt(c.metrics.extraFlags))]),
     row("Right flags that cite an accepted article", (c) => `${fmt(c.metrics.flaggedRightWithArticle)} of ${fmt(c.metrics.flaggedRight)}`),
     row("LAU articles cited / not in the LAU / real but wrong for that clause", (c) => `${fmt(c.metrics.citations)} / ${fmt(c.metrics.citationsInvented)} / ${fmt(c.metrics.citationsWrong)}`),
     row("Quotes shown that are not literally in the contract", (c) => `${fmt(c.metrics.quotesNotInText)} of ${fmt(c.metrics.entries)}`),

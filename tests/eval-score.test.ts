@@ -49,7 +49,8 @@ describe("eval GOLD file", () => {
     for (const id of Object.keys(gold.contracts)) {
       const contract = loadContract(gold, id);
       for (const unit of gold.contracts[id].units) {
-        for (const i of unit.fixture) {
+        expect(unit.fixture?.length, unit.id).toBeGreaterThan(0);
+        for (const i of unit.fixture ?? []) {
           expect(contract.fixtureQuotes[i], `${unit.id} fixture ${i}`).toBeDefined();
           expect(clauseNumber(contract.fixtureQuotes[i].clause_ref), unit.id).not.toBeNull();
         }

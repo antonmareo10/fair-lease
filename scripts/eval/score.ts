@@ -17,15 +17,23 @@ export type GoldUnit = {
   id: string;
   ref: string;
   rule: string;
-  fixture: number[];
+  /** Samples set: indices of the hand-made fixture clauses that hold the row's literal text. */
+  fixture?: number[];
+  /** Held-out set: the literal passages of the contract that hold the row (its anchors). */
+  quotes?: string[];
   verdict: GoldVerdict;
   articles: string[];
   overEur?: number;
+  /** Held-out set: the rule and article that decided the label. */
+  why?: string;
 };
 
 export type GoldContract = {
   title: string;
-  sample: string;
+  /** Samples set: samples/<sample>.json gives the text, scripts/fixtures/<sample>.extraction.json the anchors. */
+  sample?: string;
+  /** Held-out set: path of the contract text, relative to the repo root. */
+  textFile?: string;
   signedLong: string;
   regime: "A" | "B" | "C";
   lawVersionFrom: string;
@@ -35,7 +43,7 @@ export type GoldContract = {
 
 export type Gold = { source: string; contracts: Record<string, GoldContract> };
 
-export type Law = "LAU" | "CC" | "CE" | "LBRL" | "CP" | "OTHER";
+export type Law = "LAU" | "CC" | "CE" | "LBRL" | "CP" | "TRLGDCU" | "LEC" | "OTHER";
 export type Citation = { law: Law; art: string };
 
 /** One verdict about one passage of the contract, from either configuration. */
@@ -62,6 +70,8 @@ export const LAU_ARTICLES = new Set<string>([...Array.from({ length: 40 }, (_, i
 function lawOf(text: string): Law {
   const t = text.toLowerCase();
   if (/\blau\b|arrendamientos urbanos|29\/1994/.test(t)) return "LAU";
+  if (/trlgdcu|consumidores|1\/2007/.test(t)) return "TRLGDCU";
+  if (/enjuiciamiento civil|\blec\b|1\/2000/.test(t)) return "LEC";
   if (/c[oó]digo civil|civil code|\bcc\b/.test(t)) return "CC";
   if (/constituci|\bce\b/.test(t)) return "CE";
   if (/lbrl|7\/1985|r[eé]gimen local/.test(t)) return "LBRL";
@@ -103,6 +113,13 @@ const exists = (c: Citation) => c.law !== "LAU" || LAU_ARTICLES.has(c.art);
 // ---------- clause references ----------
 
 const ORDINALS: [string, number][] = [
+  // Longer words first: "decimoquinta" contains "quinta", "decimoctava" contains "octava", and so on.
+  ["vigesima", 20],
+  ["decimonovena", 19],
+  ["decimoctava", 18],
+  ["decimoseptima", 17],
+  ["decimosexta", 16],
+  ["decimoquinta", 15],
   ["decimotercera", 13],
   ["decimocuarta", 14],
   ["duodecima", 12],
@@ -176,6 +193,11 @@ export type ContractScore = {
   units: UnitResult[];
   /** Flags (not enforceable / worth checking) that match no GOLD unit. */
   extraFlags: number;
+  /**
+   * Of those, the ones that sit on a GOLD-fine row (at least half of the shorter span) under a different rule id,
+   * which the by-rule matching of Fair Lease therefore did not attach to that row. Always 0 for the model alone.
+   */
+  flagsOnFineOtherRule: number;
   entries: number;
   /** Entries whose quote is not literally in the contract (model alone; Fair Lease shows none by construction). */
   quotesNotInText: number;
@@ -206,10 +228,20 @@ export function resolveEntries(text: string, entries: Entry[]): Resolved[] {
 
 export function anchorsOf(text: string, gold: GoldContract, fixtureQuotes: { clause_ref: string; quote: string }[]): Anchor[] {
   const norm = normalizeWithMap(text);
-  return gold.units.map((u) => ({
-    spans: u.fixture.map((i) => locateQuote(norm, text, fixtureQuotes[i].quote)).filter((s): s is Span => s !== null),
-    numbers: new Set(u.fixture.map((i) => clauseNumber(fixtureQuotes[i].clause_ref)).filter((n): n is number => n !== null)),
-  }));
+  return gold.units.map((u) => {
+    if (u.quotes) {
+      // Held-out rows carry their own literal anchors; a ref like "TÍTULO+PRIMERA" gives the clause numbers.
+      return {
+        spans: u.quotes.map((q) => locateQuote(norm, text, q)).filter((s): s is Span => s !== null),
+        numbers: new Set(u.ref.split("+").map(clauseNumber).filter((n): n is number => n !== null)),
+      };
+    }
+    const fixture = u.fixture ?? [];
+    return {
+      spans: fixture.map((i) => locateQuote(norm, text, fixtureQuotes[i].quote)).filter((s): s is Span => s !== null),
+      numbers: new Set(fixture.map((i) => clauseNumber(fixtureQuotes[i].clause_ref)).filter((n): n is number => n !== null)),
+    };
+  });
 }
 
 export type ScoreInput = {
@@ -281,7 +313,11 @@ export function scoreContract(input: ScoreInput): ContractScore {
     };
   });
 
-  const extraFlags = resolved.filter((r, ri) => !attached.has(ri) && r.entry.verdict !== "OK").length;
+  const unattachedFlags = resolved.filter((r, ri) => !attached.has(ri) && r.entry.verdict !== "OK");
+  const extraFlags = unattachedFlags.length;
+  const flagsOnFineOtherRule = unattachedFlags.filter((r) =>
+    gold.units.some((unit, ui) => unit.verdict === "OK" && r.spans.length > 0 && closeness(r.spans, anchors[ui].spans).frac >= 0.5),
+  ).length;
   const quotesNotInText = resolved.filter((r) => !r.located).length;
 
   let citations = 0;
@@ -313,6 +349,7 @@ export function scoreContract(input: ScoreInput): ContractScore {
   return {
     units,
     extraFlags,
+    flagsOnFineOtherRule,
     entries: entries.length,
     quotesNotInText,
     citations,

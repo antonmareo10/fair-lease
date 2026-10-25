@@ -6,7 +6,12 @@
  *   npm run eval -- --fresh           → ignore stored runs and call again
  *   npm run eval -- --configs alone-sonnet --runs 3 --cap 0.9
  *
- * Needs ANTHROPIC_API_KEY in .env.local for the calls. A hard spend cap (default $0.95) stops new calls.
+ *   npm run eval -- --set holdout     → the six held-out contracts (eval/holdout/gold.json), written to
+ *                                       eval/results-holdout/; Fair Lease and Sonnet alone only, cap $1.60
+ *   npm run eval -- --set holdout --out eval/results-holdout-v2 → same, stored in another folder
+ *
+ * Needs ANTHROPIC_API_KEY in .env.local for the calls. A hard spend cap (default $0.95, $1.60 for the
+ * held-out set) stops new calls; it counts what the runs already stored in the output folder cost.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { callClaude } from "@/lib/claude";
@@ -14,8 +19,8 @@ import { runExtraction, type ModelCall } from "@/lib/extract";
 import { createLimiter } from "@/lib/limit";
 import { costOf } from "./compare";
 import { callModelAlone } from "./eval/model-alone";
-import { CONFIGS, EVAL_TODAY, loadContract, loadGold, scoreRun, type Contract, type Run } from "./eval/pipeline";
-import { renderPerContract, renderTable, restrict, summarize } from "./eval/report";
+import { CONFIGS, EVAL_TODAY, loadContract, loadGold, scoreRun, type Contract, type EvalSet, type Run } from "./eval/pipeline";
+import { renderPerContract, renderTable, restrict, summarize, type ReportOptions } from "./eval/report";
 
 const args = process.argv.slice(2);
 const flag = (name: string) => args.includes(`--${name}`);
@@ -24,15 +29,23 @@ const value = (name: string, fallback: string) => {
   return i >= 0 && args[i + 1] ? args[i + 1] : fallback;
 };
 
+const SET = value("set", "samples") as EvalSet;
+if (SET !== "samples" && SET !== "holdout") {
+  console.error(`Unknown --set ${SET}. Use samples or holdout.`);
+  process.exit(1);
+}
+const HOLDOUT = SET === "holdout";
 const RUNS = Number(value("runs", "3"));
-const CAP = Number(value("cap", "0.95"));
-const ONLY = value("configs", "").split(",").filter(Boolean);
+const CAP = Number(value("cap", HOLDOUT ? "1.6" : "0.95"));
+// The held-out set compares Fair Lease with Sonnet alone; Opus alone did not fit the budget.
+const ONLY = value("configs", HOLDOUT ? "fair-lease-sonnet,alone-sonnet" : "").split(",").filter(Boolean);
 const ONLY_CONTRACTS = value("contracts", "").split(",").filter(Boolean);
 const POOL = Number(value("parallel", "4"));
-const RESULTS = "eval/results";
+const RESULTS = value("out", HOLDOUT ? "eval/results-holdout" : "eval/results");
 const RUNS_FILE = `${RESULTS}/runs.json`;
+const REPORT: ReportOptions = { otherRuleRow: HOLDOUT };
 
-const gold = loadGold();
+const gold = loadGold(".", SET);
 const contracts: Record<string, Contract> = Object.fromEntries(Object.keys(gold.contracts).map((id) => [id, loadContract(gold, id)]));
 const stored: Run[] = existsSync(RUNS_FILE) && !flag("fresh") ? (JSON.parse(readFileSync(RUNS_FILE, "utf8")).runs as Run[]) : [];
 const keyOf = (r: Pick<Run, "config" | "contract" | "run">) => `${r.config}|${r.contract}|${r.run}`;
@@ -125,8 +138,12 @@ if (!flag("score-only")) {
 
 // ---- score (offline) ----
 const runs = [...done.values()];
+if (runs.length === 0) {
+  console.log(`No stored runs in ${RUNS_FILE}: nothing to score.`);
+  process.exit(0);
+}
 const contractIds = Object.keys(gold.contracts);
-const summary = summarize(runs, gold, contracts);
+const summary = summarize(runs, gold, contracts, REPORT);
 
 // A configuration is complete when it has every run of every contract; partial ones (budget) are compared on what they cover.
 const nRuns = Math.max(...runs.map((r) => r.run));
@@ -134,7 +151,7 @@ const isComplete = (id: string) => runs.filter((r) => r.config === id).length ==
 const complete = summary.filter((c) => isComplete(c.id));
 const partial = summary.filter((c) => !isComplete(c.id));
 
-let markdown = `${renderTable(complete, gold)}
+let markdown = `${renderTable(complete, gold, REPORT)}
 
 ${renderPerContract(complete, gold)}
 `;
@@ -143,8 +160,8 @@ for (const p of partial) {
   const ids = contractIds.filter((id) => mine.some((r) => r.contract === id));
   const nums = [...new Set(mine.map((r) => r.run))];
   const sub = restrict(gold, runs, ids, nums);
-  const subSummary = summarize(sub.runs, sub.gold, contracts).filter((c) => c.id === p.id || isComplete(c.id));
-  markdown += `\n${p.label}: ${nums.length} run on ${ids.join(" + ")} (budget), compared with the other configurations on the same contracts, ${nums.length === 1 ? `run ${nums[0]}` : `runs ${nums.join(", ")}`} only.\n\n${renderTable(subSummary, sub.gold)}\n`;
+  const subSummary = summarize(sub.runs, sub.gold, contracts, REPORT).filter((c) => c.id === p.id || isComplete(c.id));
+  markdown += `\n${p.label}: ${nums.length} run on ${ids.join(" + ")} (budget), compared with the other configurations on the same contracts, ${nums.length === 1 ? `run ${nums[0]}` : `runs ${nums.join(", ")}`} only.\n\n${renderTable(subSummary, sub.gold, REPORT)}\n`;
 }
 
 // Per-row matrix: what each configuration said about each GOLD row, run by run.
@@ -157,7 +174,7 @@ for (const run of runs.sort((a, b) => a.run - b.run)) {
 }
 
 const total = runs.reduce((a, r) => a + r.costUsd, 0);
-writeFileSync(`${RESULTS}/summary.json`, JSON.stringify({ today: EVAL_TODAY, totalCostUsd: total, configs: summary }, null, 1) + "\n");
+writeFileSync(`${RESULTS}/summary.json`, JSON.stringify({ ...(HOLDOUT ? { set: SET } : {}), today: EVAL_TODAY, totalCostUsd: total, configs: summary }, null, 1) + "\n");
 writeFileSync(`${RESULTS}/rows.json`, JSON.stringify(matrix, null, 1) + "\n");
 writeFileSync(`${RESULTS}/table.md`, markdown);
 console.log(`\n${markdown}\nTotal spent: $${total.toFixed(3)} over ${runs.length} calls`);

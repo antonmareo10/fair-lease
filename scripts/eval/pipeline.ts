@@ -56,18 +56,31 @@ export type Contract = {
   fixtureQuotes: { clause_ref: string; quote: string }[];
 };
 
-export function loadGold(root = "."): Gold {
-  return JSON.parse(readFileSync(`${root}/eval/gold.json`, "utf8")) as Gold;
+/**
+ * "samples": the three sample contracts (eval/gold.json, labelled 21 Oct 2026, before the code).
+ * "holdout": six contracts written and labelled on 25 Oct 2026 before any run on them (eval/holdout/gold.json).
+ */
+export type EvalSet = "samples" | "holdout";
+
+export const GOLD_FILE: Record<EvalSet, string> = { samples: "eval/gold.json", holdout: "eval/holdout/gold.json" };
+
+export function loadGold(root = ".", set: EvalSet = "samples"): Gold {
+  return JSON.parse(readFileSync(`${root}/${GOLD_FILE[set]}`, "utf8")) as Gold;
 }
 
 /** The contract exactly as the app sends it (personal data removed in the browser first). */
 export function loadContract(gold: Gold, id: string, root = "."): Contract {
-  const sample = JSON.parse(readFileSync(`${root}/samples/${gold.contracts[id].sample}.json`, "utf8")) as SampleFile;
-  const fixture = JSON.parse(readFileSync(`${root}/scripts/fixtures/${gold.contracts[id].sample}.extraction.json`, "utf8")) as Extraction;
+  const g = gold.contracts[id];
+  if (g.textFile) {
+    // Held-out contracts: plain text on disk; their rows carry their own anchors (GoldUnit.quotes).
+    return { id, text: anonymize(readFileSync(`${root}/${g.textFile}`, "utf8")).text, signedLong: g.signedLong, fixtureQuotes: [] };
+  }
+  const sample = JSON.parse(readFileSync(`${root}/samples/${g.sample}.json`, "utf8")) as SampleFile;
+  const fixture = JSON.parse(readFileSync(`${root}/scripts/fixtures/${g.sample}.extraction.json`, "utf8")) as Extraction;
   return {
     id,
     text: anonymize(sample.text).text,
-    signedLong: gold.contracts[id].signedLong,
+    signedLong: g.signedLong,
     fixtureQuotes: fixture.clauses.map((c) => ({ clause_ref: c.clause_ref, quote: c.quote })),
   };
 }
