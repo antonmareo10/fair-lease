@@ -11,7 +11,8 @@ import type { ExtractResponse } from "@/lib/extract";
 import { modelName } from "@/lib/models";
 import { Header } from "./Brand";
 import { Footer } from "./Footer";
-import { StartScreen } from "./StartScreen";
+import { StartScreen, type PdfSource } from "./StartScreen";
+import { PDF_ERRORS, preloadPdfReader, readPdfFile } from "@/lib/read-pdf";
 import { CheckingSteps, type Step } from "./CheckingSteps";
 import { ResultView } from "./result/ResultView";
 
@@ -42,6 +43,8 @@ export function FairLease() {
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [dateOverride, setDateOverride] = useState<string | null>(null);
+  const [reading, setReading] = useState<string | null>(null);
+  const [pdf, setPdf] = useState<PdfSource | null>(null);
 
   const result = useMemo(
     () => (view.kind === "result" ? analyze(view.shown.text, view.shown.extraction, { dateOverride }) : null),
@@ -64,6 +67,27 @@ export function FairLease() {
     setError(null);
     const anon = anonymize(sample.text);
     showResult({ id: sample.id, text: anon.text, extraction: sample.extraction, label: provenanceLabel(sample), removed: describeRemoved(anon.removed) });
+  };
+
+  /** A PDF's text goes into the box, read on this device; checking it is then the same as checking pasted text. */
+  const openPdf = async (file: File) => {
+    setError(null);
+    setReading(file.name);
+    const read = await readPdfFile(file);
+    setReading(null);
+    if (!read.ok) {
+      setError(PDF_ERRORS[read.error]);
+      return;
+    }
+    setDraft(read.text);
+    setPdf({ name: file.name, pages: read.pages, scannedPages: read.scannedPages });
+    const valid = checkInput(read.text);
+    if (!valid.ok) setError(valid.message);
+  };
+
+  const editDraft = (text: string) => {
+    setDraft(text);
+    if (!text.trim()) setPdf(null);
   };
 
   const checkLive = async (raw: string) => {
@@ -106,7 +130,8 @@ export function FairLease() {
     await pause(160);
     setView({ kind: "checking", steps: steps(4, { 1: `${quotes} clauses quoted by ${model}` }) });
     await pause(160);
-    showResult({ id: `live-${Date.now()}`, text: anon.text, extraction, label: `Live check · read by ${model}`, removed });
+    const from = pdf ? ` · ${pdf.name}` : "";
+    showResult({ id: `live-${Date.now()}`, text: anon.text, extraction, label: `Live check${from} · read by ${model}`, removed });
   };
 
   return (
@@ -125,7 +150,22 @@ export function FairLease() {
           onDate={setDateOverride}
         />
       ) : (
-        <StartScreen draft={draft} onDraft={setDraft} error={error} onCheck={checkLive} onSample={openSample} />
+        <StartScreen
+          draft={draft}
+          onDraft={editDraft}
+          error={error}
+          onCheck={checkLive}
+          onSample={openSample}
+          onPdf={openPdf}
+          reading={reading}
+          pdf={pdf}
+          onClearPdf={() => {
+            setPdf(null);
+            setDraft("");
+            setError(null);
+          }}
+          onPreparePdf={preloadPdfReader}
+        />
       )}
       <Footer />
     </>

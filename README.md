@@ -1,6 +1,6 @@
 # Fair Lease
 
-**Is your rental contract legal?** Paste a Madrid rental contract and Fair Lease marks every clause Spanish law doesn't allow, on your own text, with the exact article, a plain-English explanation and what to ask for instead.
+**Is your rental contract legal?** Paste a Madrid rental contract, or upload the PDF, and Fair Lease marks every clause Spanish law doesn't allow, on your own text, with the exact article, a plain-English explanation and what to ask for instead.
 
 Made for people renting a home in Madrid, especially young people and students from abroad who don't read Spanish legal language.
 
@@ -10,7 +10,7 @@ Made for people renting a home in Madrid, especially young people and students f
 
 ## How it works
 
-1. **Your browser removes personal data** (ID numbers, IBANs, phone numbers, emails) before anything is sent.
+1. **Your browser removes personal data** (ID numbers, IBANs, phone numbers, emails) before anything is sent. An uploaded PDF is read in the browser too ([pdf.js](https://mozilla.github.io/pdf.js/), loaded only when you pick a file): its text lands in the paste box and takes exactly the same path, so the file never leaves your device. Scanned PDFs with no text layer get a clear message; there is no OCR.
 2. **Claude reads and quotes.** One server route asks Claude for the contract's facts (signing date, rent, landlord type…) and its clauses, each with a literal quote and a few plain facts. Structured output, no verdicts.
 3. **The code checks every quote** is literally in your contract. Anything it can't find is dropped and counted.
 4. **The signing date picks the law.** Spain's tenancy law changed in March 2019, May 2023 and again on 8 October 2026 (that last reform is still pending a vote in Congress).

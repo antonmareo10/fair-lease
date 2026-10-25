@@ -15,6 +15,10 @@ const POINTS = [
     body: "There's no database and no account. The text lives only in your browser tab while you look at it. Reload the page and it's gone. The server doesn't log the contract's text.",
   },
   {
+    title: "A PDF never leaves your device",
+    body: "If you upload a PDF, your browser reads its text with pdf.js, on your device. The file itself is never sent. Its text goes into the box, and from there it's treated exactly like pasted text. Scanned PDFs (pictures of pages) have no text to read, and Fair Lease doesn't do OCR.",
+  },
+  {
     title: "Personal data is removed first",
     body: "Before anything leaves your browser, ID numbers (DNI and NIE), bank accounts (IBAN), Spanish phone numbers and emails are replaced with tags like [DNI]. Names are not removed: simple rules can't find them reliably.",
   },
