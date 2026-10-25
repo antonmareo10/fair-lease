@@ -51,3 +51,10 @@ export function computeMoney(result: AnalysisResult): MoneyLine | null {
     guaranteeKind: guarantees > 0 ? (bank ? "bank guarantee" : "guarantees") : null,
   };
 }
+
+/** "(cash plus a bank guarantee)", "(cash plus extra guarantees)", "(in cash)": how the money at signing is held. */
+export function heldAs(kind: MoneyLine["guaranteeKind"]): string {
+  if (kind === "bank guarantee") return "cash plus a bank guarantee";
+  if (kind === "guarantees") return "cash plus extra guarantees";
+  return "in cash";
+}

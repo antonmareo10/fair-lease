@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { analyze } from "@/lib/analyze";
-import { computeMoney } from "@/lib/money";
+import { computeMoney, heldAs } from "@/lib/money";
 import { buildGroups } from "@/lib/groups";
 import type { SampleFile } from "@/lib/extraction";
 import { traps } from "./fixtures";
@@ -33,5 +33,13 @@ describe("Finding groups", () => {
     const refs = groups.map((g) => g.clauseRef);
     expect(refs.indexOf("SEGUNDA")).toBeLessThan(refs.indexOf("QUINTA"));
     expect(refs.at(-1)).toBe("DECIMOCUARTA");
+  });
+});
+
+describe("Money line wording", () => {
+  it("says how the money at signing is held, in plain English", () => {
+    expect(heldAs("bank guarantee")).toBe("cash plus a bank guarantee");
+    expect(heldAs("guarantees")).toBe("cash plus extra guarantees");
+    expect(heldAs(null)).toBe("in cash");
   });
 });
