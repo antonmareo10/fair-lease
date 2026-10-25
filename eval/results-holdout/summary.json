@@ -1,0 +1,715 @@
+{
+ "set": "holdout",
+ "today": "2026-10-24",
+ "totalCostUsd": 1.4237399999999998,
+ "configs": [
+  {
+   "id": "fair-lease-sonnet",
+   "label": "Fair Lease (Sonnet 5.5 + rules + quote check)",
+   "model": "claude-sonnet-5-5",
+   "runs": 3,
+   "failedCalls": 0,
+   "servedBy": [
+    "claude-sonnet-5-5"
+   ],
+   "costUsd": 0.663446,
+   "costPerContractUsd": 0.03685811111111111,
+   "perRun": [
+    {
+     "verdictCorrect": 75,
+     "verdictTotal": 84,
+     "illegalFound": 12,
+     "illegalTotal": 16,
+     "checkFound": 5,
+     "checkTotal": 9,
+     "okKept": 58,
+     "okTotal": 59,
+     "falseAlarms": 0,
+     "softAlarms": 1,
+     "extraFlags": 2,
+     "flaggedRightWithArticle": 17,
+     "flaggedRight": 17,
+     "citations": 75,
+     "citationsInvented": 0,
+     "citationsWrong": 0,
+     "entries": 67,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 6,
+     "lawVersionTotal": 6,
+     "eurosCorrect": 7,
+     "eurosTotal": 7,
+     "euroSpurious": 0
+    },
+    {
+     "verdictCorrect": 75,
+     "verdictTotal": 84,
+     "illegalFound": 12,
+     "illegalTotal": 16,
+     "checkFound": 5,
+     "checkTotal": 9,
+     "okKept": 58,
+     "okTotal": 59,
+     "falseAlarms": 0,
+     "softAlarms": 1,
+     "extraFlags": 1,
+     "flaggedRightWithArticle": 17,
+     "flaggedRight": 17,
+     "citations": 75,
+     "citationsInvented": 0,
+     "citationsWrong": 0,
+     "entries": 67,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 6,
+     "lawVersionTotal": 6,
+     "eurosCorrect": 7,
+     "eurosTotal": 7,
+     "euroSpurious": 0
+    },
+    {
+     "verdictCorrect": 75,
+     "verdictTotal": 84,
+     "illegalFound": 12,
+     "illegalTotal": 16,
+     "checkFound": 5,
+     "checkTotal": 9,
+     "okKept": 58,
+     "okTotal": 59,
+     "falseAlarms": 0,
+     "softAlarms": 1,
+     "extraFlags": 2,
+     "flaggedRightWithArticle": 17,
+     "flaggedRight": 17,
+     "citations": 75,
+     "citationsInvented": 0,
+     "citationsWrong": 0,
+     "entries": 67,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 6,
+     "lawVersionTotal": 6,
+     "eurosCorrect": 7,
+     "eurosTotal": 7,
+     "euroSpurious": 0
+    }
+   ],
+   "metrics": {
+    "verdictCorrect": {
+     "mean": 75,
+     "min": 75,
+     "max": 75,
+     "values": [
+      75,
+      75,
+      75
+     ]
+    },
+    "illegalFound": {
+     "mean": 12,
+     "min": 12,
+     "max": 12,
+     "values": [
+      12,
+      12,
+      12
+     ]
+    },
+    "checkFound": {
+     "mean": 5,
+     "min": 5,
+     "max": 5,
+     "values": [
+      5,
+      5,
+      5
+     ]
+    },
+    "okKept": {
+     "mean": 58,
+     "min": 58,
+     "max": 58,
+     "values": [
+      58,
+      58,
+      58
+     ]
+    },
+    "falseAlarms": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "softAlarms": {
+     "mean": 1,
+     "min": 1,
+     "max": 1,
+     "values": [
+      1,
+      1,
+      1
+     ]
+    },
+    "extraFlags": {
+     "mean": 1.6666666666666667,
+     "min": 1,
+     "max": 2,
+     "values": [
+      2,
+      1,
+      2
+     ]
+    },
+    "flaggedRight": {
+     "mean": 17,
+     "min": 17,
+     "max": 17,
+     "values": [
+      17,
+      17,
+      17
+     ]
+    },
+    "flaggedRightWithArticle": {
+     "mean": 17,
+     "min": 17,
+     "max": 17,
+     "values": [
+      17,
+      17,
+      17
+     ]
+    },
+    "citations": {
+     "mean": 75,
+     "min": 75,
+     "max": 75,
+     "values": [
+      75,
+      75,
+      75
+     ]
+    },
+    "citationsInvented": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "citationsWrong": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "entries": {
+     "mean": 67,
+     "min": 67,
+     "max": 67,
+     "values": [
+      67,
+      67,
+      67
+     ]
+    },
+    "quotesNotInText": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "lawVersionCorrect": {
+     "mean": 6,
+     "min": 6,
+     "max": 6,
+     "values": [
+      6,
+      6,
+      6
+     ]
+    },
+    "eurosCorrect": {
+     "mean": 7,
+     "min": 7,
+     "max": 7,
+     "values": [
+      7,
+      7,
+      7
+     ]
+    },
+    "euroSpurious": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "flagsOnFineOtherRule": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "extraFlagsElsewhere": {
+     "mean": 1.6666666666666667,
+     "min": 1,
+     "max": 2,
+     "values": [
+      2,
+      1,
+      2
+     ]
+    }
+   },
+   "perContractVerdictCorrect": {
+    "ho-2021-company": {
+     "mean": 12,
+     "min": 12,
+     "max": 12,
+     "values": [
+      12,
+      12,
+      12
+     ]
+    },
+    "ho-2024-fair": {
+     "mean": 18,
+     "min": 18,
+     "max": 18,
+     "values": [
+      18,
+      18,
+      18
+     ]
+    },
+    "ho-2025-consumo": {
+     "mean": 11,
+     "min": 11,
+     "max": 11,
+     "values": [
+      11,
+      11,
+      11
+     ]
+    },
+    "ho-2025-borderline": {
+     "mean": 13,
+     "min": 13,
+     "max": 13,
+     "values": [
+      13,
+      13,
+      13
+     ]
+    },
+    "ho-2026-temporal": {
+     "mean": 11,
+     "min": 11,
+     "max": 11,
+     "values": [
+      11,
+      11,
+      11
+     ]
+    },
+    "ho-2026-company": {
+     "mean": 10,
+     "min": 10,
+     "max": 10,
+     "values": [
+      10,
+      10,
+      10
+     ]
+    }
+   },
+   "quotesProposed": {
+    "mean": 80.33333333333333,
+    "min": 80,
+    "max": 81,
+    "values": [
+     81,
+     80,
+     80
+    ]
+   },
+   "quotesDropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0,
+    "values": [
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "id": "alone-sonnet",
+   "label": "Sonnet 5.5 alone",
+   "model": "claude-sonnet-5-5",
+   "runs": 3,
+   "failedCalls": 0,
+   "servedBy": [
+    "claude-sonnet-5-5"
+   ],
+   "costUsd": 0.760294,
+   "costPerContractUsd": 0.04223855555555556,
+   "perRun": [
+    {
+     "verdictCorrect": 69,
+     "verdictTotal": 84,
+     "illegalFound": 13,
+     "illegalTotal": 16,
+     "checkFound": 4,
+     "checkTotal": 9,
+     "okKept": 52,
+     "okTotal": 59,
+     "falseAlarms": 2,
+     "softAlarms": 5,
+     "extraFlags": 0,
+     "flaggedRightWithArticle": 21,
+     "flaggedRight": 22,
+     "citations": 130,
+     "citationsInvented": 0,
+     "citationsWrong": 7,
+     "entries": 97,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 3,
+     "lawVersionTotal": 6,
+     "eurosCorrect": 6,
+     "eurosTotal": 7,
+     "euroSpurious": 1
+    },
+    {
+     "verdictCorrect": 69,
+     "verdictTotal": 84,
+     "illegalFound": 12,
+     "illegalTotal": 16,
+     "checkFound": 5,
+     "checkTotal": 9,
+     "okKept": 52,
+     "okTotal": 59,
+     "falseAlarms": 3,
+     "softAlarms": 4,
+     "extraFlags": 1,
+     "flaggedRightWithArticle": 20,
+     "flaggedRight": 22,
+     "citations": 126,
+     "citationsInvented": 0,
+     "citationsWrong": 7,
+     "entries": 99,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 3,
+     "lawVersionTotal": 6,
+     "eurosCorrect": 6,
+     "eurosTotal": 7,
+     "euroSpurious": 1
+    },
+    {
+     "verdictCorrect": 71,
+     "verdictTotal": 84,
+     "illegalFound": 11,
+     "illegalTotal": 16,
+     "checkFound": 6,
+     "checkTotal": 9,
+     "okKept": 54,
+     "okTotal": 59,
+     "falseAlarms": 2,
+     "softAlarms": 3,
+     "extraFlags": 1,
+     "flaggedRightWithArticle": 20,
+     "flaggedRight": 22,
+     "citations": 133,
+     "citationsInvented": 0,
+     "citationsWrong": 6,
+     "entries": 98,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 3,
+     "lawVersionTotal": 6,
+     "eurosCorrect": 3,
+     "eurosTotal": 7,
+     "euroSpurious": 2
+    }
+   ],
+   "metrics": {
+    "verdictCorrect": {
+     "mean": 69.66666666666667,
+     "min": 69,
+     "max": 71,
+     "values": [
+      69,
+      69,
+      71
+     ]
+    },
+    "illegalFound": {
+     "mean": 12,
+     "min": 11,
+     "max": 13,
+     "values": [
+      13,
+      12,
+      11
+     ]
+    },
+    "checkFound": {
+     "mean": 5,
+     "min": 4,
+     "max": 6,
+     "values": [
+      4,
+      5,
+      6
+     ]
+    },
+    "okKept": {
+     "mean": 52.666666666666664,
+     "min": 52,
+     "max": 54,
+     "values": [
+      52,
+      52,
+      54
+     ]
+    },
+    "falseAlarms": {
+     "mean": 2.3333333333333335,
+     "min": 2,
+     "max": 3,
+     "values": [
+      2,
+      3,
+      2
+     ]
+    },
+    "softAlarms": {
+     "mean": 4,
+     "min": 3,
+     "max": 5,
+     "values": [
+      5,
+      4,
+      3
+     ]
+    },
+    "extraFlags": {
+     "mean": 0.6666666666666666,
+     "min": 0,
+     "max": 1,
+     "values": [
+      0,
+      1,
+      1
+     ]
+    },
+    "flaggedRight": {
+     "mean": 22,
+     "min": 22,
+     "max": 22,
+     "values": [
+      22,
+      22,
+      22
+     ]
+    },
+    "flaggedRightWithArticle": {
+     "mean": 20.333333333333332,
+     "min": 20,
+     "max": 21,
+     "values": [
+      21,
+      20,
+      20
+     ]
+    },
+    "citations": {
+     "mean": 129.66666666666666,
+     "min": 126,
+     "max": 133,
+     "values": [
+      130,
+      126,
+      133
+     ]
+    },
+    "citationsInvented": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "citationsWrong": {
+     "mean": 6.666666666666667,
+     "min": 6,
+     "max": 7,
+     "values": [
+      7,
+      7,
+      6
+     ]
+    },
+    "entries": {
+     "mean": 98,
+     "min": 97,
+     "max": 99,
+     "values": [
+      97,
+      99,
+      98
+     ]
+    },
+    "quotesNotInText": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "lawVersionCorrect": {
+     "mean": 3,
+     "min": 3,
+     "max": 3,
+     "values": [
+      3,
+      3,
+      3
+     ]
+    },
+    "eurosCorrect": {
+     "mean": 5,
+     "min": 3,
+     "max": 6,
+     "values": [
+      6,
+      6,
+      3
+     ]
+    },
+    "euroSpurious": {
+     "mean": 1.3333333333333333,
+     "min": 1,
+     "max": 2,
+     "values": [
+      1,
+      1,
+      2
+     ]
+    },
+    "flagsOnFineOtherRule": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "extraFlagsElsewhere": {
+     "mean": 0.6666666666666666,
+     "min": 0,
+     "max": 1,
+     "values": [
+      0,
+      1,
+      1
+     ]
+    }
+   },
+   "perContractVerdictCorrect": {
+    "ho-2021-company": {
+     "mean": 12.333333333333334,
+     "min": 12,
+     "max": 13,
+     "values": [
+      13,
+      12,
+      12
+     ]
+    },
+    "ho-2024-fair": {
+     "mean": 17.333333333333332,
+     "min": 17,
+     "max": 18,
+     "values": [
+      17,
+      17,
+      18
+     ]
+    },
+    "ho-2025-consumo": {
+     "mean": 11.333333333333334,
+     "min": 10,
+     "max": 12,
+     "values": [
+      10,
+      12,
+      12
+     ]
+    },
+    "ho-2025-borderline": {
+     "mean": 9,
+     "min": 8,
+     "max": 10,
+     "values": [
+      9,
+      8,
+      10
+     ]
+    },
+    "ho-2026-temporal": {
+     "mean": 10,
+     "min": 9,
+     "max": 11,
+     "values": [
+      10,
+      11,
+      9
+     ]
+    },
+    "ho-2026-company": {
+     "mean": 9.666666666666666,
+     "min": 9,
+     "max": 10,
+     "values": [
+      10,
+      9,
+      10
+     ]
+    }
+   },
+   "quotesProposed": null,
+   "quotesDropped": null
+  }
+ ]
+}
