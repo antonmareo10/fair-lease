@@ -4,7 +4,7 @@
 
 Made for people renting a home in Madrid, especially young people and students from abroad who don't read Spanish legal language.
 
-**Try it now: [fair-lease.vercel.app](https://fair-lease.vercel.app)**. No account. Tap one of the three sample contracts and its problem clauses light up; click a highlight to see the article and what to ask for instead.
+**Try it now: [fair-lease.vercel.app](https://fair-lease.vercel.app)**. No account. Tap one of the three sample contracts and its problem clauses light up; click a highlight to see the article and what to ask for instead. To try the PDF upload, drop [the traps contract as a PDF](public/samples/traps-2025.pdf) on the box (that one is a live check).
 
 ![A fictional contract with each unenforceable clause highlighted and a margin note with the article and the euros involved](docs/result-screen.png)
 
@@ -30,7 +30,7 @@ npm run dev            # http://localhost:3000
 The samples and the tests need no key. For live checks of a pasted contract, create `.env.local` from [`.env.example`](.env.example) with your own `ANTHROPIC_API_KEY`.
 
 ```bash
-npm test               # unit tests: rules vs. expected results, quotes, law versions, money, letter, live route
+npm test               # unit tests: rules vs. expected results, quotes, law versions, money, letter, live route, PDF reading
 npm run build
 npm run check:ui       # Playwright checks at 1440 px and 390 px (runs `next start` on port 3100)
 ```
