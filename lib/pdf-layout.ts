@@ -22,6 +22,9 @@ const HEADING_LINE = /^(?:[A-ZÁÉÍÓÚÜÑ]{5,}|[A-ZÁÉÍÓÚÜÑ ]{12,}|[A-Z
 /** A section word or a title alone on its line ("CLÁUSULAS"): it never continues the line before. */
 const SECTION_LINE = /^(?:[A-ZÁÉÍÓÚÜÑ]{5,}|[A-ZÁÉÍÓÚÜÑ ]{12,})$/u;
 
+/** A gap this many times the usual line pitch separates paragraphs (Word's defaults give about 1.6, tight layouts 1.4). */
+const PARAGRAPH_GAP = 1.3;
+
 const median = (values: number[]): number => {
   if (values.length === 0) return 0;
   const s = [...values].sort((a, b) => a - b);
@@ -170,7 +173,7 @@ export function layoutPdfText(pages: PdfPage[]): string {
   const pitch = percentile(gaps, 0.2) || 1.2 * median(kept.flat().map((l) => l.h));
   // Does this document leave space between paragraphs? Then that space is the signal, and the shape of a
   // line (short, ending in a full stop) is only a fallback for documents that don't.
-  const spaced = gaps.filter((g) => g > 1.45 * pitch).length >= 2;
+  const spaced = gaps.filter((g) => g > PARAGRAPH_GAP * pitch).length >= 2;
 
   kept.forEach((pageLines) => {
     pageLines.forEach((line, i) => {
@@ -187,7 +190,7 @@ export function layoutPdfText(pages: PdfPage[]): string {
           newBlock ||= opensClause || (short && (ended || !spaced)) || HEADING_LINE.test(before.text);
         } else {
           newBlock ||=
-            before.y - line.y > 1.45 * pitch || // blank space between paragraphs
+            before.y - line.y > PARAGRAPH_GAP * pitch || // blank space between paragraphs
             opensClause || // "TERCERA. RENTA." right after a sentence ends
             (short && HEADING_LINE.test(before.text)) || // a heading on its own line: "REUNIDOS"
             (!spaced && short && ended);

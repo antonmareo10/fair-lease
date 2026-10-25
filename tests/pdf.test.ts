@@ -7,6 +7,7 @@ import type { SampleFile } from "@/lib/extraction";
 import { findGutter, layoutPdfText, type PdfItem } from "@/lib/pdf-layout";
 import { extractPdf, looksLikePdf, MAX_PDF_BYTES } from "@/lib/read-pdf";
 import { checkInput } from "@/lib/validate";
+import { verifyQuotes } from "@/lib/quotes";
 
 const TODAY = "2026-10-24";
 const read = (path: string) => new Uint8Array(readFileSync(path));
@@ -65,6 +66,17 @@ describe("awkward PDFs", () => {
     expect(flat(r.text)).toBe(flat(s.text));
     expect(r.text.split("\n\n")).toEqual(s.text.split(/\n\s*\n/).map(flat).filter(Boolean));
     expect(analyze(anonymize(r.text).text, s.extraction, { today: TODAY }).hiddenCount).toBe(0);
+  });
+
+  test("a printed contract, justified with bold clause headings, keeps every paragraph and every quote of the held-out labels", async () => {
+    const src = readFileSync("eval/holdout/ho-2025-consumo.txt", "utf8");
+    const r = await extract(read("tests/fixtures/pdf/printed.pdf"));
+    if (!r.ok) throw new Error(r.error);
+    expect(r.text.split("\n\n")).toEqual(src.split(/\n\s*\n/).map(flat).filter(Boolean));
+    // Every literal passage the held-out labels anchor on is still found in the text read from the PDF.
+    const gold = JSON.parse(readFileSync("eval/holdout/gold.json", "utf8")) as { contracts: Record<string, { units: { quotes: string[] }[] }> };
+    const quotes = gold.contracts["ho-2025-consumo"].units.flatMap((u) => u.quotes);
+    expect(verifyQuotes(anonymize(r.text).text, quotes).hiddenCount).toBe(0);
   });
 
   test("a scanned PDF (pictures of pages, no text layer) is refused, without promising OCR", async () => {
