@@ -25,7 +25,7 @@ test("Write to my landlord lists the 10 changes and copies", async ({ page, cont
 test("no landlord message when nothing is wrong", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /A fair contract/ }).click();
-  await expect(page.getByText("No problems found in the 18 rules we check.")).toBeVisible();
+  await expect(page.getByText("No problems found in the 22 rules we check.")).toBeVisible();
   await expect(page.getByRole("button", { name: "Write to my landlord" })).toHaveCount(0);
 });
 

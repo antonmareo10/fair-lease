@@ -1,0 +1,453 @@
+{
+ "reform-FL-19": {
+  "gold": "ILLEGAL",
+  "rule": "FL-19",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "reform-CUARTA-FL-02": {
+  "gold": "OK",
+  "rule": "FL-02",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "reform-QUINTA-FL-17": {
+  "gold": "ILLEGAL",
+  "rule": "FL-17",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "reform-SEXTA-FL-09": {
+  "gold": "OK",
+  "rule": "FL-09",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "reform-SEXTA-FL-10": {
+  "gold": "ILLEGAL",
+  "rule": "FL-10",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "reform-SEPTIMA-FL-07": {
+  "gold": "ILLEGAL",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "reform-OCTAVA-FL-18": {
+  "gold": "ILLEGAL",
+  "rule": "FL-18",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "reform-NOVENA-OK-PETS": {
+  "gold": "OK",
+  "rule": "OK-PETS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEGUNDA-FL-05": {
+  "gold": "OK",
+  "rule": "FL-05",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-TERCERA-FL-06": {
+  "gold": "OK",
+  "rule": "FL-06",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-CUARTA-FL-04": {
+  "gold": "OK",
+  "rule": "FL-04",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "not mentioned",
+    "not mentioned",
+    "not mentioned"
+   ]
+  }
+ },
+ "fair-QUINTA-FL-08": {
+  "gold": "OK",
+  "rule": "FL-08",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEXTA-FL-01": {
+  "gold": "OK",
+  "rule": "FL-01",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEXTA-FL-02": {
+  "gold": "OK",
+  "rule": "FL-02",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEPTIMA-FL-09": {
+  "gold": "OK",
+  "rule": "FL-09",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-SEPTIMA-FL-03": {
+  "gold": "OK",
+  "rule": "FL-03",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-OCTAVA-FL-11": {
+  "gold": "OK",
+  "rule": "FL-11",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-NOVENA-FL-07": {
+  "gold": "OK",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DECIMA-FL-13": {
+  "gold": "OK",
+  "rule": "FL-13",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-UNDECIMA-OK-PETS": {
+  "gold": "OK",
+  "rule": "OK-PETS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DUODECIMA-OK-SUBLET": {
+  "gold": "OK",
+  "rule": "OK-SUBLET",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DECIMOTERCERA-OK-WORKS": {
+  "gold": "OK",
+  "rule": "OK-WORKS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "fair-DECIMOCUARTA-FL-16": {
+  "gold": "OK",
+  "rule": "FL-16",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "traps-SEGUNDA-FL-05": {
+  "gold": "ILLEGAL",
+  "rule": "FL-05",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-TERCERA-FL-15": {
+  "gold": "OK",
+  "rule": "FL-15",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "traps-TERCERA-FL-04": {
+  "gold": "ILLEGAL",
+  "rule": "FL-04",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-CUARTA-FL-08": {
+  "gold": "ILLEGAL",
+  "rule": "FL-08",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-QUINTA-FL-01": {
+  "gold": "CHECK",
+  "rule": "FL-01",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ]
+  }
+ },
+ "traps-QUINTA-FL-02": {
+  "gold": "ILLEGAL",
+  "rule": "FL-02",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-QUINTA-FL-16": {
+  "gold": "CHECK",
+  "rule": "FL-16",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "CHECK",
+    "CHECK",
+    "CHECK"
+   ]
+  }
+ },
+ "traps-SEXTA-FL-03": {
+  "gold": "ILLEGAL",
+  "rule": "FL-03",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-SEPTIMA-FL-09": {
+  "gold": "ILLEGAL",
+  "rule": "FL-09",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-SEPTIMA-OK-UTILITIES": {
+  "gold": "OK",
+  "rule": "OK-UTILITIES",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "traps-OCTAVA-FL-11": {
+  "gold": "ILLEGAL",
+  "rule": "FL-11",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-NOVENA-FL-07-OK": {
+  "gold": "OK",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "traps-NOVENA-FL-07": {
+  "gold": "ILLEGAL",
+  "rule": "FL-07",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-DECIMA-FL-13": {
+  "gold": "ILLEGAL",
+  "rule": "FL-13",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-UNDECIMA-FL-14": {
+  "gold": "ILLEGAL",
+  "rule": "FL-14",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "ILLEGAL",
+    "ILLEGAL",
+    "ILLEGAL"
+   ]
+  }
+ },
+ "traps-DUODECIMA-OK-PETS": {
+  "gold": "OK",
+  "rule": "OK-PETS",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "traps-DECIMOTERCERA-OK-SUBLET": {
+  "gold": "OK",
+  "rule": "OK-SUBLET",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ },
+ "traps-DECIMOCUARTA-FL-18": {
+  "gold": "OK",
+  "rule": "FL-18",
+  "byConfig": {
+   "fair-lease-sonnet": [
+    "OK",
+    "OK",
+    "OK"
+   ]
+  }
+ }
+}

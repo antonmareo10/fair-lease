@@ -185,6 +185,34 @@ export const LAW = {
     article: "LAU art. 3.2 · Civil Code art. 6.4",
     boeUrl: `${LAU}#a3`,
   },
+  LAU_14: {
+    article: "LAU art. 14",
+    boeUrl: `${LAU}#a14`,
+    quoteEs:
+      "El adquirente de una vivienda arrendada quedará subrogado en los derechos y obligaciones del arrendador durante los cinco primeros años de vigencia del contrato, o siete años si el arrendador anterior fuese persona jurídica […] Cuando las partes hayan estipulado que la enajenación de la vivienda extinguirá el arrendamiento, el adquirente sólo deberá soportar el arrendamiento durante el tiempo que reste para el transcurso del plazo de cinco años, o siete años si el arrendador anterior fuese persona jurídica.",
+    quoteEn:
+      "Whoever buys a rented home takes over the landlord's rights and duties for the first five years of the contract, or seven if the previous landlord was a company […] Where the parties agreed that a sale would end the lease, the buyer only has to keep it for what remains of those five years, or seven if the previous landlord was a company.",
+  },
+  TRLGDCU_85_6: {
+    article: "TRLGDCU art. 85.6 (consumer law)",
+    boeUrl: "https://www.boe.es/buscar/act.php?id=BOE-A-2007-20555#a85",
+    quoteEs: "Las cláusulas que supongan la imposición de una indemnización desproporcionadamente alta, al consumidor y usuario que no cumpla sus obligaciones.",
+    quoteEn: "Terms that impose a disproportionately high compensation on a consumer who fails to meet their obligations [are abusive].",
+  },
+  TRLGDCU_82_2: {
+    article: "TRLGDCU art. 82.2 (consumer law)",
+    boeUrl: "https://www.boe.es/buscar/act.php?id=BOE-A-2007-20555#a82",
+    quoteEs: "El empresario que afirme que una determinada cláusula ha sido negociada individualmente, asumirá la carga de la prueba.",
+    quoteEn: "A business that claims a term was negotiated individually has to prove it.",
+  },
+  LEC_394_1: {
+    article: "LEC art. 394.1 (civil procedure)",
+    boeUrl: "https://www.boe.es/buscar/act.php?id=BOE-A-2000-323#a394",
+    quoteEs:
+      "las costas de la primera instancia se impondrán a la parte que haya visto rechazadas todas sus pretensiones, salvo que el tribunal aprecie, y así lo razone, que el caso presentaba serias dudas de hecho o de derecho.",
+    quoteEn:
+      "the costs of the first instance are paid by the party whose claims were all rejected, unless the court finds, and explains, that the case raised serious doubts of fact or law.",
+  },
   LAU_4_2: { article: "LAU art. 4.2", boeUrl: `${LAU}#a4` },
   LAU_8: { article: "LAU art. 8", boeUrl: `${LAU}#a8` },
   LAU_23_1: { article: "LAU art. 23.1", boeUrl: `${LAU}#a23` },

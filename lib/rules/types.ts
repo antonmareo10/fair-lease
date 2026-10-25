@@ -33,7 +33,12 @@ export type Finding = {
   newSinceOct2026?: boolean;
 };
 
-export type IndexedClause = { clause: Clause; index: number };
+export type IndexedClause = {
+  clause: Clause;
+  index: number;
+  /** The contract paragraph the verified quote sits in (the quote itself when unknown). Read only from the contract. */
+  context?: string;
+};
 
 export type RuleContext = {
   law: LawVersion;

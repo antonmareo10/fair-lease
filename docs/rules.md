@@ -20,7 +20,7 @@ RDL 29/2026 still needs approval by Congress (through the Diputación Permanente
 
 With no signing date in the contract, the app uses today's law and lets the tenant pick a date.
 
-## The 18 rules in this build
+## The 22 rules in this build
 
 | ID | What it detects | Legal basis | Verdict |
 |---|---|---|---|
@@ -36,6 +36,7 @@ With no signing date in the contract, the app uses today's law and lets the tena
 | FL-09 | Community fees with no yearly amount written | [LAU 20.1](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a20) | Not enforceable |
 | FL-10 | Property tax (IBI) passed on to the tenant | [LAU 20.1](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a20) | Not enforceable since Oct 2026; before, only without a yearly amount |
 | FL-11 | All repairs charged to the tenant | [LAU 21](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a21) | Not enforceable |
+| FL-12 | "If the flat is sold, the contract ends" | [LAU 14](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a14) | Not enforceable (the buyer takes over the lease for the first 5, or 7, years) |
 | FL-13 | Landlord can enter whenever they like | [Constitution 18.2](https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229#a18) | Not enforceable |
 | FL-14 | Registering at the address (empadronamiento) forbidden | [LBRL 15](https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392#a15) | Not enforceable |
 | FL-15 | Rent payable only in cash | [LAU 17.3](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a17) | Worth checking |
@@ -43,12 +44,19 @@ With no signing date in the contract, the app uses today's law and lets the tena
 | FL-17 | Mandatory rent-default insurance | [LAU 36.5](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a36) | Not enforceable since Oct 2026; before, Your right |
 | FL-18 | Waiver of the right to buy first (tanteo y retracto) | [LAU 25.8](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a25) | Not enforceable since Oct 2026; fine before |
 | FL-19 | "Seasonal" contract without a real, stated reason | [LAU 7.2](https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003#a7) | Not enforceable since Oct 2026; worth checking before |
+| FL-20 | Penalty of three times the daily rent or more for each day of a late handover | [TRLGDCU 85.6](https://www.boe.es/buscar/act.php?id=BOE-A-2007-20555#a85) | Not enforceable with a company landlord; worth checking with a private one |
+| FL-21 | "Both parties declare every clause was negotiated individually" | [TRLGDCU 82.2](https://www.boe.es/buscar/act.php?id=BOE-A-2007-20555#a82) | Worth checking |
+| FL-22 | All court and lawyer costs on the tenant, whatever the outcome | [LEC 394.1](https://www.boe.es/buscar/act.php?id=BOE-A-2000-323#a394) | Not enforceable with a company landlord; worth checking with a private one |
 
 Every rule also recognises the legal version of its clause and shows it as **Fine**, so a fair contract comes out clean.
 
 **Legal even if it feels harsh** (shown as Fine): no pets (LAU 4.2), no subletting or works without written consent (LAU 8, 23.1), utilities with individual meters (LAU 20.3), no leaving in the first six months (LAU 11).
 
-**Not in this build:** FL-12 (sale ends the contract), FL-20 (late-handover penalty), FL-21 ("all clauses were negotiated" boilerplate) and FL-22 (all legal costs on the tenant). A missing rental-registry number is never flagged: the Supreme Court annulled that registry in 2026.
+FL-03 also catches a renewal, inventory or check-in fee whatever the clause is called, and since Oct 2026 an "optional" service charged to the tenant is worth checking (art. 20.2 allows it only if the tenant asked for it in writing). FL-07 also flags a lock-in longer than the law allows: six months, or one month in a valid temporary contract since Oct 2026. FL-06 reads the whole clause paragraph from the contract, not only the quote, before it accepts an art. 9.3 "need" clause.
+
+Together with FL-01, FL-02, FL-03, FL-07 and FL-16, the new FL-20, FL-21 and FL-22 cover the six abusive clauses Spain's consumer ministry said it found most often in rental contracts ([Consumo, 22 May 2026](https://www.dsca.gob.es/es/comunicacion/notas-prensa/consumo-informa-principales-clausulas-abusivas-detectadas-contratos)): management fees, deposits and guarantees above the limit, a disproportionate late-handover penalty, the "negotiated individually" declaration, keeping the deposit unless the whole term is served, and all court costs on the tenant.
+
+FL-12, FL-20, FL-21 and FL-22 were left out of the first build and added on 25 Oct 2026, after the held-out evaluation in [`eval/`](../eval/README.md) showed the clauses they cover. A missing rental-registry number is never flagged: the Supreme Court annulled that registry in 2026.
 
 ## Tested against expected results
 

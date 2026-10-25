@@ -16,7 +16,7 @@ Contract facts:
 - is_rental_contract: false if the text is not a residential rental contract.
 - language: "es" if the contract is written in Spanish, otherwise "other".
 
-Clauses: add one entry per distinct obligation on these topics: ${TOPICS.filter((t) => t !== "other").join(", ")}. Skip clauses that touch none of them (object, applicable law, signatures) unless they state the contract's seasonal nature or exclude the permanent-home rules (topic temporal_cause). If one clause covers several topics (for example a deposit and a bank guarantee), add one entry per topic, each with its own quote. Use "TÍTULO" as clause_ref for the document title.
+Clauses: add one entry per distinct obligation on these topics: ${TOPICS.filter((t) => t !== "other").join(", ")}. Skip clauses that touch none of them (object, applicable law, signatures) unless they state the contract's seasonal nature or exclude the permanent-home rules (topic temporal_cause). Any fee for preparing, managing, formalising or renewing the contract (agency fees, "gastos de gestión", inventory or check-in, renewal) is topic agency_fee. A rule about when the tenant may leave, or what leaving costs, is topic early_exit. If one clause covers several topics (for example a deposit and a bank guarantee), add one entry per topic, each with its own quote. Use "TÍTULO" as clause_ref for the document title.
 
 For every entry:
 - quote: copy one continuous passage of the contract character for character: same words, accents, capitals, punctuation and numbers. Never paraphrase, translate, shorten with ellipses, or join separate passages. Quote the sentence or part of a sentence that states the obligation, at least a few words long.

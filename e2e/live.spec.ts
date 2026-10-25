@@ -34,7 +34,7 @@ test("a pasted contract is anonymised, checked live and annotated", async ({ pag
   await expect(steps).toContainText("2 removed: 2 ID numbers (DNI)");
   await page.screenshot({ path: shot("checking", info.project.name) });
   await expect(page.getByText("Live check · read by Claude Sonnet 5.5")).toBeVisible();
-  await expect(page.getByText("No problems found in the 18 rules we check.")).toBeVisible();
+  await expect(page.getByText("No problems found in the 22 rules we check.")).toBeVisible();
   await expect(page.getByText("Removed before analysis: 2 ID numbers (DNI).")).toBeVisible();
   await expect(page.locator(".sheet").first()).toContainText("con DNI [DNI]");
 });

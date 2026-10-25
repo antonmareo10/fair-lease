@@ -52,6 +52,7 @@ export const SIGNALS = {
   need_notice_two_months: "That recovery requires at least two months' notice.",
   // early_exit
   no_exit_first_6_months: "The tenant cannot leave during the first six months.",
+  no_exit_period: "The tenant cannot leave during a first period of the contract (put its length in numbers.months).",
   pay_remaining_rent_on_exit: "Leaving early means paying all rent until the end of the term.",
   lose_deposit_on_exit: "Leaving early means losing the deposit.",
   compensation_month_per_year: "Leaving early means paying one month's rent per remaining year, prorated.",
@@ -84,6 +85,15 @@ export const SIGNALS = {
   // agency_fee
   landlord_pays_fees: "Agency and contract-preparation fees are paid by the landlord.",
   optional_service: "The charged service is described as optional and requested by the tenant.",
+  contract_fee: "The tenant pays for preparing, managing, formalising or renewing the contract (agency fee, gestión, formalización, inventory or check-in, renewal).",
+  // sale
+  sale_ends_lease: "If the home is sold, the contract ends or the tenant has to leave.",
+  // late_handover_penalty
+  penalty_three_times_daily_rent: "Each day of delay in handing back the home costs three times the daily rent or more.",
+  // negotiated_boilerplate
+  declares_individual_negotiation: "The parties declare that the contract or each clause was negotiated individually.",
+  // legal_costs
+  all_legal_costs_tenant: "The tenant pays all court and lawyer costs, whatever the outcome.",
   // purchase_right
   waives_preferential_purchase: "The tenant waives the preferential purchase rights (tanteo y retracto).",
   // default_insurance

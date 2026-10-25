@@ -11,6 +11,7 @@ import { fl08 } from "./fl08-rent-update";
 import { fl09 } from "./fl09-community-fees";
 import { fl10 } from "./fl10-taxes";
 import { fl11 } from "./fl11-repairs";
+import { fl12 } from "./fl12-sale";
 import { fl13 } from "./fl13-landlord-entry";
 import { fl14 } from "./fl14-padron";
 import { fl15 } from "./fl15-payment-method";
@@ -18,10 +19,16 @@ import { fl16 } from "./fl16-deposit-return";
 import { fl17 } from "./fl17-default-insurance";
 import { fl18 } from "./fl18-purchase-right";
 import { fl19 } from "./fl19-seasonal";
+import { fl20 } from "./fl20-late-handover";
+import { fl21 } from "./fl21-negotiated";
+import { fl22 } from "./fl22-legal-costs";
 import { knownLegal } from "./known-legal";
 
-/** The hand-checked FL rules in this build (FL-12, 20, 21 and 22 are deferred: prd.md > Deferred From the POC). */
-export const FL_RULES: Rule[] = [fl01, fl02, fl03, fl04, fl05, fl06, fl07, fl08, fl09, fl10, fl11, fl13, fl14, fl15, fl16, fl17, fl18, fl19];
+/**
+ * The hand-checked FL rules in this build, FL-01 to FL-22 (LEGAL_RULES.md §3). FL-12, 20, 21 and 22 were deferred
+ * from the proof of concept and added after the held-out evaluation found the clauses they cover.
+ */
+export const FL_RULES: Rule[] = [fl01, fl02, fl03, fl04, fl05, fl06, fl07, fl08, fl09, fl10, fl11, fl12, fl13, fl14, fl15, fl16, fl17, fl18, fl19, fl20, fl21, fl22];
 
 export const RULE_COUNT = FL_RULES.length;
 

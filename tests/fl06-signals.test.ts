@@ -47,9 +47,23 @@ describe("FL-06 · a stray landlord_can_terminate signal does not decide the rul
     expect(r.findings.find((f) => f.ruleId === "FL-06")?.verdict).toBe("ILLEGAL");
   });
 
-  it("goes to 'worth checking' when the quote does not back the signals", () => {
-    // A quote from the same contract that says nothing about the first year or the notice.
-    const f = withTercera((c) => ({ ...c, quote: "se hace constar expresamente que LA ARRENDADORA, persona física, podrá necesitar ocupar la vivienda antes del transcurso de cinco años para destinarla a vivienda permanente de su hija" }));
+  it("reads the whole clause, not only the quote: a quote with half the conditions is fine when its paragraph has the rest", () => {
+    // Held-out contract H2: Sonnet quoted only the sentence with the first year and the notice, and the need for the
+    // landlord's mother sat in the sentence before. The paragraph is read from the contract, never from the model.
+    const quote = "se hace constar expresamente que LA ARRENDADORA, persona física, podrá necesitar ocupar la vivienda antes del transcurso de cinco años para destinarla a vivienda permanente de su hija";
+    const f = withTercera((c) => ({ ...c, quote }));
+    expect(f?.verdict).toBe("OK");
+  });
+
+  it("goes to 'worth checking' when the clause itself does not back the signals", () => {
+    // The same clause with the first-year and notice conditions taken out of the contract.
+    const tail = ", siempre que haya transcurrido el primer año de contrato y lo comunique con al menos dos meses de antelación";
+    const text = fair.text.replace(tail, "");
+    expect(text).not.toBe(fair.text);
+    const quote = "podrá necesitar ocupar la vivienda antes del transcurso de cinco años para destinarla a vivienda permanente de su hija";
+    const ext: Extraction = { facts: live.facts, clauses: live.clauses.map((c) => (c.clause_ref === "TERCERA" ? { ...c, quote } : c)) };
+    const r = analyze(text, ext, { today: TODAY });
+    const f = r.findings.find((x) => x.ruleId === "FL-06");
     expect(f?.verdict).toBe("CHECK");
     expect(f?.body).toContain("first year");
     expect(f?.body).toContain("two months' notice");

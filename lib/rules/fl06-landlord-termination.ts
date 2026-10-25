@@ -38,12 +38,13 @@ export const fl06: Rule = {
     const years = minYears(ctx);
     const needSignals = (c: Clause) =>
       has(c, "need_for_landlord_or_family") && c.signals.includes("need_after_first_year") && c.signals.includes("need_notice_two_months");
-    return ofTopic(ctx, "landlord_termination").flatMap(({ clause, index }) => {
+    return ofTopic(ctx, "landlord_termination").flatMap(({ clause, index, context }) => {
       const natural = ctx.facts.landlord_type === "natural_person";
       // The model sometimes also ticks "landlord_can_terminate" on a clause that only states the art. 9.3 need.
-      // That signal alone doesn't decide: the quote has to show another way out, or fail to show the 9.3 conditions.
+      // That signal alone doesn't decide: the clause's own words (the quote and the paragraph it sits in) have to show
+      // another way out, or fail to show the 9.3 conditions.
       const contested = natural && needSignals(clause) && has(clause, "landlord_can_terminate");
-      const evidence = art93Evidence(clause.quote);
+      const evidence = art93Evidence(context ?? clause.quote);
       const validNeed = natural && needSignals(clause) && (!has(clause, "landlord_can_terminate") || (!evidence.otherGround && evidence.missing.length === 0));
       if (validNeed) {
         return [

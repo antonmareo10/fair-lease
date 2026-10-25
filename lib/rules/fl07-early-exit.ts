@@ -1,6 +1,6 @@
 import type { Rule } from "./types";
 import { LAW } from "./texts";
-import { amountOf, eur, finding, has, isC, ofTopic } from "./helpers";
+import { amountOf, eur, finding, has, isC, isSeasonal, months, ofTopic } from "./helpers";
 
 /** FL-07 · Penalty for leaving early. Allowed up to one month per year left (A/B); none since Oct 2026 (C). */
 export const fl07: Rule = {
@@ -19,17 +19,44 @@ export const fl07: Rule = {
       es: "En los contratos firmados desde el 8 de octubre de 2026, el artículo 11.3 de la LAU dice que irse pasados seis meses no genera indemnización. ¿Quitamos esta penalización?",
     };
 
+    // Since 8 Oct 2026 a valid temporary contract lets the tenant leave after one month (art. 11.2); otherwise six.
+    const lockAllowed = isC(ctx) && isSeasonal(ctx) && ctx.facts.temporal_cause ? 1 : 6;
+
     return ofTopic(ctx, "early_exit").flatMap(({ clause, index }) => {
+      const locked = has(clause, "no_exit_period") ? clause.numbers.months : null;
+      if (locked != null && locked > lockAllowed) {
+        return [
+          finding("FL-07", "ILLEGAL", [index], {
+            title: `No leaving for ${months(locked)}`,
+            body:
+              lockAllowed === 1
+                ? "In a temporary contract signed since 8 Oct 2026 you can leave after one month, with ten days' notice and nothing to pay. A longer lock-in takes that right away."
+                : `You can leave once six months have passed, with 30 days' notice. A clause that keeps you for ${months(locked)} takes that right away, and article 6 makes it void.`,
+            number: `${months(locked)} asked · ${months(lockAllowed)} allowed`,
+            law: isC(ctx) ? LAW.LAU_11_3_C : LAW.LAU_11_AB,
+            askInstead: {
+              en: `Article 11 LAU lets me leave after ${lockAllowed === 1 ? "one month" : "six months"}. Can we change the clause to that?`,
+              es: `El artículo 11 de la LAU me permite desistir pasados ${lockAllowed === 1 ? "un mes" : "seis meses"}. ¿Cambiamos la cláusula para que diga eso?`,
+            },
+            newSinceOct2026: lockAllowed === 1,
+          }),
+          ...penalty(clause, index),
+        ];
+      }
       // "No leaving in the first six months" is the law, even when the same passage adds a penalty.
-      const sixMonths = has(clause, "no_exit_first_6_months")
-        ? [
-            finding("FL-07", "OK", [index], {
-              title: "No leaving in the first six months",
-              body: "This is what the law says: you can leave after six months with 30 days' notice.",
-              law: isC(ctx) ? LAW.LAU_11_3_C : LAW.LAU_11_AB,
-            }),
-          ]
-        : [];
+      const firstMonth = lockAllowed === 1 && locked != null;
+      const sixMonths =
+        has(clause, "no_exit_first_6_months") || (locked != null && locked <= lockAllowed)
+          ? [
+              finding("FL-07", "OK", [index], {
+                title: firstMonth ? "No leaving in the first month" : "No leaving in the first six months",
+                body: firstMonth
+                  ? "This is what the law says for a temporary contract: you can leave after one month, with ten days' notice."
+                  : "This is what the law says: you can leave after six months with 30 days' notice.",
+                law: isC(ctx) ? LAW.LAU_11_3_C : LAW.LAU_11_AB,
+              }),
+            ]
+          : [];
       return [...sixMonths, ...penalty(clause, index)];
     });
 

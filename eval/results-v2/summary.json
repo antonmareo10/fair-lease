@@ -1,0 +1,319 @@
+{
+ "today": "2026-10-24",
+ "totalCostUsd": 0.367122,
+ "configs": [
+  {
+   "id": "fair-lease-sonnet",
+   "label": "Fair Lease (Sonnet 5.5 + rules + quote check)",
+   "model": "claude-sonnet-5-5",
+   "runs": 3,
+   "failedCalls": 0,
+   "servedBy": [
+    "claude-sonnet-5-5"
+   ],
+   "costUsd": 0.367122,
+   "costPerContractUsd": 0.04079133333333333,
+   "perRun": [
+    {
+     "verdictCorrect": 41,
+     "verdictTotal": 41,
+     "illegalFound": 15,
+     "illegalTotal": 15,
+     "checkFound": 2,
+     "checkTotal": 2,
+     "okKept": 24,
+     "okTotal": 24,
+     "falseAlarms": 0,
+     "softAlarms": 0,
+     "extraFlags": 0,
+     "flaggedRightWithArticle": 17,
+     "flaggedRight": 17,
+     "citations": 46,
+     "citationsInvented": 0,
+     "citationsWrong": 0,
+     "entries": 45,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 3,
+     "lawVersionTotal": 3,
+     "eurosCorrect": 4,
+     "eurosTotal": 4,
+     "euroSpurious": 0
+    },
+    {
+     "verdictCorrect": 41,
+     "verdictTotal": 41,
+     "illegalFound": 15,
+     "illegalTotal": 15,
+     "checkFound": 2,
+     "checkTotal": 2,
+     "okKept": 24,
+     "okTotal": 24,
+     "falseAlarms": 0,
+     "softAlarms": 0,
+     "extraFlags": 0,
+     "flaggedRightWithArticle": 17,
+     "flaggedRight": 17,
+     "citations": 46,
+     "citationsInvented": 0,
+     "citationsWrong": 0,
+     "entries": 45,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 3,
+     "lawVersionTotal": 3,
+     "eurosCorrect": 4,
+     "eurosTotal": 4,
+     "euroSpurious": 0
+    },
+    {
+     "verdictCorrect": 41,
+     "verdictTotal": 41,
+     "illegalFound": 15,
+     "illegalTotal": 15,
+     "checkFound": 2,
+     "checkTotal": 2,
+     "okKept": 24,
+     "okTotal": 24,
+     "falseAlarms": 0,
+     "softAlarms": 0,
+     "extraFlags": 0,
+     "flaggedRightWithArticle": 17,
+     "flaggedRight": 17,
+     "citations": 46,
+     "citationsInvented": 0,
+     "citationsWrong": 0,
+     "entries": 45,
+     "quotesNotInText": 0,
+     "lawVersionCorrect": 3,
+     "lawVersionTotal": 3,
+     "eurosCorrect": 4,
+     "eurosTotal": 4,
+     "euroSpurious": 0
+    }
+   ],
+   "metrics": {
+    "verdictCorrect": {
+     "mean": 41,
+     "min": 41,
+     "max": 41,
+     "values": [
+      41,
+      41,
+      41
+     ]
+    },
+    "illegalFound": {
+     "mean": 15,
+     "min": 15,
+     "max": 15,
+     "values": [
+      15,
+      15,
+      15
+     ]
+    },
+    "checkFound": {
+     "mean": 2,
+     "min": 2,
+     "max": 2,
+     "values": [
+      2,
+      2,
+      2
+     ]
+    },
+    "okKept": {
+     "mean": 24,
+     "min": 24,
+     "max": 24,
+     "values": [
+      24,
+      24,
+      24
+     ]
+    },
+    "falseAlarms": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "softAlarms": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "extraFlags": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "flaggedRight": {
+     "mean": 17,
+     "min": 17,
+     "max": 17,
+     "values": [
+      17,
+      17,
+      17
+     ]
+    },
+    "flaggedRightWithArticle": {
+     "mean": 17,
+     "min": 17,
+     "max": 17,
+     "values": [
+      17,
+      17,
+      17
+     ]
+    },
+    "citations": {
+     "mean": 46,
+     "min": 46,
+     "max": 46,
+     "values": [
+      46,
+      46,
+      46
+     ]
+    },
+    "citationsInvented": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "citationsWrong": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "entries": {
+     "mean": 45,
+     "min": 45,
+     "max": 45,
+     "values": [
+      45,
+      45,
+      45
+     ]
+    },
+    "quotesNotInText": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    },
+    "lawVersionCorrect": {
+     "mean": 3,
+     "min": 3,
+     "max": 3,
+     "values": [
+      3,
+      3,
+      3
+     ]
+    },
+    "eurosCorrect": {
+     "mean": 4,
+     "min": 4,
+     "max": 4,
+     "values": [
+      4,
+      4,
+      4
+     ]
+    },
+    "euroSpurious": {
+     "mean": 0,
+     "min": 0,
+     "max": 0,
+     "values": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "perContractVerdictCorrect": {
+    "traps-2025": {
+     "mean": 18,
+     "min": 18,
+     "max": 18,
+     "values": [
+      18,
+      18,
+      18
+     ]
+    },
+    "fair-2024": {
+     "mean": 15,
+     "min": 15,
+     "max": 15,
+     "values": [
+      15,
+      15,
+      15
+     ]
+    },
+    "reform-oct-2026": {
+     "mean": 8,
+     "min": 8,
+     "max": 8,
+     "values": [
+      8,
+      8,
+      8
+     ]
+    }
+   },
+   "quotesProposed": {
+    "mean": 47.333333333333336,
+    "min": 47,
+    "max": 48,
+    "values": [
+     48,
+     47,
+     47
+    ]
+   },
+   "quotesDropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0,
+    "values": [
+     0,
+     0,
+     0
+    ]
+   }
+  }
+ ]
+}

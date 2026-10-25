@@ -1,6 +1,59 @@
 # Fair Lease vs the model alone
 
-Is Fair Lease just "ask the AI"? This folder measures it. The same model reads the same three sample contracts twice: once through the real Fair Lease pipeline, once with the question a person would type into any assistant. Both are scored against the hand-made expected results (GOLD) clause by clause. Measured on 24 Oct 2026, three runs per configuration, $0.95 in total. The first round found one miss in Fair Lease (rule FL-06); it was fixed afterwards and the Fair Lease column below is the result with the fix (see "The one miss, and the fix").
+Is Fair Lease just "ask the AI"? This folder measures it. The same model reads the same contracts twice: once through the real Fair Lease pipeline, once with the question a person would type into any assistant. Both are scored clause by clause against expected results written by hand.
+
+There are two sets. The **held-out set** (six contracts, 84 clauses, labelled and committed before any run) is the one to quote. The **samples set** (the three contracts the rules were built on, 41 clauses) came first and is below it. API cost of everything in this folder: $3.41.
+
+## Held-out contracts (25 Oct 2026)
+
+Six new fictional Madrid contracts, written to cover what the samples don't: a company landlord under the 2019 text, a fair contract full of clauses that feel harsh but are legal, the six abusive clauses Spain's consumer ministry listed on 22 May 2026, borderline clauses, a legitimate temporary contract for a master's student under the October 2026 reform, and a company landlord after the reform. 84 rows: 16 not enforceable, 9 worth checking, 59 fine.
+
+Every row was labelled by hand from `LEGAL_RULES.md` (the rule notes checked against the BOE) and the contract's signing date, and committed in [94e242c](https://github.com/antonmareo10/fair-lease/commit/94e242c) before any model or engine had read the contracts. The labels follow the law, not the engine: four rows needed rules the engine did not have yet (FL-12, FL-20, FL-21, FL-22) and were labelled anyway. Contracts, labels and the reason for each row: [`holdout/`](holdout), [`holdout/LABELS.md`](holdout/LABELS.md).
+
+### First run, as pre-registered
+
+Three runs of each configuration, $1.42 ([`results-holdout/`](results-holdout)). Same settings as the samples set below.
+
+| | Fair Lease (Sonnet 5.5 + rules + quote check) | Sonnet 5.5 alone |
+| --- | --- | --- |
+| Verdict matches the label (of 84 rows) | 75 | 69.7 (69-71) |
+| Not-enforceable clauses found (of 16) | 12 | 12.0 (11-13) |
+| "Worth checking" clauses found (of 9) | 5 | 5.0 (4-6) |
+| Problem clauses flagged at all, any severity (of 25) | 17 | 22 |
+| Fine clauses left alone (of 59) | 58 | 52.7 (52-54) |
+| Fine clauses wrongly called not enforceable | 0 | 2.3 (2-3) |
+| Fine clauses sent to review | 1 | 4.0 (3-5) |
+| Right version of the law (of 6 contracts) | 6 | 3 |
+| Euro figures right (of 7) | 7 | 5.0 (3-6) |
+| Euros claimed on a fine clause | 0 | 1.3 (1-2) |
+| Invented articles / quotes not in the contract | 0 / 0 | 0 / 0 |
+| Cost per contract | $0.037 | $0.042 |
+
+Fair Lease gave the same answer in all three runs. Its nine wrong rows, by name:
+
+- **No rule for it (5):** "if the flat is sold the contract ends" (H1, FL-12); a late-handover penalty of three times the daily rent, with a company landlord and with a private one (H1 and H3, FL-20); "both parties declare every clause was negotiated" (H3, FL-21); all court and lawyer costs on the tenant whatever the outcome (H3, FL-22). The model alone caught all five, though it called the company-landlord penalty only "worth checking".
+- **Rules with a gap (3):** a renewal fee after the October 2026 reform (H6) and an optional cleaning service (H5), both filed by the model under "other", which FL-03 never read; and a ban on leaving during the first twelve months (H6), for which FL-07 had no signal.
+- **A false alarm (1):** a correct art. 9.3 clause (the landlord's mother may need the flat) sent to review in H2, because Sonnet quoted only its second sentence and FL-06 read only the quote.
+
+The model alone found more problem clauses (22 of 25) but was wrong in other ways, the same ones as on the samples: it applied an older law to three of the six contracts in every run (the 2019 text to a 2024 contract, and the pre-reform text to both October 2026 contracts), called a company's legal two-month guarantee not enforceable in all three runs and claimed €1,600 to €3,200 "over the limit" on that contract, called the extra guarantee that is over the limit in H3 fine in all three runs, sent the official-index rent update to review in all three, and called the Madrid waste charge not enforceable where the law is unsettled.
+
+### What I changed, and a fresh run
+
+After reading those nine rows I made these changes, all from `LEGAL_RULES.md`:
+
+- added FL-12, FL-20, FL-21 and FL-22, with their BOE texts (LAU art. 14, TRLGDCU arts. 85.6 and 82.2, LEC art. 394.1);
+- five new signals for the model to tick (`sale_ends_lease`, `penalty_three_times_daily_rent`, `declares_individual_negotiation`, `all_legal_costs_tenant`, `no_exit_period`) and one for fees (`contract_fee`), plus two sentences in the prompt on which topic a renewal fee or an exit rule belongs to;
+- FL-03 reads fees whatever topic they were given, and since the reform treats an "optional" service as worth checking; FL-07 flags a lock-in longer than six months (one in a valid temporary contract); FL-06 reads the clause's whole paragraph, taken from the contract, not only the quote.
+
+Then a fresh run of Fair Lease (new extractions with the new prompt, three runs, $0.67, [`results-holdout-v2/`](results-holdout-v2)): **84 of 84 rows in every run**, 16 of 16 not enforceable, 9 of 9 worth checking, 59 of 59 fine clauses left alone, the right law for all six contracts and all 7 euro figures. It added one note the labels don't ask for: "worth checking" (FL-16) on the H3 deposit clause that the labels file under FL-07 as not enforceable. The same prompt and rules on the three original samples, also fresh (three runs, $0.37, [`results-v2/`](results-v2)): 41 of 41.
+
+The first run's files are kept as measured at commit 1748c0b. Rescoring those same stored extractions with today's rules (`npm run eval:score -- --set holdout`, which rewrites `results-holdout/`) gives 77 of 84: the FL-06 and optional-service fixes reach the old extractions, the other seven rows need the new signals, which only a new extraction has. `npm run eval:score -- --set holdout --out eval/results-holdout-v2` recomputes the fresh run.
+
+**Read this before quoting it.** The blind number is the first run: 75 of 84 for Fair Lease, 69.7 for the model alone. The 84 of 84 came after I fixed what that run showed, on the same contracts, so it shows that the fixes work, not how Fair Lease does on contracts it has never seen. The labels and the rules still share an author, and six contracts is a small set.
+
+## Samples set (24 Oct 2026)
+
+The same comparison on the three sample contracts the rules were built on. Measured on 24 Oct 2026, three runs per configuration, $0.95 in total. The first round found one miss in Fair Lease (rule FL-06); it was fixed afterwards and the Fair Lease column below is the result with the fix (see "The one miss, and the fix").
 
 ## Result
 

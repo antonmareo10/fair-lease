@@ -27,7 +27,7 @@ test("traps sample: the same waiver is fine in 2025", async ({ page }) => {
 test("fair sample: clean, green, not alarmist", async ({ page }, info) => {
   await page.goto("/");
   await page.getByRole("button", { name: /A fair contract \(2024\)/ }).click();
-  await expect(page.getByText("No problems found in the 18 rules we check.")).toBeVisible();
+  await expect(page.getByText("No problems found in the 22 rules we check.")).toBeVisible();
   await expect(law(page)).toContainText("Signed 15 Feb 2024 → the May 2023 rules apply");
   await expect(page.getByText(/ties up/)).toHaveCount(0);
   await expect(page.locator("mark.hl.v-ILLEGAL")).toHaveCount(0);

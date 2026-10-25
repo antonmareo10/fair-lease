@@ -1,6 +1,6 @@
 import type { Rule } from "./types";
 import { LAW } from "./texts";
-import { eur, finding, has, isCompany, ofTopic } from "./helpers";
+import { eur, finding, has, isCompany } from "./helpers";
 
 /** FL-03 · Agency or contract-preparation fees charged to the tenant. */
 export const fl03: Rule = {
@@ -9,7 +9,12 @@ export const fl03: Rule = {
   evaluate(ctx) {
     const { regime } = ctx.law;
     const law = regime === "C" ? LAW.LAU_20_2_FEES_C : regime === "A" ? LAW.LAU_20_1_FEES_A : LAW.LAU_20_1_FEES_B;
-    return ofTopic(ctx, "agency_fee").flatMap(({ clause, index }) => {
+    // Fees for preparing, managing or renewing the contract, whatever topic the model gave them; and, since 8 Oct 2026,
+    // any other service charged to the tenant, which art. 20.2 allows only if it is optional and asked for in writing.
+    const candidates = ctx.clauses.filter(
+      ({ clause }) => clause.topic === "agency_fee" || has(clause, "contract_fee") || (regime === "C" && has(clause, "optional_service") && clause.payer === "tenant"),
+    );
+    return candidates.flatMap(({ clause, index }) => {
       const tenantPays = clause.payer === "tenant" && !has(clause, "landlord_pays_fees");
       if (!tenantPays) {
         return [
